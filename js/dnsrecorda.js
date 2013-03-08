@@ -23,8 +23,6 @@ DNSRecordA = function(name, ttl) {
   this.cl_ = 1;
   this.ttl_ = ttl;
 };
-
-
 goog.inherits(DNSRecordA, DNSRecord);
 
 

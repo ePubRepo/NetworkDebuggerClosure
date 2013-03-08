@@ -860,4 +860,11 @@ goog.addDependency('vec/vec2.js', ['goog.vec.Vec2'], ['goog.vec']);
 goog.addDependency('vec/vec3.js', ['goog.vec.Vec3'], ['goog.vec']);
 goog.addDependency('vec/vec4.js', ['goog.vec.Vec4'], ['goog.vec']);
 goog.addDependency('webgl/webgl.js', ['goog.webgl'], []);
-goog.addDependency('window/window.js', ['goog.window'], ['goog.string', 'goog.userAgent']); 
+goog.addDependency('window/window.js', ['goog.window'], ['goog.string', 'goog.userAgent']);
+
+//#ClosureDevModeHack
+// Hack to allow Closure to work in development mode with Packaged Apps
+// Calling goog.require from a test page does not work as this file is
+// not finished loading and as such goog.testing.jsunit isn't provided, so
+// an error is thrown
+if (typeof callTestPageRequire != 'undefined') callTestPageRequire();

@@ -3,6 +3,7 @@
 goog.addDependency('../../../js/appguimanager.js', ['AppGuiManager'], ['TestConfigurationParser']);
 goog.addDependency('../../../js/bootstrap.js', ['Bootstrap'], ['AppGuiManager', 'DNSInputHelper', 'DNSResponsePacketAnalyzer', 'NetworkInterfaceInformation', 'OutputRecorderManager']);
 goog.addDependency('../../../js/deserializer.js', ['Deserializer'], []);
+goog.addDependency('../../../js/deserializer_test.js', ['test.Deserializer'], ['Deserializer', 'goog.testing.jsunit']);
 goog.addDependency('../../../js/dnsinputhelper.js', ['DNSInputHelper'], ['DNSUtil']);
 goog.addDependency('../../../js/dnspacket.js', ['DNSPacket'], []);
 goog.addDependency('../../../js/dnspacketdeserializer.js', ['DNSPacketDeserializer'], ['DNSPacket', 'DNSRecord', 'DNSRecordA', 'DNSRecordAAAA', 'DNSRecordCNAME', 'DNSRecordMX', 'DNSRecordTXT', 'Deserializer']);
@@ -21,8 +22,9 @@ goog.addDependency('../../../js/outputrecord.js', ['OutputRecord'], []);
 goog.addDependency('../../../js/outputrecordmanager.js', ['OutputRecorderManager'], ['OutputRecord']);
 goog.addDependency('../../../js/responselabelpointmanager.js', ['ResponseLabelPointerManager'], ['DNSPacketDeserializer', 'Deserializer']);
 goog.addDependency('../../../js/serializer.js', ['Serializer'], []);
+goog.addDependency('../../../js/serializer_test.js', ['test.Serializer'], ['Serializer', 'goog.testing.jsunit']);
 goog.addDependency('../../../js/socketinfo.js', ['SocketInfo'], []);
 goog.addDependency('../../../js/telnet.js', ['Telnet'], ['SocketInfo']);
 goog.addDependency('../../../js/testconfigurationparser.js', ['TestConfigurationParser'], ['DNSQueryManager', 'OutputRecorderManager', 'Telnet']);
 goog.addDependency('../../../js/util.js', ['Util'], []);
-goog.addDependency('../../../unit-tests/util_test.js', ['test.Util'], ['Util', 'goog.testing.jsunit']);
+goog.addDependency('../../../js/util_test.js', ['test.Util'], ['Util', 'goog.testing.jsunit']);
