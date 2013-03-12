@@ -28,6 +28,15 @@ DNSPacket = function(opt_flags) {
 };
 
 
+
+/**
+ * Flags for the DNS packet.
+ * @type {integer}
+ * @private
+ */
+DNSPacket.prototype.flags_ = null;
+
+
 /**
  * Array containing the specific DNS records that are a part of each
  *   section of the DNS packet.
@@ -35,6 +44,15 @@ DNSPacket = function(opt_flags) {
  * @private
  */
 DNSPacket.prototype.data_ = null;
+
+
+/**
+ * Return the flags of the DNS packet.
+ * @return {integer} Flags of DNS packet.
+ */
+DNSPacket.prototype.getFlags = function() {
+  return this.flags_;
+};
 
 
 /**

@@ -15,6 +15,7 @@ goog.require('DNSRecordAAAA');
 goog.require('DNSRecordCNAME');
 goog.require('DNSRecordMX');
 goog.require('DNSRecordTXT');
+goog.require('DNSUtil');
 goog.require('Deserializer');
 
 /**

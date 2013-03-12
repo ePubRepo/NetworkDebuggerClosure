@@ -39,7 +39,7 @@ DNSPacketSerializer.prototype.serialize = function() {
              DNSUtil.PacketSection.AUTHORITY,
              DNSUtil.PacketSection.ADDITIONAL];
 
-  dataSerializer.short(0).short(this.dnsPacket_.flags_);
+  dataSerializer.short(0).short(this.dnsPacket_.getFlags());
 
   arrPacketSections.forEach(function(packetSection) {
     dataSerializer.short(this.dnsPacket_.data_[packetSection].length);

@@ -18,6 +18,9 @@ goog.require('goog.testing.jsunit');
 test.DNSUtil = function() {};
 
 
+/**
+ * Test for getRecordTypeNumByRecordTypeName() method.
+ */
 function testGetRecordTypeNumByRecordTypeName() {
   assertEquals(DNSUtil.RecordNumber.MX,
       DNSUtil.getRecordTypeNumByRecordTypeName('MX'));
@@ -31,6 +34,10 @@ function testGetRecordTypeNumByRecordTypeName() {
       DNSUtil.getRecordTypeNumByRecordTypeName('TXT'));
 }
 
+
+/**
+ * Test for getRecordTypeNameByRecordTypeNum() method.
+ */
 function testGetRecordTypeNameByRecordTypeNum() {
   assertEquals('MX',
       DNSUtil.getRecordTypeNameByRecordTypeNum(DNSUtil.RecordNumber.MX));
