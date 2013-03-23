@@ -49,8 +49,8 @@ DNSInputHelper.prototype.domIdDnsCustomResolverIp_ = 'dnsResolver';
  */
 //TODO: Substitute in a regular expression
 DNSInputHelper.prototype.isValidHostnameEntered = function() {
-   var hostname = document.getElementById(this.domIdDnsHostname_).value;
-   return (hostname.length > 3);
+  var hostname = document.getElementById(this.domIdDnsHostname_).value;
+  return (hostname.length >= 3 && hostname.indexOf('.') != -1);
 };
 
 
@@ -59,7 +59,7 @@ DNSInputHelper.prototype.isValidHostnameEntered = function() {
  * @return {string} Hostname user provided.
  */
 DNSInputHelper.prototype.getHostnameEntered = function() {
-   return document.getElementById(this.domIdDnsHostname_).value;
+  return document.getElementById(this.domIdDnsHostname_).value;
 };
 
 
@@ -68,8 +68,9 @@ DNSInputHelper.prototype.getHostnameEntered = function() {
  * @return {boolean} True if the ip is valid.
  */
 DNSInputHelper.prototype.isValidCustomResolverIpEntered = function() {
-    var ip = document.getElementById(this.domIdDnsCustomResolverIp_).value;
-    return true;
+  //TODO: implement this in future versions
+  var ip = document.getElementById(this.domIdDnsCustomResolverIp_).value;
+  return true;
 };
 
 
@@ -78,7 +79,7 @@ DNSInputHelper.prototype.isValidCustomResolverIpEntered = function() {
  * @return {string} User provided resolver IP.
  */
 DNSInputHelper.prototype.getCustomResolverIp = function() {
-   return document.getElementById(this.domIdDnsCustomResolverIp_).value;
+  return document.getElementById(this.domIdDnsCustomResolverIp_).value;
 };
 
 

@@ -23,6 +23,7 @@ test.DNSPacketDeserializer = function() {};
  * Create objects for testing.
  */
 function setUp() {
+  // represent a DNS response packet as an array buffer
   var myArrayBuffer = new Uint8Array(124);
   myArrayBuffer[0] = 0;
   myArrayBuffer[1] = 0;

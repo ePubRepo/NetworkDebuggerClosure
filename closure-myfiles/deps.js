@@ -5,6 +5,7 @@ goog.addDependency('../../../js/bootstrap.js', ['Bootstrap'], ['AppGuiManager', 
 goog.addDependency('../../../js/deserializer.js', ['Deserializer'], []);
 goog.addDependency('../../../js/deserializer_test.js', ['test.Deserializer'], ['Deserializer', 'goog.testing.jsunit']);
 goog.addDependency('../../../js/dnsinputhelper.js', ['DNSInputHelper'], ['DNSUtil']);
+goog.addDependency('../../../js/dnsinputhelper_test.js', ['test.DNSInputHelper'], ['DNSInputHelper', 'DNSUtil', 'goog.testing.jsunit']);
 goog.addDependency('../../../js/dnspacket.js', ['DNSPacket'], []);
 goog.addDependency('../../../js/dnspacket_test.js', ['test.DNSPacket'], ['DNSPacket', 'DNSRecordMX', 'DNSUtil', 'goog.testing.jsunit']);
 goog.addDependency('../../../js/dnspacketdeserializer.js', ['DNSPacketDeserializer'], ['DNSPacket', 'DNSRecord', 'DNSRecordA', 'DNSRecordAAAA', 'DNSRecordCNAME', 'DNSRecordMX', 'DNSRecordTXT', 'DNSUtil', 'Deserializer']);
@@ -12,6 +13,7 @@ goog.addDependency('../../../js/dnspacketdeserializer_test.js', ['test.DNSPacket
 goog.addDependency('../../../js/dnspacketserializer.js', ['DNSPacketSerializer'], ['Serializer']);
 goog.addDependency('../../../js/dnspacketserializer_test.js', ['test.DNSPacketSerializer'], ['DNSPacket', 'DNSPacketSerializer', 'DNSRecord', 'DNSUtil', 'goog.testing.jsunit']);
 goog.addDependency('../../../js/dnsquerymanager.js', ['DNSQueryManager'], ['DNSPacket', 'DNSPacketDeserializer', 'DNSPacketSerializer', 'DNSRecord', 'DNSUtil', 'ResponseLabelPointerManager']);
+goog.addDependency('../../../js/dnsquerymanager_test.js', ['test.DNSQueryManager'], ['DNSQueryManager', 'DNSUtil', 'OutputRecorderManager', 'goog.testing.jsunit']);
 goog.addDependency('../../../js/dnsrecord.js', ['DNSRecord'], []);
 goog.addDependency('../../../js/dnsrecord_test.js', ['test.DNSRecord'], ['DNSRecord', 'DNSUtil', 'goog.testing.jsunit']);
 goog.addDependency('../../../js/dnsrecorda.js', ['DNSRecordA'], ['DNSRecord']);
@@ -24,13 +26,17 @@ goog.addDependency('../../../js/dnsrecordmx.js', ['DNSRecordMX'], ['DNSRecord'])
 goog.addDependency('../../../js/dnsrecordmx_test.js', ['test.DNSRecordMX'], ['DNSRecordMX', 'DNSUtil', 'goog.testing.jsunit']);
 goog.addDependency('../../../js/dnsrecordtxt.js', ['DNSRecordTXT'], ['DNSRecord']);
 goog.addDependency('../../../js/dnsrecordtxt_test.js', ['test.DNSRecordTXT'], ['DNSRecordTXT', 'DNSUtil', 'goog.testing.jsunit']);
-goog.addDependency('../../../js/dnsresponsepacketanalyzer.js', ['DNSResponsePacketAnalyzer'], ['DNSUtil', 'Util']);
+goog.addDependency('../../../js/dnsresponsepacketanalyzer.js', ['DNSResponsePacketAnalyzer'], ['DNSQueryManager', 'DNSUtil', 'Util']);
+goog.addDependency('../../../js/dnsresponsepacketanalyzer_test.js', ['test.DNSResponsePacketAnalyzer'], ['DNSQueryManager', 'DNSRecord', 'DNSResponsePacketAnalyzer', 'OutputRecorderManager', 'goog.testing.jsunit']);
 goog.addDependency('../../../js/dnsutil.js', ['DNSUtil'], []);
 goog.addDependency('../../../js/dnsutil_test.js', ['test.DNSUtil'], ['DNSUtil', 'goog.testing.jsunit']);
 goog.addDependency('../../../js/networkinterfaceinformation.js', ['NetworkInterfaceInformation'], []);
 goog.addDependency('../../../js/outputrecord.js', ['OutputRecord'], []);
+goog.addDependency('../../../js/outputrecord_test.js', ['test.OutputRecord'], ['OutputRecord', 'goog.testing.jsunit']);
 goog.addDependency('../../../js/outputrecordmanager.js', ['OutputRecorderManager'], ['OutputRecord']);
+goog.addDependency('../../../js/outputrecordmanager_test.js', ['test.OutputRecorderManager'], ['OutputRecord', 'OutputRecorderManager', 'goog.testing.jsunit']);
 goog.addDependency('../../../js/responselabelpointmanager.js', ['ResponseLabelPointerManager'], ['DNSPacketDeserializer', 'Deserializer']);
+goog.addDependency('../../../js/responselabelpointmanager_test.js', ['test.ResponseLabelPointerManager'], ['ResponseLabelPointerManager', 'goog.testing.jsunit']);
 goog.addDependency('../../../js/serializer.js', ['Serializer'], []);
 goog.addDependency('../../../js/serializer_test.js', ['test.Serializer'], ['Serializer', 'goog.testing.jsunit']);
 goog.addDependency('../../../js/socketinfo.js', ['SocketInfo'], []);

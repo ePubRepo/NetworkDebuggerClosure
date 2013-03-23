@@ -169,6 +169,15 @@ DNSQueryManager.QueryResultStatus = {
 
 
 /**
+ * This method exists primarily to allow for testing.
+ * @param {ArrayBuffer} data Raw binary data that will simulate the response
+ *                           data from the DNS query.
+ */
+DNSQueryManager.prototype.setSerializedResponsePacket = function(data) {
+  this.serializedResponsePacket_ = data;
+};
+
+/**
  * Return the output manager that records output logs on this DNS query.
  * @return {OutputRecordManager} Recorded information from DNS query.
  */
@@ -199,6 +208,25 @@ DNSQueryManager.prototype.getFormattedHeader_ = function() {
   } else {
     return 0;
   }
+};
+
+
+/**
+ * After the query has returned serialized data, parse it.
+ */
+DNSQueryManager.prototype.parsePacketFromSerializedData = function() {
+  var lblNameManager = new ResponseLabelPointerManager(
+      this.serializedResponsePacket_);
+  var packetDeserializer = new DNSPacketDeserializer(
+      this.serializedResponsePacket_,
+      lblNameManager);
+  packetDeserializer.deserializePacket();
+  this.responsePacket_ = packetDeserializer.getDeserializedPacket();
+
+  this.outputRecordManager_.pushEntry(OutputRecord.DetailLevel.DEBUG,
+      'Query response contains ' +
+      this.responsePacket_.getAnswerRecordCount() + ' answer ' +
+      'records');
 };
 
 
@@ -254,16 +282,7 @@ DNSQueryManager.prototype.sendRequest = function() {
         'Received ' + readInfo.resultCode + ' byte query response');
     this.serializedResponsePacket_ = readInfo.data;
 
-    var lblNameManager = new ResponseLabelPointerManager(readInfo.data);
-    var packetDeserializer = new DNSPacketDeserializer(readInfo.data,
-                                                       lblNameManager);
-    packetDeserializer.deserializePacket();
-    this.responsePacket_ = packetDeserializer.getDeserializedPacket();
-
-    this.outputRecordManager_.pushEntry(OutputRecord.DetailLevel.DEBUG,
-        'Query response contains ' +
-        this.responsePacket_.getAnswerRecordCount() + ' answer ' +
-        'records');
+    this.parsePacketFromSerializedData();
 
     this.queryResultStatus_ =
       DNSQueryManager.QueryResultStatus.SUCCESS_PACKET_PARSE;

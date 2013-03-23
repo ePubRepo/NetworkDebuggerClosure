@@ -8,6 +8,7 @@
 
 goog.provide('DNSResponsePacketAnalyzer');
 
+goog.require('DNSQueryManager');
 goog.require('DNSUtil');
 goog.require('Util');
 
