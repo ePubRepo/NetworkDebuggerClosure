@@ -10,8 +10,8 @@ goog.provide('test.DNSInputHelper');
 
 goog.require('DNSInputHelper');
 goog.require('DNSUtil');
-goog.require('goog.testing.jsunit');
 goog.require('TestHelper');
+goog.require('goog.testing.jsunit');
 
 
 /**
