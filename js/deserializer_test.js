@@ -87,9 +87,9 @@ function testShort() {
 /**
  * Test the method to get the next long.
  */
-function testLong() {
+function testGetLong() {
   var myDeserializer = new Deserializer(myUnit8Array);
-  assertEquals(216459543, myDeserializer.long());
+  assertEquals(216459543, myDeserializer.getLong());
 }
 
 

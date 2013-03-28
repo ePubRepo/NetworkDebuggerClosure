@@ -110,7 +110,7 @@ DNSPacketDeserializer.prototype.deserializePacket = function() {
                                      this.dataDeserializer_);
       var recType = this.dataDeserializer_.short();
       var recClass = this.dataDeserializer_.short();
-      var recTTL = this.dataDeserializer_.long();
+      var recTTL = this.dataDeserializer_.getLong();
 
       // obtain the length of the resource record data section
       // See RDLENGTH of Section 3.2.1 in RFC 1035.
