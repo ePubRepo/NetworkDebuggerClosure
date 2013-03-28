@@ -23,9 +23,9 @@ test.Serializer = function() {};
  */
 function testByte() {
   var mySerializer = new Serializer();
-  mySerializer.byte(123);
-  mySerializer.byte(1);
-  mySerializer.byte(43);
+  mySerializer.setByte(123);
+  mySerializer.setByte(1);
+  mySerializer.setByte(43);
 
   var myBuffer = mySerializer.getBuffer();
   assertEquals(3, myBuffer.byteLength);
@@ -61,10 +61,10 @@ function testShort() {
  */
 function testGetBuffer() {
   var mySerializer = new Serializer();
-  mySerializer.byte(1);
-  mySerializer.byte(123);
-  mySerializer.byte(43);
-  mySerializer.byte(23);
+  mySerializer.setByte(1);
+  mySerializer.setByte(123);
+  mySerializer.setByte(43);
+  mySerializer.setByte(23);
 
   var myBuffer = mySerializer.getBuffer();
   assertEquals(4, myBuffer.byteLength);

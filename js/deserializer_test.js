@@ -40,7 +40,7 @@ function testIsEOF() {
   var myDeserializer = new Deserializer(myUnit8Array);
   for (var i = 0; i < 7; i++) {
     assertFalse(myDeserializer.isEOF_());
-    myDeserializer.byte_();
+    myDeserializer.getByte();
   }
   assertTrue(myDeserializer.isEOF_());
 }
@@ -51,7 +51,7 @@ function testIsEOF() {
  */
 function testSlice() {
   var myDeserializer = new Deserializer(myUnit8Array);
-  myDeserializer.byte_();
+  myDeserializer.getByte();
   var subArray = myDeserializer.slice(3);
   assertEquals(230, subArray[0]);
   assertEquals(233, subArray[1]);
@@ -64,13 +64,13 @@ function testSlice() {
  */
 function testByte() {
   var myDeserializer = new Deserializer(myUnit8Array);
-  assertEquals(12, myDeserializer.byte_());
-  assertEquals(230, myDeserializer.byte_());
-  assertEquals(233, myDeserializer.byte_());
-  assertEquals(23, myDeserializer.byte_());
-  assertEquals(59, myDeserializer.byte_());
-  assertEquals(129, myDeserializer.byte_());
-  assertEquals(150, myDeserializer.byte_());
+  assertEquals(12, myDeserializer.getByte());
+  assertEquals(230, myDeserializer.getByte());
+  assertEquals(233, myDeserializer.getByte());
+  assertEquals(23, myDeserializer.getByte());
+  assertEquals(59, myDeserializer.getByte());
+  assertEquals(129, myDeserializer.getByte());
+  assertEquals(150, myDeserializer.getByte());
 }
 
 
@@ -99,15 +99,15 @@ function testGetLong() {
 function testGetBytesRead() {
   var myDeserializer = new Deserializer(myUnit8Array);
   assertEquals(0, myDeserializer.getBytesRead());
-  myDeserializer.byte_();
+  myDeserializer.getByte();
   assertEquals(1, myDeserializer.getBytesRead());
-  myDeserializer.byte_();
+  myDeserializer.getByte();
   assertEquals(2, myDeserializer.getBytesRead());
-  myDeserializer.byte_();
+  myDeserializer.getByte();
   assertEquals(3, myDeserializer.getBytesRead());
-  myDeserializer.byte_();
+  myDeserializer.getByte();
   assertEquals(4, myDeserializer.getBytesRead());
-  myDeserializer.byte_();
+  myDeserializer.getByte();
   assertEquals(5, myDeserializer.getBytesRead());
 }
 

@@ -47,7 +47,7 @@ Serializer.prototype.buffer_ = null;
  * @param {integer} b Byte of binary data to add to the ArrayBuffer.
  * @return {Serializer} This instance of a Serializer.
  */
-Serializer.prototype.byte = function(b) {
+Serializer.prototype.setByte = function(b) {
   this.view_[this.loc_] = b;
   ++this.loc_;
   this.buffer_ = this.view_.buffer.slice(0, this.loc_);
@@ -61,7 +61,7 @@ Serializer.prototype.byte = function(b) {
  * @return {Serializer} This instance of a Serializer.
  */
 Serializer.prototype.setShort = function(b) {
-  return this.byte((b >> 8) & 0xff).byte(b & 0xff);
+  return this.setByte((b >> 8) & 0xff).setByte(b & 0xff);
 };
 
 

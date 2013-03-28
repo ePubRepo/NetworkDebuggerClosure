@@ -74,16 +74,16 @@ DNSPacketSerializer.prototype.serializeName = function(dnsName,
                                                        opt_ref) {
   var parts = dnsName.split('.');
   parts.forEach(function(part) {
-    dnsSerializer.byte(part.length);
+    dnsSerializer.setByte(part.length);
     for (var i = 0; i < part.length; ++i) {
-      dnsSerializer.byte(part.charCodeAt(i));
+      dnsSerializer.setByte(part.charCodeAt(i));
     }
   }.bind(this));
 
   if (opt_ref) {
-    dnsSerializer.byte(0xc0).byte(opt_ref);
+    dnsSerializer.setByte(0xc0).setByte(opt_ref);
   } else {
-    dnsSerializer.byte(0);
+    dnsSerializer.setByte(0);
   }
   return dnsSerializer;
 };

@@ -188,7 +188,7 @@ DNSPacketDeserializer.prototype.parseDataSection = function(recordTypeNum,
     case DNSUtil.RecordNumber.A:
       var arrOctect = [];
       while (!dataSectionDeserializer.isEOF_()) {
-        arrOctect.push(dataSectionDeserializer.byte_());
+        arrOctect.push(dataSectionDeserializer.getByte());
       }
       dataSectionTxt = arrOctect.join('.');
       dnsPacket.setIp(dataSectionTxt);
@@ -198,7 +198,7 @@ DNSPacketDeserializer.prototype.parseDataSection = function(recordTypeNum,
       // take 16 byte data and parse into the 16 bytes of an IPv6 address
       var nibbleNum = 0;
       while (!dataSectionDeserializer.isEOF_()) {
-        var nextByte = dataSectionDeserializer.byte_();
+        var nextByte = dataSectionDeserializer.getByte();
         var nibbleADec = (nextByte & 0xf0) >> 4;
         var nibbleAHex = Util.baseConversion(nibbleADec, 16);
         nibbleNum++;
@@ -221,7 +221,7 @@ DNSPacketDeserializer.prototype.parseDataSection = function(recordTypeNum,
 
     case DNSUtil.RecordNumber.TXT:
       while (!dataSectionDeserializer.isEOF_()) {
-        var nextByte = dataSectionDeserializer.byte_();
+        var nextByte = dataSectionDeserializer.getByte();
         var nextChar = String.fromCharCode(nextByte);
         dataSectionTxt += nextChar;
       }
@@ -254,7 +254,7 @@ DNSPacketDeserializer.prototype.parseName = function(lblPtManager,
                                                      nameDeserializer) {
   var parts = [];
   for (;;) {
-    var len = nameDeserializer.byte_();
+    var len = nameDeserializer.getByte();
 
     // Examine the length bit to determine whether what is coming is
     // a label reference or a length of a name.
@@ -266,7 +266,7 @@ DNSPacketDeserializer.prototype.parseName = function(lblPtManager,
       // section that need to be ones... a label could be very large, so
       // checking against 0xc0 isn't 100% safe
 
-      var ref = nameDeserializer.byte_();
+      var ref = nameDeserializer.getByte();
       var nameSubstitution = lblPtManager.getNameFromReference(ref);
       parts.push(nameSubstitution);
       break;
@@ -275,7 +275,7 @@ DNSPacketDeserializer.prototype.parseName = function(lblPtManager,
     // consume a DNS name
     var v = '';
     while (len-- > 0) {
-      var nextByte = nameDeserializer.byte_();
+      var nextByte = nameDeserializer.getByte();
       var nextChar = String.fromCharCode(nextByte);
       v += nextChar;
     }

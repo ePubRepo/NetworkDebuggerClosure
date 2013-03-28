@@ -65,9 +65,8 @@ Deserializer.prototype.slice = function(length) {
 /**
  * Return the next byte of data as a decimal.
  * @return {integer} Integer representing data stored in a single byte.
- * @private
  */
-Deserializer.prototype.byte_ = function() {
+Deserializer.prototype.getByte = function() {
   this.loc_ += 1;
   return this.view_[this.loc_ - 1];
 };
@@ -78,7 +77,7 @@ Deserializer.prototype.byte_ = function() {
  * @return {integer} Two bytes of data as a base 10 integer.
  */
 Deserializer.prototype.getShort = function() {
-  return (this.byte_() << 8) + this.byte_();
+  return (this.getByte() << 8) + this.getByte();
 };
 
 
