@@ -77,7 +77,7 @@ Deserializer.prototype.byte_ = function() {
  * Return the next two bytes of data as a base 10 integer.
  * @return {integer} Two bytes of data as a base 10 integer.
  */
-Deserializer.prototype.short = function() {
+Deserializer.prototype.getShort = function() {
   return (this.byte_() << 8) + this.byte_();
 };
 
@@ -87,7 +87,7 @@ Deserializer.prototype.short = function() {
  * @return {integer} Four bytes of data as a base 10 integer.
  */
 Deserializer.prototype.getLong = function() {
-  return (this.short() << 16) + this.short();
+  return (this.getShort() << 16) + this.getShort();
 };
 
 

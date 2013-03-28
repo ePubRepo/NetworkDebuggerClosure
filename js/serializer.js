@@ -60,7 +60,7 @@ Serializer.prototype.byte = function(b) {
  * @param {integer} b Two bytes of binary data to add to the ArrayBuffer.
  * @return {Serializer} This instance of a Serializer.
  */
-Serializer.prototype.short = function(b) {
+Serializer.prototype.setShort = function(b) {
   return this.byte((b >> 8) & 0xff).byte(b & 0xff);
 };
 

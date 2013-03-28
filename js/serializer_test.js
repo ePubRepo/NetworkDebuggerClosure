@@ -42,9 +42,9 @@ function testByte() {
  */
 function testShort() {
   var mySerializer = new Serializer();
-  mySerializer.short(294);
-  mySerializer.short(510);
-  mySerializer.short(411);
+  mySerializer.setShort(294);
+  mySerializer.setShort(510);
+  mySerializer.setShort(411);
 
   var myBuffer = mySerializer.getBuffer();
   assertEquals(myBuffer.byteLength, 6);

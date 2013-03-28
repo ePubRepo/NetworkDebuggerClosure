@@ -39,16 +39,16 @@ DNSPacketSerializer.prototype.serialize = function() {
              DNSUtil.PacketSection.AUTHORITY,
              DNSUtil.PacketSection.ADDITIONAL];
 
-  dataSerializer.short(0).short(this.dnsPacket_.getFlags());
+  dataSerializer.setShort(0).setShort(this.dnsPacket_.getFlags());
 
   arrPacketSections.forEach(function(packetSection) {
-    dataSerializer.short(this.dnsPacket_.data_[packetSection].length);
+    dataSerializer.setShort(this.dnsPacket_.data_[packetSection].length);
   }.bind(this));
 
   arrPacketSections.forEach(function(packetSection) {
     this.dnsPacket_.data_[packetSection].forEach(function(dnsRecord) {
       this.serializeName(dnsRecord.name_, dataSerializer).
-             short(dnsRecord.type_).short(dnsRecord.cl_);
+        setShort(dnsRecord.type_).setShort(dnsRecord.cl_);
     }.bind(this));
   }.bind(this));
 

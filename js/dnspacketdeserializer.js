@@ -33,8 +33,8 @@ DNSPacketDeserializer = function(arBuffer, lblPointManager) {
 
 
 /**
- * Parsed and deserialized DNS packet.
- * @type {DNSPacket}
+ * Deserializer to unpack a DNSPacket.
+ * @type {Deserializer}
  * @private
  */
 DNSPacketDeserializer.prototype.dataDeserializer_ = null;
@@ -53,7 +53,7 @@ DNSPacketDeserializer.prototype.deserializedPacket_ = null;
  */
 DNSPacketDeserializer.prototype.deserializePacket = function() {
   // check the initial two bytes of the packet, which must start with 0s
-  var firstTwoBytes = this.dataDeserializer_.short();
+  var firstTwoBytes = this.dataDeserializer_.getShort();
   if (firstTwoBytes) {
     //TODO: Implement more sanity checks and process errors
     console.log('DNS packet must start with 00 00');
@@ -64,16 +64,18 @@ DNSPacketDeserializer.prototype.deserializePacket = function() {
   // (flags will be an integer decimal)
   // when "33152" is converted to binary, the value is:
   // "1000000110000000" This is 16 bits or 2 bytes
-  var flags = this.dataDeserializer_.short();
+  var flags = this.dataDeserializer_.getShort();
 
   // determine how many DNS records will be in each section of the DNS packet
   var sectionCount = {};
-  sectionCount[DNSUtil.PacketSection.QUESTION] = this.dataDeserializer_.short();
-  sectionCount[DNSUtil.PacketSection.ANSWER] = this.dataDeserializer_.short();
+  sectionCount[DNSUtil.PacketSection.QUESTION] =
+    this.dataDeserializer_.getShort();
+  sectionCount[DNSUtil.PacketSection.ANSWER] =
+    this.dataDeserializer_.getShort();
   sectionCount[DNSUtil.PacketSection.AUTHORITY] =
-    this.dataDeserializer_.short();
+    this.dataDeserializer_.getShort();
   sectionCount[DNSUtil.PacketSection.ADDITIONAL] =
-    this.dataDeserializer_.short();
+    this.dataDeserializer_.getShort();
 
   var packet = new DNSPacket(flags);
 
@@ -84,10 +86,10 @@ DNSPacketDeserializer.prototype.deserializePacket = function() {
       this.parseName(this.lblPointManager_, this.dataDeserializer_),
 
       // dns record type
-      this.dataDeserializer_.short(),
+      this.dataDeserializer_.getShort(),
 
       // dns record class
-      this.dataDeserializer_.short());
+      this.dataDeserializer_.getShort());
 
     // set label point manager so individual record has access to entire
     // response packet to reassemble compressed DNS names
@@ -108,13 +110,13 @@ DNSPacketDeserializer.prototype.deserializePacket = function() {
       // See Section 3.2.1 in RFC 1035.
       var recName = this.parseName(this.lblPointManager_,
                                      this.dataDeserializer_);
-      var recType = this.dataDeserializer_.short();
-      var recClass = this.dataDeserializer_.short();
+      var recType = this.dataDeserializer_.getShort();
+      var recClass = this.dataDeserializer_.getShort();
       var recTTL = this.dataDeserializer_.getLong();
 
       // obtain the length of the resource record data section
       // See RDLENGTH of Section 3.2.1 in RFC 1035.
-      var dtSectLength = this.dataDeserializer_.short();
+      var dtSectLength = this.dataDeserializer_.getShort();
       var dtSectBinary = this.dataDeserializer_.slice(dtSectLength);
 
       // create the proper DNS record type
@@ -227,7 +229,7 @@ DNSPacketDeserializer.prototype.parseDataSection = function(recordTypeNum,
       break;
 
      case DNSUtil.RecordNumber.MX:
-       var preferenceNum = dataSectionDeserializer.short();
+       var preferenceNum = dataSectionDeserializer.getShort();
        var mailExchanger = this.parseName(this.lblPointManager_,
                                           dataSectionDeserializer);
        dnsPacket.setPreferenceNumber(preferenceNum);

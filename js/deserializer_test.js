@@ -79,8 +79,8 @@ function testByte() {
  */
 function testShort() {
   var myDeserializer = new Deserializer(myUnit8Array);
-  assertEquals(3302, myDeserializer.short());
-  assertEquals(59671, myDeserializer.short());
+  assertEquals(3302, myDeserializer.getShort());
+  assertEquals(59671, myDeserializer.getShort());
 }
 
 
