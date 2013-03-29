@@ -6,7 +6,7 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('OutputRecorderManager');
+goog.provide('OutputRecordManager');
 
 goog.require('OutputRecord');
 
@@ -16,7 +16,7 @@ goog.require('OutputRecord');
  *
  * @constructor
  */
-OutputRecorderManager = function() {
+OutputRecordManager = function() {
   this.outputEntries_ = new Array();
 };
 
@@ -26,7 +26,7 @@ OutputRecorderManager = function() {
  * @type Array.OutputRecord
  * @private
  */
-OutputRecorderManager.prototype.outputEntries_ = null;
+OutputRecordManager.prototype.outputEntries_ = null;
 
 
 /**
@@ -34,7 +34,7 @@ OutputRecorderManager.prototype.outputEntries_ = null;
  * @param {OutputRecord.DetailLevel} level Level of log information.
  * @param {string} msg Message to be recorded.
  */
-OutputRecorderManager.prototype.pushEntry = function(level, msg) {
+OutputRecordManager.prototype.pushEntry = function(level, msg) {
   var record = new OutputRecord(level, msg);
   this.outputEntries_.push(record);
 };
@@ -44,6 +44,6 @@ OutputRecorderManager.prototype.pushEntry = function(level, msg) {
  * Return set of output entries.
  * @return {Array.OutputRecord} Set of output entries with log records.
  */
-OutputRecorderManager.prototype.getOutputRecords = function() {
+OutputRecordManager.prototype.getOutputRecords = function() {
   return this.outputEntries_;
 };

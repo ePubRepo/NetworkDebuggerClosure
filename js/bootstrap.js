@@ -46,7 +46,7 @@ Bootstrap.prototype.addDomEventListeners = function() {
 };
 
 
-goog.require('OutputRecorderManager');
+goog.require('OutputRecordManager');
 goog.require('DNSInputHelper');
 goog.require('NetworkInterfaceInformation');
 goog.require('DNSResponsePacketAnalyzer');
@@ -73,7 +73,7 @@ function basicDiagnostics() {
   // hosts to query Google Public DNS
 
   for (var i = 0; i < Util.hostnamesToTest.length; i++) {
-    var outputRecordManager = new OutputRecorderManager();
+    var outputRecordManager = new OutputRecordManager();
     var gDnsQuery = new DNSQueryManager(Util.hostnamesToTest[i],
         DNSUtil.RecordNumber.A,
         '8.8.8.8',
@@ -86,7 +86,7 @@ function basicDiagnostics() {
 function l3DnsBtnClick() {
    var inputHelper = new DNSInputHelper();
    if (inputHelper.isValidHostnameEntered()) {
-     var outputRecordManager = new OutputRecorderManager();
+     var outputRecordManager = new OutputRecordManager();
      var gDnsQuery = new DNSQueryManager(inputHelper.getHostnameEntered(),
          inputHelper.getRecordType(),
          '209.244.0.3',
@@ -100,7 +100,7 @@ function l3DnsBtnClick() {
 function oDnsBtnClick() {
    var inputHelper = new DNSInputHelper();
    if (inputHelper.isValidHostnameEntered()) {
-     var outputRecordManager = new OutputRecorderManager();
+     var outputRecordManager = new OutputRecordManager();
      var gDnsQuery = new DNSQueryManager(inputHelper.getHostnameEntered(),
          inputHelper.getRecordType(),
          '208.67.222.222',
@@ -114,7 +114,7 @@ function oDnsBtnClick() {
 function gDnsBtnClick() {
    var inputHelper = new DNSInputHelper();
    if (inputHelper.isValidHostnameEntered()) {
-     var outputRecordManager = new OutputRecorderManager();
+     var outputRecordManager = new OutputRecordManager();
      var gDnsQuery = new DNSQueryManager(inputHelper.getHostnameEntered(),
          inputHelper.getRecordType(),
          '8.8.8.8',
@@ -126,7 +126,7 @@ function gDnsBtnClick() {
 
 
 function whoAmIDnsBtnClick() {
-  var outputRecordManager = new OutputRecorderManager();
+  var outputRecordManager = new OutputRecordManager();
     var gDnsQuery = new DNSQueryManager('o-o.myaddr.google.com',
             DNSUtil.RecordNumber.TXT,
             '8.8.8.8',
@@ -140,7 +140,7 @@ function customDnsBtnClick() {
     var inputHelper = new DNSInputHelper();
     if (inputHelper.isValidHostnameEntered() &&
             inputHelper.isValidCustomResolverIpEntered()) {
-      var outputRecordManager = new OutputRecorderManager();
+      var outputRecordManager = new OutputRecordManager();
       var gDnsQuery = new DNSQueryManager(inputHelper.getHostnameEntered(),
           inputHelper.getRecordType(),
           inputHelper.getCustomResolverIp(),
@@ -162,7 +162,7 @@ function printFinishedTelnetOutput(outputRecordManager) {
 }
 
 function gHttpBtnClick() {
-  var outputRecordManager = new OutputRecorderManager();
+  var outputRecordManager = new OutputRecordManager();
   var objTelnet = new Telnet('www.google.com', 80, outputRecordManager);
    objTelnet.
       setPlainTextDataToSend('GET / HTTP/1.1\r\nHost: www.google.com\r\n\r\n');
@@ -172,7 +172,7 @@ function gHttpBtnClick() {
 
 
 function mHttpBtnClick() {
-  var outputRecordManager = new OutputRecorderManager();
+  var outputRecordManager = new OutputRecordManager();
   var objTelnet = new Telnet('mail.google.com', 80, outputRecordManager);
    objTelnet.
       setPlainTextDataToSend('GET / HTTP/1.1\r\nHost: mail.google.com\r\n\r\n');
@@ -182,7 +182,7 @@ function mHttpBtnClick() {
 
 
 function dHttpBtnClick() {
-  var outputRecordManager = new OutputRecorderManager();
+  var outputRecordManager = new OutputRecordManager();
   var objTelnet = new Telnet('drive.google.com', 80, outputRecordManager);
    objTelnet.
      setPlainTextDataToSend('GET / HTTP/1.1\r\nHost: drive.google.com\r\n\r\n');
@@ -201,7 +201,7 @@ function networkInterfaceInformationBtnClick() {
     }
   }
 
-  var outputRecordManager = new OutputRecorderManager();
+  var outputRecordManager = new OutputRecordManager();
   var nicInfo = new NetworkInterfaceInformation(outputRecordManager,
                                                 printOutput);
   nicInfo.getNicInformation();

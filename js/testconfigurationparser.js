@@ -9,7 +9,7 @@
 goog.provide('TestConfigurationParser');
 
 goog.require('DNSQueryManager');
-goog.require('OutputRecorderManager');
+goog.require('OutputRecordManager');
 goog.require('Telnet');
 
 /*
@@ -159,7 +159,7 @@ TestConfigurationParser.prototype.parseDnsTestConfig = function(test) {
   var hostname = test.getElementsByTagName('hostname')[0].textContent;
   var resolver = test.getElementsByTagName('resolver')[0].textContent;
 
-  var outputRecordManager = new OutputRecorderManager();
+  var outputRecordManager = new OutputRecordManager();
   var gDnsQuery = new DNSQueryManager(hostname,
       DNSUtil.getRecordTypeNumByRecordTypeName(recordTypeName),
       resolver,
@@ -188,7 +188,7 @@ TestConfigurationParser.prototype.parseTelnetTestConfig = function(test) {
 
   var host = test.getElementsByTagName('host')[0].textContent;
   var port = Number(test.getElementsByTagName('port')[0].textContent);
-  var outputRecordManager = new OutputRecorderManager();
+  var outputRecordManager = new OutputRecordManager();
   var objTelnet = new Telnet(host, port, outputRecordManager);
   objTelnet.
       setPlainTextDataToSend('GET / HTTP/1.1\r\nHost: ' +

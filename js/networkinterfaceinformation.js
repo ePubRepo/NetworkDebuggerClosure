@@ -10,8 +10,8 @@ goog.provide('NetworkInterfaceInformation');
 
 /**
  * Capture information about currently running network interfaces.
- * @param {OutputRecorderManager} outputRecordManager Manage output logs.
- * @param {function(OutputRecorderManager)} completedCallbackFnc Function to
+ * @param {OutputRecordManager} outputRecordManager Manage output logs.
+ * @param {function(OutputRecordManager)} completedCallbackFnc Function to
  *                                          call when NIC information is
  *                                          populated.
  * @constructor
@@ -25,7 +25,7 @@ NetworkInterfaceInformation = function(outputRecordManager,
 
 /**
  * Function to call upon completion of population of network interface info.
- * @type {function(OutputRecorderManager)}
+ * @type {function(OutputRecordManager)}
  * @private
  */
 NetworkInterfaceInformation.prototype.completedCallbackFnc_ = null;
@@ -33,7 +33,7 @@ NetworkInterfaceInformation.prototype.completedCallbackFnc_ = null;
 
 /**
  * Record output diagnostic information.
- * @type {OutputRecorderManager}
+ * @type {OutputRecordManager}
  * @private
  */
 NetworkInterfaceInformation.prototype.outputRecordManager_ = null;

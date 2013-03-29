@@ -86,7 +86,7 @@ DNSQueryManager.prototype.socketId_ = null;
 
 /**
  * Store log/record of technical details.
- * @type {OutputRecorderManager}
+ * @type {OutputRecordManager}
  * @private
  */
 DNSQueryManager.prototype.outputRecordManager_ = null;

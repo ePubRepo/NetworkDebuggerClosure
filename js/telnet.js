@@ -74,7 +74,7 @@ Telnet.prototype.objSocketInfo_ = null;
 
 /**
  * Store log/record of technical details.
- * @type {OutputRecorderManager}
+ * @type {OutputRecordManager}
  * @private
  */
 Telnet.prototype.outputRecordManager_ = null;

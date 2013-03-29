@@ -10,7 +10,7 @@ goog.provide('test.DNSQueryManager');
 
 goog.require('DNSQueryManager');
 goog.require('DNSUtil');
-goog.require('OutputRecorderManager');
+goog.require('OutputRecordManager');
 goog.require('goog.testing.jsunit');
 
 
@@ -25,7 +25,7 @@ test.DNSQueryManager = function() {};
  */
 function setUp() {
   function callback() {}
-  myOutputRecordManager = new OutputRecorderManager();
+  myOutputRecordManager = new OutputRecordManager();
   myQueryManager1 = new DNSQueryManager('google.com',
       DNSUtil.RecordNumber.A, '8.8.8.8', callback, myOutputRecordManager);
 }

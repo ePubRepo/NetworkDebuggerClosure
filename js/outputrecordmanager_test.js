@@ -1,29 +1,29 @@
 // Copyright 2013. All Rights Reserved.
 
 /**
- * @fileoverview Tests for OutputRecorderManager class.
+ * @fileoverview Tests for OutputRecordManager class.
  *
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('test.OutputRecorderManager');
+goog.provide('test.OutputRecordManager');
 
 goog.require('OutputRecord');
-goog.require('OutputRecorderManager');
+goog.require('OutputRecordManager');
 goog.require('goog.testing.jsunit');
 
 
 /**
- * Object to test OutputRecorderManager class.
+ * Object to test OutputRecordManager class.
  */
-test.OutputRecorderManager = function() {};
+test.OutputRecordManager = function() {};
 
 
 /**
  * Test the getOutputRecords() method.
  */
 function testGetOutputRecords() {
-  var myRecordManager = new OutputRecorderManager();
+  var myRecordManager = new OutputRecordManager();
   myRecordManager.pushEntry(OutputRecord.DetailLevel.ERROR, 'test1');
 
   assertEquals('test1',
@@ -31,7 +31,7 @@ function testGetOutputRecords() {
   assertEquals(OutputRecord.DetailLevel.ERROR,
       myRecordManager.getOutputRecords()[0].getLevel());
 
-  var myRecordManager = new OutputRecorderManager();
+  var myRecordManager = new OutputRecordManager();
   myRecordManager.pushEntry(OutputRecord.DetailLevel.DEBUG, 'test2');
 
   assertEquals('test2',

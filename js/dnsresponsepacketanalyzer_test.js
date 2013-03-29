@@ -11,7 +11,6 @@ goog.provide('test.DNSResponsePacketAnalyzer');
 goog.require('DNSQueryManager');
 goog.require('DNSRecord');
 goog.require('DNSResponsePacketAnalyzer');
-goog.require('OutputRecorderManager');
 goog.require('goog.testing.jsunit');
 
 
