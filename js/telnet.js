@@ -116,7 +116,7 @@ Telnet.prototype.arrayBufferToString_ = function(buf, callback) {
 
 /**
  * Converts a string to an array buffer.
- * @param {String} str The string to convert.
+ * @param {string} str The string to convert.
  * @param {Function} callback The function to call when conversion is complete.
  * @private
  */
@@ -236,9 +236,8 @@ Telnet.prototype.onConnectedCallback_ = function() {
 
 /**
  * Create a TCP socket.
- * @private
  */
-Telnet.prototype.createSocket_ = function() {
+Telnet.prototype.createSocket = function() {
   /**
    * Process created socket information.
    * @param {CreatedInfo} createInfo Info on created socket.

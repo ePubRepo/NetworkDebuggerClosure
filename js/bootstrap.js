@@ -167,7 +167,7 @@ function gHttpBtnClick() {
    objTelnet.
       setPlainTextDataToSend('GET / HTTP/1.1\r\nHost: www.google.com\r\n\r\n');
    objTelnet.setCompletedCallbackFnc(printFinishedTelnetOutput);
-   objTelnet.createSocket_();
+   objTelnet.createSocket();
 }
 
 
@@ -177,7 +177,7 @@ function mHttpBtnClick() {
    objTelnet.
       setPlainTextDataToSend('GET / HTTP/1.1\r\nHost: mail.google.com\r\n\r\n');
    objTelnet.setCompletedCallbackFnc(printFinishedTelnetOutput);
-   objTelnet.createSocket_();
+   objTelnet.createSocket();
 }
 
 
@@ -187,7 +187,7 @@ function dHttpBtnClick() {
    objTelnet.
      setPlainTextDataToSend('GET / HTTP/1.1\r\nHost: drive.google.com\r\n\r\n');
    objTelnet.setCompletedCallbackFnc(printFinishedTelnetOutput);
-   objTelnet.createSocket_();
+   objTelnet.createSocket();
 }
 
 function networkInterfaceInformationBtnClick() {

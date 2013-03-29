@@ -56,7 +56,7 @@ DNSPacketDeserializer.prototype.deserializePacket = function() {
   var firstTwoBytes = this.dataDeserializer_.getShort();
   if (firstTwoBytes) {
     //TODO: Implement more sanity checks and process errors
-    console.log('DNS packet must start with 00 00');
+    console.warn('DNS packet must start with 00 00');
   }
 
   // Most DNS servers will return a UDP packet such that

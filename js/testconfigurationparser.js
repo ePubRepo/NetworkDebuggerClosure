@@ -194,5 +194,5 @@ TestConfigurationParser.prototype.parseTelnetTestConfig = function(test) {
       setPlainTextDataToSend('GET / HTTP/1.1\r\nHost: ' +
           host + '\r\n\r\n');
   objTelnet.setCompletedCallbackFnc(printFinishedTelnetOutput);
-  objTelnet.createSocket_();
+  objTelnet.createSocket();
 };
