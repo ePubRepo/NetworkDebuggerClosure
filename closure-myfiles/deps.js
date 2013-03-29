@@ -2,7 +2,7 @@
 // Please do not edit.
 goog.addDependency('../../../js/appguimanager.js', ['AppGuiManager'], ['TestConfigurationParser']);
 goog.addDependency('../../../js/appguimanager_test.js', ['test.AppGuiManager'], ['AppGuiManager', 'TestHelper', 'goog.testing.jsunit']);
-goog.addDependency('../../../js/bootstrap.js', ['Bootstrap'], ['AppGuiManager', 'DNSInputHelper', 'DNSResponsePacketAnalyzer', 'NetworkInterfaceInformation', 'OutputRecorderManager']);
+goog.addDependency('../../../js/bootstrap.js', ['Bootstrap', 'ndb'], ['AppGuiManager', 'DNSInputHelper', 'DNSResponsePacketAnalyzer', 'NetworkInterfaceInformation', 'OutputRecorderManager']);
 goog.addDependency('../../../js/deserializer.js', ['Deserializer'], []);
 goog.addDependency('../../../js/deserializer_test.js', ['test.Deserializer'], ['Deserializer', 'goog.testing.jsunit']);
 goog.addDependency('../../../js/dnsinputhelper.js', ['DNSInputHelper'], ['DNSUtil']);

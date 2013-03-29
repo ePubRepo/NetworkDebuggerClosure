@@ -62,7 +62,7 @@ function testSlice() {
 /**
  * Test the byte method.
  */
-function testByte() {
+function testGetByte() {
   var myDeserializer = new Deserializer(myUnit8Array);
   assertEquals(12, myDeserializer.getByte());
   assertEquals(230, myDeserializer.getByte());
@@ -77,7 +77,7 @@ function testByte() {
 /**
  * Test method to get next short.
  */
-function testShort() {
+function testGetShort() {
   var myDeserializer = new Deserializer(myUnit8Array);
   assertEquals(3302, myDeserializer.getShort());
   assertEquals(59671, myDeserializer.getShort());

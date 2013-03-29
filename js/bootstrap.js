@@ -6,9 +6,16 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
+goog.provide('ndb');
+
 goog.provide('Bootstrap');
 goog.require('AppGuiManager');
 
+/**
+ * Bootstrap the network debugger app.
+ *
+ * @constructor
+ */
 Bootstrap = function() {
   this.addDomEventListeners();
 };

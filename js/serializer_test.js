@@ -21,7 +21,7 @@ test.Serializer = function() {};
 /**
  * Test method to add bytes for serialization.
  */
-function testByte() {
+function testSetByte() {
   var mySerializer = new Serializer();
   mySerializer.setByte(123);
   mySerializer.setByte(1);
@@ -40,7 +40,7 @@ function testByte() {
 /**
  * Test method to add shorts for serialization.
  */
-function testShort() {
+function testSetShort() {
   var mySerializer = new Serializer();
   mySerializer.setShort(294);
   mySerializer.setShort(510);

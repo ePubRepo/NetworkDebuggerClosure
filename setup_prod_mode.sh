@@ -1,0 +1,1 @@
+./closure-library/closure/bin/build/closurebuilder.py --root=js/ --root=closure-library/ --compiler_jar=closure-compiler/compiler.jar --compiler_flags="--warning_level=VERBOSE" --compiler_flags="--compilation_level=ADVANCED_OPTIMIZATIONS" --compiler_flags="--summary_detail_level=3" --output_mode=compiled --output_file=./prod.js --namespace="ndb"
