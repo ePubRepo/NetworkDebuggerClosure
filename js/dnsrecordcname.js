@@ -13,7 +13,7 @@ goog.require('DNSRecord');
 /**
  * CNAME DNS record.
  * @param {string} name Name of the CNAME record.
- * @param {integer} ttl Time to live of the record.
+ * @param {number} ttl Time to live of the record.
  * @extends DNSRecord
  * @constructor
  */

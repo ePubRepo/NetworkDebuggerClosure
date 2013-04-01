@@ -28,7 +28,7 @@ Serializer.prototype.view_ = null;
 
 /**
  * Current working location in the ArrayBuffer.
- * @type {integer}
+ * @type {number}
  * @private
  */
 Serializer.prototype.loc_ = null;
@@ -44,7 +44,7 @@ Serializer.prototype.buffer_ = null;
 
 /**
  * Add a byte of data to the ArrayBuffer.
- * @param {integer} b Byte of binary data to add to the ArrayBuffer.
+ * @param {number} b Byte of binary data to add to the ArrayBuffer.
  * @return {Serializer} This instance of a Serializer.
  */
 Serializer.prototype.setByte = function(b) {
@@ -57,7 +57,7 @@ Serializer.prototype.setByte = function(b) {
 
 /**
  * Add two bytes of data to an ArrayBuffer.
- * @param {integer} b Two bytes of binary data to add to the ArrayBuffer.
+ * @param {number} b Two bytes of binary data to add to the ArrayBuffer.
  * @return {Serializer} This instance of a Serializer.
  */
 Serializer.prototype.setShort = function(b) {

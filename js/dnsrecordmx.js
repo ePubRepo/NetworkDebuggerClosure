@@ -13,7 +13,7 @@ goog.require('DNSRecord');
 /**
  * MX Record.
  * @param {string} name Name of the MX record.
- * @param {integer} ttl Time to live of the record.
+ * @param {number} ttl Time to live of the record.
  * @extends DNSRecord
  * @constructor
  */
@@ -36,7 +36,7 @@ DNSRecordMX.prototype.mailExchanger_ = null;
 
 /**
  * Preference number of the record.
- * @type {integer}
+ * @type {number}
  * @private
  */
 DNSRecordMX.prototype.preferenceNumber_ = null;
@@ -62,7 +62,7 @@ DNSRecordMX.prototype.getMailExchanger = function() {
 
 /**
  * Set the preference number of the record.
- * @param {integer} n Preference number.
+ * @param {number} n Preference number.
  */
 DNSRecordMX.prototype.setPreferenceNumber = function(n) {
   this.preferenceNumber_ = n;
@@ -71,7 +71,7 @@ DNSRecordMX.prototype.setPreferenceNumber = function(n) {
 
 /**
  * Return the preference number of this MX record.
- * @return {integer} MX record preference number.
+ * @return {number} MX record preference number.
  */
 DNSRecordMX.prototype.getPreferenceNumber = function() {
   return this.preferenceNumber_;

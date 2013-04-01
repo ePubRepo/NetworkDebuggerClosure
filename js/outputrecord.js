@@ -37,7 +37,7 @@ OutputRecord.DetailLevel = {
 
 /**
  * Timestamp of message.
- * @type {integer}
+ * @type {number}
  * @private
  */
 OutputRecord.prototype.timestamp_ = null;
@@ -61,7 +61,7 @@ OutputRecord.prototype.message_ = null;
 
 /**
  * Return the timestamp of the record.
- * @return {integer} Timestamp of record entry.
+ * @return {number} Timestamp of record entry.
  */
 OutputRecord.prototype.getTimestamp = function() {
   return this.timestamp_;

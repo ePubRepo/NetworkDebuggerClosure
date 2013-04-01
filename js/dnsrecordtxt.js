@@ -13,7 +13,7 @@ goog.require('DNSRecord');
 /**
  * TXT record.
  * @param {string} name Name of the TXT record.
- * @param {integer} ttl Time to live of the record.
+ * @param {number} ttl Time to live of the record.
  * @extends DNSRecord
  * @constructor
  */

@@ -23,10 +23,10 @@ Util.hostnamesToTest = ['google.com', 'mail.google.com', 'docs.google.com',
 /**
  * Convert a number from one base to another, often used to convert from
  * decimal to hex (such as for parsing out an IPv6 from binary).
- * @param {int} n Number to be converted from one base to another.
- * @param {int} to Terminal base (usually 16).
- * @param {int} opt_from Optional source base.
- * @return {int} Number after conversion from the source base to
+ * @param {number} n Number to be converted from one base to another.
+ * @param {number} to Terminal base (usually 16).
+ * @param {number} opt_from Optional source base.
+ * @return {string} Number after conversion from the source base to
  *               the destination base.
  */
 Util.baseConversion = function(n, to, opt_from) {

@@ -14,9 +14,9 @@ goog.provide('DNSRecord');
  * and do not have ttl or data.
  *
  * @param {string} name Name part of the DNS record.
- * @param {integer} type DNS record type.
- * @param {integer} cl Class of record.
- * @param {integer} opt_ttl TTL for the record.
+ * @param {number} type DNS record type.
+ * @param {number} cl Class of record.
+ * @param {number} opt_ttl TTL for the record.
  * @param {ArrayBuffer} opt_data optional Uint8Array containing extra data.
  * @constructor
  */
@@ -35,25 +35,25 @@ DNSRecord = function(name, type, cl, opt_ttl, opt_data) {
 /**
  * Name component of DNS packet.
  * @type {string}
- * @private
+ * @protected
  */
 DNSRecord.prototype.name_ = null;
 
 
 /**
  * Type of DNS record as a number.
- * @type {integer}
+ * @type {number}
  * @see Section 3.2.2. of RFC 1035.
- * @private
+ * @protected
  */
 DNSRecord.prototype.type_ = null;
 
 
 /**
  * Class of DNS record as a number.
- * @type {integer}
+ * @type {number}
  * @see Section 3.2.2. of RFC 1035.
- * @private
+ * @protected
  */
 DNSRecord.prototype.cl_ = null;
 
@@ -105,7 +105,7 @@ DNSRecord.prototype.getName = function() {
 
 /**
  * Obtain the DNS record type number.
- * @return {integer} DNS record type number.
+ * @return {number} DNS record type number.
  */
 DNSRecord.prototype.getType = function() {
   return this.type_;
@@ -123,7 +123,7 @@ DNSRecord.prototype.getDataText = function() {
 
 /**
  * Return the TTL of the DNS record.
- * @return {int} TTL of DNS record.
+ * @return {number} TTL of DNS record.
  */
 DNSRecord.prototype.getTTL = function() {
   return this.ttl_;

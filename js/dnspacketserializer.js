@@ -22,7 +22,7 @@ DNSPacketSerializer = function(dnsPacket) {
 
 /**
  * DNS packet to be serialized.
- * @type {DNSPacker}
+ * @type {DNSPacket}
  * @private
  */
 DNSPacketSerializer.prototype.dnsPacket_ = null;
@@ -65,7 +65,7 @@ DNSPacketSerializer.prototype.serialize = function() {
  * @param {string} dnsName A DNS name such as "mail.google.com".
  * @param {Serializer} dnsSerializer Data serializer being used to serialize
  *                                   a DNS packet.
- * @param {integer} opt_ref Packet location of DNS name being referenced.
+ * @param {number} opt_ref Packet location of DNS name being referenced.
  *                            See Section 4.1.4 of RFC 1035.
  * @return {Serializer} This instance of a Serializer.
  */

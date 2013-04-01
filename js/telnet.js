@@ -13,7 +13,7 @@ goog.require('SocketInfo');
 /**
  * Open a TCP connection with a specific host on a specific port.
  * @param {string} host Hostname to open a connection with.
- * @param {integer} port Port number to connect on.
+ * @param {number} port Port number to connect on.
  * @param {OutputRecordManager} outputRecordManager Manage output logs.
  * @constructor
  */
@@ -34,7 +34,7 @@ Telnet.prototype.host_ = null;
 
 /**
  * Port to connect on.
- * @type {integer}
+ * @type {number}
  * @private
  */
 Telnet.prototype.port_ = null;
@@ -42,7 +42,7 @@ Telnet.prototype.port_ = null;
 
 /**
  * ID of socket used to connect to host.
- * @type {integer}
+ * @type {number}
  * @private
  */
 Telnet.prototype.socketId_ = null;

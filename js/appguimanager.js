@@ -137,7 +137,7 @@ AppGuiManager.processInputTestConfigurations = function() {
  * Print output to page console.
  * @param {string} outStr Message to print to the console.
  * @param {OutputRecord.DetailLevel} logLevel Level of detail of log.
- * @param {integer} timestamp Timestamp of log entry.
+ * @param {number} timestamp Timestamp of log entry.
  */
 AppGuiManager.printOutputToScreenConsole = function(outStr,
                                                     logLevel,

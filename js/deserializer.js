@@ -26,7 +26,7 @@ Deserializer = function(arrBinaryData) {
 
 /**
  * Byte number of the internal pointer used to read through the ArrayBuffer.
- * @type {integer}
+ * @type {number}
  * @private
  */
 Deserializer.prototype.loc_ = 0;
@@ -52,7 +52,7 @@ Deserializer.prototype.isEOF_ = function() {
 
 /**
  * Return a sub array starting from the current location of a specified length.
- * @param {integer} length Number of bytes to return from front of the view.
+ * @param {number} length Number of bytes to return from front of the view.
  * @return {Uint8Array} A subsection of the larger ArrayBuffer.
  */
 Deserializer.prototype.slice = function(length) {
@@ -64,7 +64,7 @@ Deserializer.prototype.slice = function(length) {
 
 /**
  * Return the next byte of data as a decimal.
- * @return {integer} Integer representing data stored in a single byte.
+ * @return {number} Integer representing data stored in a single byte.
  */
 Deserializer.prototype.getByte = function() {
   this.loc_ += 1;
@@ -74,7 +74,7 @@ Deserializer.prototype.getByte = function() {
 
 /**
  * Return the next two bytes of data as a base 10 integer.
- * @return {integer} Two bytes of data as a base 10 integer.
+ * @return {number} Two bytes of data as a base 10 integer.
  */
 Deserializer.prototype.getShort = function() {
   return (this.getByte() << 8) + this.getByte();
@@ -83,7 +83,7 @@ Deserializer.prototype.getShort = function() {
 
 /**
  * Return the next four bytes of data as a base 10 integer.
- * @return {integer} Four bytes of data as a base 10 integer.
+ * @return {number} Four bytes of data as a base 10 integer.
  */
 Deserializer.prototype.getLong = function() {
   return (this.getShort() << 16) + this.getShort();
@@ -92,7 +92,7 @@ Deserializer.prototype.getLong = function() {
 
 /**
  * Return the number of bytes read this far in the process of deserializer.
- * @return {integer} Number of bytes read.
+ * @return {number} Number of bytes read.
  */
 Deserializer.prototype.getBytesRead = function() {
   return this.loc_;
@@ -101,7 +101,7 @@ Deserializer.prototype.getBytesRead = function() {
 
 /**
  * Return the total number of bytes received to parse.
- * @return {integer} Total number of bytes received in the input ArrayBuffer.
+ * @return {number} Total number of bytes received in the input ArrayBuffer.
  */
 Deserializer.prototype.getTotalBytes = function() {
   return this.view_.byteLength;

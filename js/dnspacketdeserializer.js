@@ -20,7 +20,7 @@ goog.require('Deserializer');
 
 /**
  * Take an ArrayBuffer of binary data from a socket and parse a DNSPacket.
- * @param {ArrayBuffer} arBuffer ArrayBuffer of binary data representing a
+ * @param {Uint8Array} arBuffer Uint8Array of binary data representing a
  *                               DNS packet.
  * @param {ResponseLabelPointerManager} lblPointManager Reassemble compressed
  *                                                      DNS names.

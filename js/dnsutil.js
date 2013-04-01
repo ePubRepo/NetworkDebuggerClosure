@@ -61,14 +61,11 @@ DNSUtil.getRecordTypeNumByRecordTypeName = function(name) {
 
 /**
  * Static function to return the DNS record type number.
- * @param {int} num DNS record type number.
+ * @param {number} num DNS record type number.
  * @return {string} The DNS record type as a string.
  */
 DNSUtil.getRecordTypeNameByRecordTypeNum = function(num) {
   switch (num) {
-    case DNSUtil.RecordNumber.A:
-      return 'A';
-
     case DNSUtil.RecordNumber.AAAA:
       return 'AAAA';
 
@@ -80,5 +77,9 @@ DNSUtil.getRecordTypeNameByRecordTypeNum = function(num) {
 
     case DNSUtil.RecordNumber.TXT:
       return 'TXT';
+      
+    case DNSUtil.RecordNumber.A:
+    default:
+      return 'A';
    }
 };

@@ -9,7 +9,7 @@
 goog.provide('SocketInfo');
 
 /**
- * @param {integer} id ID of Chrome socket.
+ * @param {number} id ID of Chrome socket.
  * @param {OutputRecordManager} outputRecordManager Manage and record socket
  *                                                  info.
  * @constructor
@@ -22,7 +22,7 @@ SocketInfo = function(id, outputRecordManager) {
 
 /**
  * ID of Chrome socket.
- * @type {int}
+ * @type {number}
  * @private
  */
 SocketInfo.prototype.socketId_ = null;

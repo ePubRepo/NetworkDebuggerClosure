@@ -23,7 +23,7 @@ OutputRecordManager = function() {
 
 /**
  * Store instances of OutputRecord.
- * @type Array.OutputRecord
+ * @type Array.<OutputRecord>
  * @private
  */
 OutputRecordManager.prototype.outputEntries_ = null;
@@ -42,7 +42,7 @@ OutputRecordManager.prototype.pushEntry = function(level, msg) {
 
 /**
  * Return set of output entries.
- * @return {Array.OutputRecord} Set of output entries with log records.
+ * @return {Array.<OutputRecord>} Set of output entries with log records.
  */
 OutputRecordManager.prototype.getOutputRecords = function() {
   return this.outputEntries_;

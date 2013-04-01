@@ -13,7 +13,7 @@ goog.require('DNSRecord');
 /**
  * DNS AAAA record, storing the IPv6 address, name, TTL, etc.
  * @param {string} name Name of the AAAA record.
- * @param {integer} ttl Time to live.
+ * @param {number} ttl Time to live.
  * @extends DNSRecord
  * @constructor
  */

@@ -85,7 +85,7 @@ DNSInputHelper.prototype.getCustomResolverIp = function() {
 
 /**
  * Obtain the DNS record type number the user wishes to lookup.
- * @return {int} DNS record type number.
+ * @return {number} DNS record type number.
  */
 DNSInputHelper.prototype.getRecordType = function() {
   var recordTypeName = document.getElementById(this.domIdDnsRecordType_).value;

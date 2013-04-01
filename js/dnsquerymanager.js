@@ -18,7 +18,7 @@ goog.require('ResponseLabelPointerManager');
 /**
  * Manage a DNS query.
  * @param {string} hostname Hostname to lookup a record for.
- * @param {int} recordTypeNum Type of record to lookup.
+ * @param {number} recordTypeNum Type of record to lookup.
  * @param {string} dnsServer Server to query against records.
  * @param {function(DNSQueryManager)} finalCallbackFnc Callback function run
  *                                                     when query done.
@@ -46,7 +46,7 @@ DNSQueryManager.prototype.hostname_ = null;
 
 /**
  * DNS record type number.
- * @type {integer}
+ * @type {number}
  * @private
  */
 DNSQueryManager.prototype.recordTypeNum_ = null;
@@ -62,7 +62,7 @@ DNSQueryManager.prototype.dnsServer_ = null;
 
 /**
  * Port to use in connecting to DNS server.
- * @type {int}
+ * @type {number}
  * @private
  */
 DNSQueryManager.prototype.dnsPort_ = 53;
@@ -78,7 +78,7 @@ DNSQueryManager.prototype.isRecursionDesired_ = true;
 
 /**
  * ID of the socket used to make a DNS query.
- * @type {integer}
+ * @type {number}
  * @private
  */
 DNSQueryManager.prototype.socketId_ = null;
@@ -160,7 +160,7 @@ DNSQueryManager.prototype.getResponsePacket = function() {
 
 /**
  * Enum to capture the result of a DNS query.
- * @enum {integer}
+ * @enum {number}
  */
 DNSQueryManager.QueryResultStatus = {
   SUCCESS_PACKET_PARSE: 0,
@@ -198,7 +198,7 @@ DNSQueryManager.prototype.setRecursionDesired = function(isDesired) {
 /**
  * Obtain the bits for the DNS packet header.
  * See Section 4.1.1 of RFC 1035 for the specifics.
- * @return {int} Integer corresponding to the 16 bits of a DNS packet header.
+ * @return {number} Integer corresponding to the 16 bits of a DNS packet header.
  * @private
  */
 DNSQueryManager.prototype.getFormattedHeader_ = function() {
@@ -354,7 +354,7 @@ DNSQueryManager.prototype.sendRequest = function() {
 
   /**
    * Receive the result of a connection attempt.
-   * @param {integer} result Information about connected socket.
+   * @param {number} result Information about connected socket.
    * @this {DNSQueryManager}
    * @private
    */

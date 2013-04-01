@@ -12,7 +12,7 @@ goog.provide('DNSPacket');
  * DNSPacket holds the state of a DNS packet such as a question record and
  * associated responses along with other associated records.
  *
- * @param {integer} opt_flags Numerical flags to set in the DNS header.
+ * @param {number} opt_flags Numerical flags to set in the DNS header.
  *                            For example, 0x100 sets the packet to a recursive
  *                            query. See Section 4.1.1 of RFC 1035.
  * @constructor
@@ -31,7 +31,7 @@ DNSPacket = function(opt_flags) {
 
 /**
  * Flags for the DNS packet.
- * @type {integer}
+ * @type {number}
  * @private
  */
 DNSPacket.prototype.flags_ = null;
@@ -48,7 +48,7 @@ DNSPacket.prototype.data_ = null;
 
 /**
  * Return the flags of the DNS packet.
- * @return {integer} Flags of DNS packet.
+ * @return {number} Flags of DNS packet.
  */
 DNSPacket.prototype.getFlags = function() {
   return this.flags_;
@@ -57,7 +57,7 @@ DNSPacket.prototype.getFlags = function() {
 
 /**
  * Return the number of answer records in the DNS packet.
- * @return {integer} Number of DNS records in the answer section of the
+ * @return {number} Number of DNS records in the answer section of the
  *                   DNS packet.
  */
 DNSPacket.prototype.getAnswerRecordCount = function() {
