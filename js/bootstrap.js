@@ -26,23 +26,23 @@ Bootstrap = function() {
 Bootstrap.prototype.addDomEventListeners = function() {
   // add listeners for running general diagnostics
   document.getElementById('runDiagnosticsBtn').addEventListener('click',
-      AppGuiManager.runDiagnostics);
+      AppGuiManager.runDiagnostics, false);
   document.getElementById('advancedOptionsToggleBtn').addEventListener('click',
-      AppGuiManager.toggleAdvancedOptions);
+      AppGuiManager.toggleAdvancedOptions, false);
 
   // add listeners for loading, quitting, or running test configurations
   document.getElementById('loadTestConfigBtn').addEventListener('click',
-      AppGuiManager.showLoadTestConfigurationsGui);
+      AppGuiManager.showLoadTestConfigurationsGui, false);
   document.getElementById('quitConfigLoadScreenBtn').addEventListener('click',
-      AppGuiManager.hideLoadTestConfigurationsGui);
+      AppGuiManager.hideLoadTestConfigurationsGui, false);
   document.getElementById('runLoadedTests').addEventListener('click',
-      AppGuiManager.processInputTestConfigurations);
+      AppGuiManager.processInputTestConfigurations, false);
 
   // add listeners to console control
   document.getElementById('consoleClearBtn')
-      .addEventListener('click', AppGuiManager.consoleClearBtnClicked);
+      .addEventListener('click', AppGuiManager.consoleClearBtnClicked, false);
   document.getElementById('consoleCopyBtn')
-      .addEventListener('click', AppGuiManager.consoleCopyBtnClicked);
+      .addEventListener('click', AppGuiManager.consoleCopyBtnClicked, false);
 };
 
 
