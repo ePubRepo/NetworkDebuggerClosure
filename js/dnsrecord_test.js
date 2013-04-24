@@ -12,11 +12,7 @@ goog.require('DNSRecord');
 goog.require('DNSUtil');
 goog.require('goog.testing.jsunit');
 
-
-/**
- * Object to test DNSRecord class.
- */
-test.DNSRecord = function() {};
+goog.setTestOnly('Tests for DNSRecord');
 
 
 /**

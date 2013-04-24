@@ -1,12 +1,12 @@
 // Copyright 2013. All Rights Reserved.
 
 /**
- * @fileoverview Bootstrap the network debugging applicatoin.
+ * @fileoverview Bootstrap the network debugging application.
  *
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('ndb');
+goog.provide('netdebugger');
 
 goog.provide('Bootstrap');
 goog.require('AppGuiManager');

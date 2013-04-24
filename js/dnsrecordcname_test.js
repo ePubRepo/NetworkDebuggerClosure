@@ -12,11 +12,7 @@ goog.require('DNSRecordCNAME');
 goog.require('DNSUtil');
 goog.require('goog.testing.jsunit');
 
-
-/**
- * Object to test DNSRecordCNAME class.
- */
-test.DNSRecordCNAME = function() {};
+goog.setTestOnly('Tests for DNSRecordCNAME');
 
 
 /**

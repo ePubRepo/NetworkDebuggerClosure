@@ -17,8 +17,8 @@ goog.provide('DNSRecord');
  * @param {number} type DNS record type.
  * @param {number} cl Class of record.
  * @param {number=} opt_ttl TTL for the record (optional).
- * @param {Uint8Array=} opt_data optional Uint8Array containing extra
- *                                         data (optional).
+ * @param {Uint8Array=} opt_data Uint8Array containing
+ *                                          extra data (optional).
  * @constructor
  */
 DNSRecord = function(name, type, cl, opt_ttl, opt_data) {

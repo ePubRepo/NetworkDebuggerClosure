@@ -13,11 +13,7 @@ goog.require('DNSRecordMX');
 goog.require('DNSUtil');
 goog.require('goog.testing.jsunit');
 
-
-/**
- * Object to test DNSPacket class.
- */
-test.DNSPacket = function() {};
+goog.setTestOnly('Tests for DNSPacket');
 
 
 /**

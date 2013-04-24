@@ -20,8 +20,8 @@ goog.require('Deserializer');
 
 /**
  * Take an ArrayBuffer of binary data from a socket and parse a DNSPacket.
- * @param {Uint8Array} arBuffer Uint8Array of binary data representing a
- *                               DNS packet.
+ * @param {Uint8Array|ArrayBuffer} arBuffer Uint8Array of binary data
+ *                                          representing a DNS packet.
  * @param {ResponseLabelPointerManager} lblPointManager Reassemble compressed
  *                                                      DNS names.
  * @constructor
@@ -81,7 +81,7 @@ DNSPacketDeserializer.prototype.deserializePacket = function() {
 
   // Parse the QUESTION section.
   for (var qI = 0; qI < sectionCount[DNSUtil.PacketSection.QUESTION]; ++qI) {
-    var part = new DNSRecord(
+    var dnsRecord = new DNSRecord(
       // dns record name
       this.parseName(this.lblPointManager_, this.dataDeserializer_),
 
@@ -93,10 +93,10 @@ DNSPacketDeserializer.prototype.deserializePacket = function() {
 
     // set label point manager so individual record has access to entire
     // response packet to reassemble compressed DNS names
-    part.setLblPointManager(this.lblPointManager_);
+    dnsRecord.setLblPointManager(this.lblPointManager_);
 
-    // add DNS record to broader DNS packet
-    packet.push('qd', part);
+    // add DNS question record to broader DNS packet
+    packet.push(DNSUtil.PacketSection.QUESTION, dnsRecord);
   }
 
   // Parse the ANSWER, AUTHORITY and ADDITIONAL sections.
@@ -122,27 +122,27 @@ DNSPacketDeserializer.prototype.deserializePacket = function() {
       // create the proper DNS record type
       switch (recType) {
         case DNSUtil.RecordNumber.A:
-          var part = new DNSRecordA(recName, recTTL);
+          var dnsRecord = new DNSRecordA(recName, recTTL);
           break;
 
         case DNSUtil.RecordNumber.MX:
-          var part = new DNSRecordMX(recName, recTTL);
+          var dnsRecord = new DNSRecordMX(recName, recTTL);
           break;
 
         case DNSUtil.RecordNumber.AAAA:
-          var part = new DNSRecordAAAA(recName, recTTL);
+          var dnsRecord = new DNSRecordAAAA(recName, recTTL);
           break;
 
         case DNSUtil.RecordNumber.TXT:
-          var part = new DNSRecordTXT(recName, recTTL);
+          var dnsRecord = new DNSRecordTXT(recName, recTTL);
           break;
 
         case DNSUtil.RecordNumber.CNAME:
-          var part = new DNSRecordCNAME(recName, recTTL);
+          var dnsRecord = new DNSRecordCNAME(recName, recTTL);
           break;
 
         default:
-          var part = new DNSRecord(recName,
+          var dnsRecord = new DNSRecord(recName,
                                  recType,
                                  recClass,
                                  recTTL,
@@ -152,19 +152,19 @@ DNSPacketDeserializer.prototype.deserializePacket = function() {
 
       // set label point manager so individual record has access to entire
       // response packet to reassemble compressed DNS names
-      part.setLblPointManager(this.lblPointManager_);
-      part.setData(dtSectBinary);
+      dnsRecord.setLblPointManager(this.lblPointManager_);
+      dnsRecord.setData(dtSectBinary);
 
       // parse data section of record and set it as part of the record
       // specifics of parsing data section depend in part on record type
-      this.parseDataSection(recType, dtSectBinary, part);
+      this.parseDataSection(recType, dtSectBinary, dnsRecord);
 
       // push the the record onto the DNS packet
-      packet.push(section, part);
+      packet.push(section, dnsRecord);
     }
   }.bind(this));
 
-  this.dataDeserializer_.isEOF_() || console.warn('was not EOF on packet');
+  this.dataDeserializer_.isEOF() || console.warn('was not EOF on packet');
   this.deserializedPacket_ = packet;
 };
 
@@ -176,28 +176,28 @@ DNSPacketDeserializer.prototype.deserializePacket = function() {
  *   fields.
  * @param {DNSUtil.RecordNumber} recordTypeNum DNS record type number.
  * @param {ArrayBuffer} dataSectionBinary Binary data of data section.
- * @param {DNSPacket} dnsPacket DNS packet to parse.
+ * @param {DNSRecord} dnsRecord DNS packet to parse.
  */
 DNSPacketDeserializer.prototype.parseDataSection = function(recordTypeNum,
                                                             dataSectionBinary,
-                                                            dnsPacket) {
+                                                            dnsRecord) {
   var dataSectionDeserializer = new Deserializer(dataSectionBinary);
   var dataSectionTxt = '';
 
   switch (recordTypeNum) {
     case DNSUtil.RecordNumber.A:
       var arrOctect = [];
-      while (!dataSectionDeserializer.isEOF_()) {
+      while (!dataSectionDeserializer.isEOF()) {
         arrOctect.push(dataSectionDeserializer.getByte());
       }
       dataSectionTxt = arrOctect.join('.');
-      dnsPacket.setIp(dataSectionTxt);
+      dnsRecord.setIp(dataSectionTxt);
       break;
 
     case DNSUtil.RecordNumber.AAAA:
       // take 16 byte data and parse into the 16 bytes of an IPv6 address
       var nibbleNum = 0;
-      while (!dataSectionDeserializer.isEOF_()) {
+      while (!dataSectionDeserializer.isEOF()) {
         var nextByte = dataSectionDeserializer.getByte();
         var nibbleADec = (nextByte & 0xf0) >> 4;
         var nibbleAHex = Util.baseConversion(nibbleADec, 16);
@@ -209,36 +209,36 @@ DNSPacketDeserializer.prototype.parseDataSection = function(recordTypeNum,
 
         dataSectionTxt += nibbleAHex + nibbleBHex;
         if (nibbleNum % 4 == 0 && nibbleNum < 32) dataSectionTxt += ':';
-        dnsPacket.setIp(dataSectionTxt);
+        dnsRecord.setIp(dataSectionTxt);
       }
       break;
 
     case DNSUtil.RecordNumber.CNAME:
       dataSectionTxt += this.parseName(this.lblPointManager_,
                                        dataSectionDeserializer);
-      dnsPacket.setCname(dataSectionTxt);
+      dnsRecord.setCname(dataSectionTxt);
       break;
 
     case DNSUtil.RecordNumber.TXT:
-      while (!dataSectionDeserializer.isEOF_()) {
+      while (!dataSectionDeserializer.isEOF()) {
         var nextByte = dataSectionDeserializer.getByte();
         var nextChar = String.fromCharCode(nextByte);
         dataSectionTxt += nextChar;
       }
-      dnsPacket.setText(dataSectionTxt);
+      dnsRecord.setText(dataSectionTxt);
       break;
 
      case DNSUtil.RecordNumber.MX:
        var preferenceNum = dataSectionDeserializer.getShort();
        var mailExchanger = this.parseName(this.lblPointManager_,
                                           dataSectionDeserializer);
-       dnsPacket.setPreferenceNumber(preferenceNum);
-       dnsPacket.setMailExchanger(mailExchanger);
+       dnsRecord.setPreferenceNumber(preferenceNum);
+       dnsRecord.setMailExchanger(mailExchanger);
        dataSectionTxt += 'Pref #: ' + preferenceNum;
        dataSectionTxt += '; Value: ' + mailExchanger;
        break;
   }
-  dnsPacket.setData(dataSectionTxt);
+  dnsRecord.setData(dataSectionTxt);
 };
 
 

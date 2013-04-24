@@ -11,11 +11,7 @@ goog.provide('test.OutputRecord');
 goog.require('OutputRecord');
 goog.require('goog.testing.jsunit');
 
-
-/**
- * Object to test OutputRecord class.
- */
-test.OutputRecord = function() {};
+goog.setTestOnly('Tests for OutputRecord');
 
 
 /**

@@ -25,7 +25,7 @@ Util.hostnamesToTest = ['google.com', 'mail.google.com', 'docs.google.com',
  * decimal to hex (such as for parsing out an IPv6 from binary).
  * @param {number} n Number to be converted from one base to another.
  * @param {number} to Terminal base (usually 16).
- * @param {number} opt_from Optional source base.
+ * @param {number=} opt_from Optional source base (optional).
  * @return {string} Number after conversion from the source base to
  *               the destination base.
  */

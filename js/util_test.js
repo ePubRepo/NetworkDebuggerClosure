@@ -11,11 +11,8 @@ goog.provide('test.Util');
 goog.require('Util');
 goog.require('goog.testing.jsunit');
 
+goog.setTestOnly('Tests for Util');
 
-/**
- * Object to test Util class.
- */
-test.Util = function() {};
 
 function testBaseConversion() {
   assertEquals('10', Util.baseConversion(2, 2));

@@ -11,11 +11,7 @@ goog.provide('test.ResponseLabelPointerManager');
 goog.require('ResponseLabelPointerManager');
 goog.require('goog.testing.jsunit');
 
-
-/**
- * Object to test ResponseLabelPointerManager class.
- */
-test.ResponseLabelPointerManager = function() {};
+goog.setTestOnly('Tests for ResponseLabelPointerManager');
 
 
 /**

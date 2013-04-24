@@ -13,11 +13,7 @@ goog.require('DNSUtil');
 goog.require('OutputRecordManager');
 goog.require('goog.testing.jsunit');
 
-
-/**
- * Object to test DNSQueryManager class.
- */
-test.DNSQueryManager = function() {};
+goog.setTestOnly('Tests for DNSQueryManager');
 
 
 /**

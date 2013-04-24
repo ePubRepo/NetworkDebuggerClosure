@@ -42,9 +42,8 @@ Deserializer.prototype.view_ = null;
 /**
  * Determine whether Deserializer has read through all input data.
  * @return {boolean} Whether this DataConsumer has consumed all its data.
- * @private
  */
-Deserializer.prototype.isEOF_ = function() {
+Deserializer.prototype.isEOF = function() {
   //check if current location, in bytes, is greater than length of data
   return (this.loc_ >= this.view_.byteLength);
 };

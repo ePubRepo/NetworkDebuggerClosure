@@ -12,11 +12,7 @@ goog.require('DNSPacketDeserializer');
 goog.require('ResponseLabelPointerManager');
 goog.require('goog.testing.jsunit');
 
-
-/**
- * Object to test DNSPacketDeserializer class.
- */
-test.DNSPacketDeserializer = function() {};
+goog.setTestOnly('Tests for DNSPacketDeserializer');
 
 
 /**

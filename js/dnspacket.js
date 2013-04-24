@@ -40,7 +40,7 @@ DNSPacket.prototype.flags_ = null;
 /**
  * Array containing the specific DNS records that are a part of each
  *   section of the DNS packet.
- * @type Array.String.DNSRecord
+ * @type Array.<string>.<DNSRecord>
  * @private
  */
 DNSPacket.prototype.data_ = null;

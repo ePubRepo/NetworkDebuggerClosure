@@ -12,11 +12,7 @@ goog.require('OutputRecord');
 goog.require('OutputRecordManager');
 goog.require('goog.testing.jsunit');
 
-
-/**
- * Object to test OutputRecordManager class.
- */
-test.OutputRecordManager = function() {};
+goog.setTestOnly('Tests for OutputRecordManager');
 
 
 /**

@@ -11,11 +11,7 @@ goog.provide('test.DNSUtil');
 goog.require('DNSUtil');
 goog.require('goog.testing.jsunit');
 
-
-/**
- * Object to test DNSUtil class.
- */
-test.DNSUtil = function() {};
+goog.setTestOnly('Tests for DNSUtil');
 
 
 /**

@@ -8,15 +8,11 @@
 
 goog.provide('test.DNSRecordAAAA');
 
-goog.require('DNSRecord');
+goog.require('DNSRecordAAAA');
 goog.require('DNSUtil');
 goog.require('goog.testing.jsunit');
 
-
-/**
- * Object to test DNSRecordAAAA class.
- */
-test.DNSRecordAAAA = function() {};
+goog.setTestOnly('Tests for DNSRecordAAAA');
 
 
 /**
@@ -32,10 +28,8 @@ function setUp() {
  * Test the getName() method.
  */
 function testGetName() {
-  assertEquals('t.com', myDnsRecordA.getName());
-  assertEquals('t.com', myDnsRecordAAAA.getName());
-  assertEquals('t.com', myDnsRecordCNAME.getName());
-  assertEquals('t.com', myDnsRecordMX.getName());
+  assertEquals('t1.com', myDnsRecordAAAA1.getName());
+  assertEquals('t2.com', myDnsRecordAAAA2.getName());
 }
 
 
@@ -43,10 +37,8 @@ function testGetName() {
  * Test the getType() method.
  */
 function testGetType() {
-  assertEquals(DNSUtil.RecordNumber.A, myDnsRecordA.getType());
-  assertEquals(DNSUtil.RecordNumber.AAAA, myDnsRecordAAAA.getType());
-  assertEquals(DNSUtil.RecordNumber.CNAME, myDnsRecordCNAME.getType());
-  assertEquals(DNSUtil.RecordNumber.MX, myDnsRecordMX.getType());
+  assertEquals(DNSUtil.RecordNumber.AAAA, myDnsRecordAAAA1.getType());
+  assertEquals(DNSUtil.RecordNumber.AAAA, myDnsRecordAAAA2.getType());
 }
 
 
@@ -54,8 +46,6 @@ function testGetType() {
  * Test the getTTL() method.
  */
 function testTtl() {
-  assertEquals(555, myDnsRecordA.getTTL());
-  assertEquals(550, myDnsRecordAAAA.getTTL());
-  assertEquals(525, myDnsRecordCNAME.getTTL());
-  assertEquals(500, myDnsRecordMX.getTTL());
+  assertEquals(550, myDnsRecordAAAA1.getTTL());
+  assertEquals(500, myDnsRecordAAAA2.getTTL());
 }

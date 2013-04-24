@@ -13,11 +13,7 @@ goog.require('DNSRecord');
 goog.require('DNSResponsePacketAnalyzer');
 goog.require('goog.testing.jsunit');
 
-
-/**
- * Object to test DNSResponsePacketAnalyzer class.
- */
-test.DNSResponsePacketAnalyzer = function() {};
+goog.setTestOnly('Tests for DNSResponsePacketAnalyzer');
 
 
 /**

@@ -12,11 +12,7 @@ goog.require('AppGuiManager');
 goog.require('TestHelper');
 goog.require('goog.testing.jsunit');
 
-
-/**
- * Object to test AppGuiManager class.
- */
-test.AppGuiManager = function() {};
+goog.setTestOnly('Tests for AppGuiManager');
 
 
 /**

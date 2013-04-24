@@ -14,11 +14,7 @@ goog.require('DNSRecord');
 goog.require('DNSUtil');
 goog.require('goog.testing.jsunit');
 
-
-/**
- * Object to test DNSPacketSerializer class.
- */
-test.DNSPacketSerializer = function() {};
+goog.setTestOnly('Tests for DNSPacketSerializer');
 
 
 /**

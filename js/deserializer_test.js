@@ -11,11 +11,7 @@ goog.provide('test.Deserializer');
 goog.require('Deserializer');
 goog.require('goog.testing.jsunit');
 
-
-/**
- * Object to test Deserializer class.
- */
-test.Deserializer = function() {};
+goog.setTestOnly('Tests for Deserializer');
 
 
 /**
@@ -39,10 +35,10 @@ function setUp() {
 function testIsEOF() {
   var myDeserializer = new Deserializer(myUnit8Array);
   for (var i = 0; i < 7; i++) {
-    assertFalse(myDeserializer.isEOF_());
+    assertFalse(myDeserializer.isEOF());
     myDeserializer.getByte();
   }
-  assertTrue(myDeserializer.isEOF_());
+  assertTrue(myDeserializer.isEOF());
 }
 
 

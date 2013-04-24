@@ -11,11 +11,7 @@ goog.provide('test.Serializer');
 goog.require('Serializer');
 goog.require('goog.testing.jsunit');
 
-/**
- * Test Serializer object.
- * @constructor
- */
-test.Serializer = function() {};
+goog.setTestOnly('Tests for Serializer');
 
 
 /**
