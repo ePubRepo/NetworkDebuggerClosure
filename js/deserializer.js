@@ -6,7 +6,7 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('Deserializer');
+goog.provide('netdebugger.Deserializer');
 
 /**
  * Deserializer consumes data from an ArrayBuffer.
@@ -14,7 +14,7 @@ goog.provide('Deserializer');
  * @param {ArrayBuffer|Unit8Array} arrBinaryData ArrayBuffer of binary data.
  * @constructor
  */
-Deserializer = function(arrBinaryData) {
+netdebugger.Deserializer = function(arrBinaryData) {
   if (arrBinaryData instanceof Uint8Array) {
     this.view_ = arrBinaryData;
   } else {
@@ -29,7 +29,7 @@ Deserializer = function(arrBinaryData) {
  * @type {number}
  * @private
  */
-Deserializer.prototype.loc_ = 0;
+netdebugger.Deserializer.prototype.loc_ = 0;
 
 
 /**
@@ -37,13 +37,13 @@ Deserializer.prototype.loc_ = 0;
  * @type {Unit8Array}
  * @private
  */
-Deserializer.prototype.view_ = null;
+netdebugger.Deserializer.prototype.view_ = null;
 
 /**
  * Determine whether Deserializer has read through all input data.
  * @return {boolean} Whether this DataConsumer has consumed all its data.
  */
-Deserializer.prototype.isEOF = function() {
+netdebugger.Deserializer.prototype.isEOF = function() {
   //check if current location, in bytes, is greater than length of data
   return (this.loc_ >= this.view_.byteLength);
 };
@@ -54,7 +54,7 @@ Deserializer.prototype.isEOF = function() {
  * @param {number} length Number of bytes to return from front of the view.
  * @return {Uint8Array} A subsection of the larger ArrayBuffer.
  */
-Deserializer.prototype.slice = function(length) {
+netdebugger.Deserializer.prototype.slice = function(length) {
   var view = this.view_.subarray(this.loc_, this.loc_ + length);
   this.loc_ += length;
   return view;
@@ -65,7 +65,7 @@ Deserializer.prototype.slice = function(length) {
  * Return the next byte of data as a decimal.
  * @return {number} Integer representing data stored in a single byte.
  */
-Deserializer.prototype.getByte = function() {
+netdebugger.Deserializer.prototype.getByte = function() {
   this.loc_ += 1;
   return this.view_[this.loc_ - 1];
 };
@@ -75,7 +75,7 @@ Deserializer.prototype.getByte = function() {
  * Return the next two bytes of data as a base 10 integer.
  * @return {number} Two bytes of data as a base 10 integer.
  */
-Deserializer.prototype.getShort = function() {
+netdebugger.Deserializer.prototype.getShort = function() {
   return (this.getByte() << 8) + this.getByte();
 };
 
@@ -84,7 +84,7 @@ Deserializer.prototype.getShort = function() {
  * Return the next four bytes of data as a base 10 integer.
  * @return {number} Four bytes of data as a base 10 integer.
  */
-Deserializer.prototype.getLong = function() {
+netdebugger.Deserializer.prototype.getLong = function() {
   return (this.getShort() << 16) + this.getShort();
 };
 
@@ -93,7 +93,7 @@ Deserializer.prototype.getLong = function() {
  * Return the number of bytes read this far in the process of deserializer.
  * @return {number} Number of bytes read.
  */
-Deserializer.prototype.getBytesRead = function() {
+netdebugger.Deserializer.prototype.getBytesRead = function() {
   return this.loc_;
 };
 
@@ -102,6 +102,6 @@ Deserializer.prototype.getBytesRead = function() {
  * Return the total number of bytes received to parse.
  * @return {number} Total number of bytes received in the input ArrayBuffer.
  */
-Deserializer.prototype.getTotalBytes = function() {
+netdebugger.Deserializer.prototype.getTotalBytes = function() {
   return this.view_.byteLength;
 };

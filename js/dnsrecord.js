@@ -6,7 +6,7 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('DNSRecord');
+goog.provide('netdebugger.DNSRecord');
 
 /**
  * DNSRecord is a record inside a DNS packet; e.g. a QUESTION, or an ANSWER,
@@ -21,7 +21,7 @@ goog.provide('DNSRecord');
  *                                          extra data (optional).
  * @constructor
  */
-DNSRecord = function(name, type, cl, opt_ttl, opt_data) {
+netdebugger.DNSRecord = function(name, type, cl, opt_ttl, opt_data) {
   this.name_ = name;
   this.type_ = type;
   this.cl_ = cl;
@@ -38,7 +38,7 @@ DNSRecord = function(name, type, cl, opt_ttl, opt_data) {
  * @type {string}
  * @protected
  */
-DNSRecord.prototype.name_ = null;
+netdebugger.DNSRecord.prototype.name_ = null;
 
 
 /**
@@ -47,7 +47,7 @@ DNSRecord.prototype.name_ = null;
  * @see Section 3.2.2. of RFC 1035.
  * @protected
  */
-DNSRecord.prototype.type_ = null;
+netdebugger.DNSRecord.prototype.type_ = null;
 
 
 /**
@@ -56,7 +56,7 @@ DNSRecord.prototype.type_ = null;
  * @see Section 3.2.2. of RFC 1035.
  * @protected
  */
-DNSRecord.prototype.cl_ = null;
+netdebugger.DNSRecord.prototype.cl_ = null;
 
 
 /**
@@ -66,7 +66,7 @@ DNSRecord.prototype.cl_ = null;
  * @see Section 4.1.4 of RFC 1035.
  * @private
  */
-DNSRecord.prototype.lblPointManager_ = null;
+netdebugger.DNSRecord.prototype.lblPointManager_ = null;
 
 
 /**
@@ -74,7 +74,7 @@ DNSRecord.prototype.lblPointManager_ = null;
  * @type {ArrayBuffer}
  * @private
  */
-DNSRecord.prototype.data_ = null;
+netdebugger.DNSRecord.prototype.data_ = null;
 
 
 /**
@@ -82,7 +82,7 @@ DNSRecord.prototype.data_ = null;
  * @type {string}
  * @private
  */
-DNSRecord.prototype.dataTxt_ = null;
+netdebugger.DNSRecord.prototype.dataTxt_ = null;
 
 
 /**
@@ -90,7 +90,7 @@ DNSRecord.prototype.dataTxt_ = null;
  * @param {ResponseLabelPointerManager} obj Label manager to help reassemble
  *                                          DNS packet data.
  */
-DNSRecord.prototype.setLblPointManager = function(obj) {
+netdebugger.DNSRecord.prototype.setLblPointManager = function(obj) {
   this.lblPointManager_ = obj;
 };
 
@@ -99,7 +99,7 @@ DNSRecord.prototype.setLblPointManager = function(obj) {
  * Obtain the DNS name of the DNS record.
  * @return {string} DNS name.
  */
-DNSRecord.prototype.getName = function() {
+netdebugger.DNSRecord.prototype.getName = function() {
   return this.name_;
 };
 
@@ -108,7 +108,7 @@ DNSRecord.prototype.getName = function() {
  * Obtain the DNS record type number.
  * @return {number} DNS record type number.
  */
-DNSRecord.prototype.getType = function() {
+netdebugger.DNSRecord.prototype.getType = function() {
   return this.type_;
 };
 
@@ -117,7 +117,7 @@ DNSRecord.prototype.getType = function() {
  * Obtain a text processed versino of the data section.
  * @return {string} Text representation of the data section of the DNS record.
  */
-DNSRecord.prototype.getDataText = function() {
+netdebugger.DNSRecord.prototype.getDataText = function() {
   return this.dataTxt_;
 };
 
@@ -126,7 +126,7 @@ DNSRecord.prototype.getDataText = function() {
  * Return the TTL of the DNS record.
  * @return {number} TTL of DNS record.
  */
-DNSRecord.prototype.getTTL = function() {
+netdebugger.DNSRecord.prototype.getTTL = function() {
   return this.ttl_;
 };
 
@@ -135,6 +135,6 @@ DNSRecord.prototype.getTTL = function() {
  * Set a text representation of the DNS packet's data section.
  * @param {string} dataStr Text representation of data section.
  */
-DNSRecord.prototype.setData = function(dataStr) {
+netdebugger.DNSRecord.prototype.setData = function(dataStr) {
   this.dataTxt_ = dataStr;
 };

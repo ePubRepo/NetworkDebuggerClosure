@@ -6,7 +6,7 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('OutputRecord');
+goog.provide('netdebugger.OutputRecord');
 
 /**
  * Store a log output from a test along with a timestamp and log level.
@@ -15,7 +15,7 @@ goog.provide('OutputRecord');
  * @param {string} message Message to be recorded.
  * @constructor
  */
-OutputRecord = function(level, message) {
+netdebugger.OutputRecord = function(level, message) {
   this.timestamp_ = (new Date()).getTime();
   this.level_ = level;
   this.message_ = message;
@@ -26,7 +26,7 @@ OutputRecord = function(level, message) {
  * Enum for the level of output log information corresponding with a message.
  * @enum {number}
  */
-OutputRecord.DetailLevel = {
+netdebugger.OutputRecord.DetailLevel = {
   ERROR: 0,
   WARNING: 1,
   INFO: 2,
@@ -40,7 +40,7 @@ OutputRecord.DetailLevel = {
  * @type {number}
  * @private
  */
-OutputRecord.prototype.timestamp_ = null;
+netdebugger.OutputRecord.prototype.timestamp_ = null;
 
 
 /**
@@ -48,7 +48,7 @@ OutputRecord.prototype.timestamp_ = null;
  * @type {OutputRecord.DetailLevel}
  * @private
  */
-OutputRecord.prototype.level_ = null;
+netdebugger.OutputRecord.prototype.level_ = null;
 
 
 /**
@@ -56,14 +56,14 @@ OutputRecord.prototype.level_ = null;
  * @type {string}
  * @private
  */
-OutputRecord.prototype.message_ = null;
+netdebugger.OutputRecord.prototype.message_ = null;
 
 
 /**
  * Return the timestamp of the record.
  * @return {number} Timestamp of record entry.
  */
-OutputRecord.prototype.getTimestamp = function() {
+netdebugger.OutputRecord.prototype.getTimestamp = function() {
   return this.timestamp_;
 };
 
@@ -72,7 +72,7 @@ OutputRecord.prototype.getTimestamp = function() {
  * Return the log level for this record entry.
  * @return {OutputRecord.DetailLevel} Level of log entry.
  */
-OutputRecord.prototype.getLevel = function() {
+netdebugger.OutputRecord.prototype.getLevel = function() {
   return this.level_;
 };
 
@@ -81,6 +81,6 @@ OutputRecord.prototype.getLevel = function() {
  * Return log message.
  * @return {string} Log message.
  */
-OutputRecord.prototype.getMessage = function() {
+netdebugger.OutputRecord.prototype.getMessage = function() {
   return this.message_;
 };

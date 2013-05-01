@@ -6,17 +6,17 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('Util');
+goog.provide('netdebugger.Util');
 
 /**
  * Abstract class to provide various utilities to the app.
  */
-Util = function() {};
+netdebugger.Util = function() {};
 
 /**
  * Array of hostnames to perform defaut tests on.
  */
-Util.hostnamesToTest = ['google.com', 'mail.google.com', 'docs.google.com',
+netdebugger.Util.hostnamesToTest = ['google.com', 'mail.google.com', 'docs.google.com',
                         'accounts.google.com', 'apis.google.com',
                         'drive.google.com'];
 
@@ -29,6 +29,6 @@ Util.hostnamesToTest = ['google.com', 'mail.google.com', 'docs.google.com',
  * @return {string} Number after conversion from the source base to
  *               the destination base.
  */
-Util.baseConversion = function(n, to, opt_from) {
+netdebugger.Util.baseConversion = function(n, to, opt_from) {
   return parseInt(n, opt_from || 10).toString(to);
 };

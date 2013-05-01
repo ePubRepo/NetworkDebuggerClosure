@@ -6,10 +6,10 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('test.DNSRecordCNAME');
+goog.provide('netdebugger.test.DNSRecordCNAME');
 
-goog.require('DNSRecordCNAME');
-goog.require('DNSUtil');
+goog.require('netdebugger.DNSRecordCNAME');
+goog.require('netdebugger.DNSUtil');
 goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('Tests for DNSRecordCNAME');
@@ -19,9 +19,9 @@ goog.setTestOnly('Tests for DNSRecordCNAME');
  * Create objects for testing.
  */
 function setUp() {
-  myDnsRecordCNAME1 = new DNSRecordCNAME('t1.com', 555);
+  myDnsRecordCNAME1 = new netdebugger.DNSRecordCNAME('t1.com', 555);
   myDnsRecordCNAME1.setCname('mail.t1.com');
-  myDnsRecordCNAME2 = new DNSRecordCNAME('t2.com', 550);
+  myDnsRecordCNAME2 = new netdebugger.DNSRecordCNAME('t2.com', 550);
   myDnsRecordCNAME2.setCname('drive.t2.com');
 }
 
@@ -39,8 +39,8 @@ function testGetName() {
  * Test the getType() method.
  */
 function testGetType() {
-  assertEquals(DNSUtil.RecordNumber.CNAME, myDnsRecordCNAME1.getType());
-  assertEquals(DNSUtil.RecordNumber.CNAME, myDnsRecordCNAME2.getType());
+  assertEquals(netdebugger.DNSUtil.RecordNumber.CNAME, myDnsRecordCNAME1.getType());
+  assertEquals(netdebugger.DNSUtil.RecordNumber.CNAME, myDnsRecordCNAME2.getType());
 }
 
 

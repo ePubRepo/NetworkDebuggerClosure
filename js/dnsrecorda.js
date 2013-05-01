@@ -6,9 +6,9 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('DNSRecordA');
+goog.provide('netdebugger.DNSRecordA');
 
-goog.require('DNSRecord');
+goog.require('netdebugger.DNSRecord');
 
 /**
  * DNS A-record, storing the name, TTL, IP, etc..
@@ -17,13 +17,13 @@ goog.require('DNSRecord');
  * @extends DNSRecord
  * @constructor
  */
-DNSRecordA = function(name, ttl) {
+netdebugger.DNSRecordA = function(name, ttl) {
   this.name_ = name;
-  this.type_ = DNSUtil.RecordNumber.A;
+  this.type_ = netdebugger.DNSUtil.RecordNumber.A;
   this.cl_ = 1;
   this.ttl_ = ttl;
 };
-goog.inherits(DNSRecordA, DNSRecord);
+goog.inherits(netdebugger.DNSRecordA, netdebugger.DNSRecord);
 
 
 /**
@@ -31,14 +31,14 @@ goog.inherits(DNSRecordA, DNSRecord);
  * @type {string}
  * @private
  */
-DNSRecordA.prototype.ip_ = null;
+netdebugger.DNSRecordA.prototype.ip_ = null;
 
 
 /**
  * Set the IPv4 address of the record.
  * @param {string} ip IPv4 address.
  */
-DNSRecordA.prototype.setIp = function(ip) {
+netdebugger.DNSRecordA.prototype.setIp = function(ip) {
   this.ip_ = ip;
 };
 
@@ -47,6 +47,6 @@ DNSRecordA.prototype.setIp = function(ip) {
  * Return the IPv4 address pointed to by this A record.
  * @return {string} IPv4 address.
  */
-DNSRecordA.prototype.getIp = function() {
+netdebugger.DNSRecordA.prototype.getIp = function() {
   return this.ip_;
 };

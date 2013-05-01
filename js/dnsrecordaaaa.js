@@ -6,24 +6,24 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('DNSRecordAAAA');
+goog.provide('netdebugger.DNSRecordAAAA');
 
-goog.require('DNSRecord');
+goog.require('netdebugger.DNSRecord');
 
 /**
  * DNS AAAA record, storing the IPv6 address, name, TTL, etc.
  * @param {string} name Name of the AAAA record.
  * @param {number} ttl Time to live.
- * @extends DNSRecord
+ * @extends netdebugger.DNSRecord
  * @constructor
  */
-DNSRecordAAAA = function(name, ttl) {
+netdebugger.DNSRecordAAAA = function(name, ttl) {
   this.name_ = name;
-  this.type_ = DNSUtil.RecordNumber.AAAA;
+  this.type_ = netdebugger.DNSUtil.RecordNumber.AAAA;
   this.cl_ = 1;
   this.ttl_ = ttl;
 };
-goog.inherits(DNSRecordAAAA, DNSRecord);
+goog.inherits(netdebugger.DNSRecordAAAA, netdebugger.DNSRecord);
 
 
 /**
@@ -31,14 +31,14 @@ goog.inherits(DNSRecordAAAA, DNSRecord);
  * @type {string}
  * @private
  */
-DNSRecordAAAA.prototype.ip_ = null;
+netdebugger.DNSRecordAAAA.prototype.ip_ = null;
 
 
 /**
  * Set the IPv6 address of the record.
  * @param {string} ip IPv6 address.
  */
-DNSRecordAAAA.prototype.setIp = function(ip) {
+netdebugger.DNSRecordAAAA.prototype.setIp = function(ip) {
   this.ip_ = ip;
 };
 
@@ -47,6 +47,6 @@ DNSRecordAAAA.prototype.setIp = function(ip) {
  * Return the IPv6 address pointed to by this AAAA record.
  * @return {string} IPv6 address.
  */
-DNSRecordAAAA.prototype.getIp = function() {
+netdebugger.DNSRecordAAAA.prototype.getIp = function() {
   return this.ip_;
 };

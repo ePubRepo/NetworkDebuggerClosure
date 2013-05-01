@@ -8,53 +8,53 @@
 
 goog.provide('netdebugger');
 
-goog.provide('Bootstrap');
-goog.require('AppGuiManager');
+goog.provide('netdebugger.Bootstrap');
+goog.require('netdebugger.AppGuiManager');
 
 /**
  * Bootstrap the network debugger app.
  *
  * @constructor
  */
-Bootstrap = function() {
+netdebugger.Bootstrap = function() {
   this.addDomEventListeners();
 };
 
 /**
  * Add event listeners to the GUI.
  */
-Bootstrap.prototype.addDomEventListeners = function() {
+netdebugger.Bootstrap.prototype.addDomEventListeners = function() {
   // add listeners for running general diagnostics
   document.getElementById('runDiagnosticsBtn').addEventListener('click',
-      AppGuiManager.runDiagnostics, false);
+      netdebugger.AppGuiManager.runDiagnostics, false);
   document.getElementById('advancedOptionsToggleBtn').addEventListener('click',
-      AppGuiManager.toggleAdvancedOptions, false);
+      netdebugger.AppGuiManager.toggleAdvancedOptions, false);
 
   // add listeners for loading, quitting, or running test configurations
   document.getElementById('loadTestConfigBtn').addEventListener('click',
-      AppGuiManager.showLoadTestConfigurationsGui, false);
+      netdebugger.AppGuiManager.showLoadTestConfigurationsGui, false);
   document.getElementById('quitConfigLoadScreenBtn').addEventListener('click',
-      AppGuiManager.hideLoadTestConfigurationsGui, false);
+      netdebugger.AppGuiManager.hideLoadTestConfigurationsGui, false);
   document.getElementById('runLoadedTests').addEventListener('click',
-      AppGuiManager.processInputTestConfigurations, false);
+      netdebugger.AppGuiManager.processInputTestConfigurations, false);
 
   // add listeners to console control
   document.getElementById('consoleClearBtn')
-      .addEventListener('click', AppGuiManager.consoleClearBtnClicked, false);
+      .addEventListener('click', netdebugger.AppGuiManager.consoleClearBtnClicked, false);
   document.getElementById('consoleCopyBtn')
-      .addEventListener('click', AppGuiManager.consoleCopyBtnClicked, false);
+      .addEventListener('click', netdebugger.AppGuiManager.consoleCopyBtnClicked, false);
 };
 
 
-goog.require('OutputRecordManager');
-goog.require('DNSInputHelper');
-goog.require('NetworkInterfaceInformation');
-goog.require('DNSResponsePacketAnalyzer');
+goog.require('netdebugger.OutputRecordManager');
+goog.require('netdebugger.DNSInputHelper');
+goog.require('netdebugger.NetworkInterfaceInformation');
+goog.require('netdebugger.DNSResponsePacketAnalyzer');
 
 // function for callback and display of DNS results
 // TODO: Turn this into an object
 function finishedDnsFnc(completedDnsQueryManager) {
-  var analyzer = new DNSResponsePacketAnalyzer(completedDnsQueryManager);
+  var analyzer = new netdebugger.DNSResponsePacketAnalyzer(completedDnsQueryManager);
   analyzer.defaultPrintResponse();
   var analyzedQueryManager = analyzer.getDnsQueryManager();
   var finishedOutputRecordManager =
@@ -73,9 +73,9 @@ function basicDiagnostics() {
   // hosts to query Google Public DNS
 
   for (var i = 0; i < Util.hostnamesToTest.length; i++) {
-    var outputRecordManager = new OutputRecordManager();
-    var gDnsQuery = new DNSQueryManager(Util.hostnamesToTest[i],
-        DNSUtil.RecordNumber.A,
+    var outputRecordManager = new netdebugger.OutputRecordManager();
+    var gDnsQuery = new netdebugger.DNSQueryManager(netdebugger.Util.hostnamesToTest[i],
+        netdebugger.DNSUtil.RecordNumber.A,
         '8.8.8.8',
         finishedDnsFnc,
         outputRecordManager);
@@ -84,10 +84,10 @@ function basicDiagnostics() {
 }
 
 function l3DnsBtnClick() {
-   var inputHelper = new DNSInputHelper();
+   var inputHelper = new netdebugger.DNSInputHelper();
    if (inputHelper.isValidHostnameEntered()) {
-     var outputRecordManager = new OutputRecordManager();
-     var gDnsQuery = new DNSQueryManager(inputHelper.getHostnameEntered(),
+     var outputRecordManager = new netdebugger.OutputRecordManager();
+     var gDnsQuery = new netdebugger.DNSQueryManager(inputHelper.getHostnameEntered(),
          inputHelper.getRecordType(),
          '209.244.0.3',
          finishedDnsFnc,
@@ -98,10 +98,10 @@ function l3DnsBtnClick() {
 
 
 function oDnsBtnClick() {
-   var inputHelper = new DNSInputHelper();
+   var inputHelper = new netdebugger.DNSInputHelper();
    if (inputHelper.isValidHostnameEntered()) {
-     var outputRecordManager = new OutputRecordManager();
-     var gDnsQuery = new DNSQueryManager(inputHelper.getHostnameEntered(),
+     var outputRecordManager = new netdebugger.OutputRecordManager();
+     var gDnsQuery = new netdebugger.DNSQueryManager(inputHelper.getHostnameEntered(),
          inputHelper.getRecordType(),
          '208.67.222.222',
          finishedDnsFnc,
@@ -112,10 +112,10 @@ function oDnsBtnClick() {
 
 
 function gDnsBtnClick() {
-   var inputHelper = new DNSInputHelper();
+   var inputHelper = new netdebugger.DNSInputHelper();
    if (inputHelper.isValidHostnameEntered()) {
-     var outputRecordManager = new OutputRecordManager();
-     var gDnsQuery = new DNSQueryManager(inputHelper.getHostnameEntered(),
+     var outputRecordManager = new netdebugger.OutputRecordManager();
+     var gDnsQuery = new netdebugger.DNSQueryManager(inputHelper.getHostnameEntered(),
          inputHelper.getRecordType(),
          '8.8.8.8',
          finishedDnsFnc,
@@ -126,8 +126,8 @@ function gDnsBtnClick() {
 
 
 function whoAmIDnsBtnClick() {
-  var outputRecordManager = new OutputRecordManager();
-    var gDnsQuery = new DNSQueryManager('o-o.myaddr.google.com',
+  var outputRecordManager = new netdebugger.OutputRecordManager();
+    var gDnsQuery = new netdebugger.DNSQueryManager('o-o.myaddr.google.com',
             DNSUtil.RecordNumber.TXT,
             '8.8.8.8',
             finishedDnsFnc,
@@ -137,11 +137,11 @@ function whoAmIDnsBtnClick() {
 
 
 function customDnsBtnClick() {
-    var inputHelper = new DNSInputHelper();
+    var inputHelper = new netdebugger.DNSInputHelper();
     if (inputHelper.isValidHostnameEntered() &&
             inputHelper.isValidCustomResolverIpEntered()) {
-      var outputRecordManager = new OutputRecordManager();
-      var gDnsQuery = new DNSQueryManager(inputHelper.getHostnameEntered(),
+      var outputRecordManager = new netdebugger.OutputRecordManager();
+      var gDnsQuery = new netdebugger.DNSQueryManager(inputHelper.getHostnameEntered(),
           inputHelper.getRecordType(),
           inputHelper.getCustomResolverIp(),
           finishedDnsFnc,
@@ -162,8 +162,8 @@ function printFinishedTelnetOutput(outputRecordManager) {
 }
 
 function gHttpBtnClick() {
-  var outputRecordManager = new OutputRecordManager();
-  var objTelnet = new Telnet('www.google.com', 80, outputRecordManager);
+  var outputRecordManager = new netdebugger.OutputRecordManager();
+  var objTelnet = new netdebugger.Telnet('www.google.com', 80, outputRecordManager);
    objTelnet.
       setPlainTextDataToSend('GET / HTTP/1.1\r\nHost: www.google.com\r\n\r\n');
    objTelnet.setCompletedCallbackFnc(printFinishedTelnetOutput);
@@ -172,8 +172,8 @@ function gHttpBtnClick() {
 
 
 function mHttpBtnClick() {
-  var outputRecordManager = new OutputRecordManager();
-  var objTelnet = new Telnet('mail.google.com', 80, outputRecordManager);
+  var outputRecordManager = new netdebugger.OutputRecordManager();
+  var objTelnet = new netdebugger.Telnet('mail.google.com', 80, outputRecordManager);
    objTelnet.
       setPlainTextDataToSend('GET / HTTP/1.1\r\nHost: mail.google.com\r\n\r\n');
    objTelnet.setCompletedCallbackFnc(printFinishedTelnetOutput);
@@ -182,8 +182,8 @@ function mHttpBtnClick() {
 
 
 function dHttpBtnClick() {
-  var outputRecordManager = new OutputRecordManager();
-  var objTelnet = new Telnet('drive.google.com', 80, outputRecordManager);
+  var outputRecordManager = new netdebugger.OutputRecordManager();
+  var objTelnet = new netdebugger.Telnet('drive.google.com', 80, outputRecordManager);
    objTelnet.
      setPlainTextDataToSend('GET / HTTP/1.1\r\nHost: drive.google.com\r\n\r\n');
    objTelnet.setCompletedCallbackFnc(printFinishedTelnetOutput);
@@ -194,15 +194,15 @@ function networkInterfaceInformationBtnClick() {
   function printOutput(outputRecordManager) {
     var nicOutputRecords = outputRecordManager.getOutputRecords();
     for (var j = 0; j < nicOutputRecords.length; j++) {
-      AppGuiManager.printOutputToScreenConsole(
+      netdebugger.AppGuiManager.printOutputToScreenConsole(
                  nicOutputRecords[j].getMessage(),
                  nicOutputRecords[j].getLevel(),
                  nicOutputRecords[j].getTimestamp());
     }
   }
 
-  var outputRecordManager = new OutputRecordManager();
-  var nicInfo = new NetworkInterfaceInformation(outputRecordManager,
+  var outputRecordManager = new netdebugger.OutputRecordManager();
+  var nicInfo = new netdebugger.NetworkInterfaceInformation(outputRecordManager,
                                                 printOutput);
   nicInfo.getNicInformation();
 }
@@ -213,4 +213,4 @@ function networkInterfaceInformationBtnClick() {
 //files is messed up so start the process only after the framework
 //dependencies have loaded. In particular, launch a new Bootstrap();
 //at the bottom of the bootstrap.js file, thereby ensuring it has been loaded.
-var myBootstrap = new Bootstrap();
+var myBootstrap = new netdebugger.Bootstrap();

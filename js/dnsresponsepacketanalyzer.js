@@ -6,11 +6,11 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('DNSResponsePacketAnalyzer');
+goog.provide('netdebugger.DNSResponsePacketAnalyzer');
 
-goog.require('DNSQueryManager');
-goog.require('DNSUtil');
-goog.require('Util');
+goog.require('netdebugger.DNSQueryManager');
+goog.require('netdebugger.DNSUtil');
+goog.require('netdebugger.Util');
 
 /**
  * Parse a completed DNS response.
@@ -18,7 +18,7 @@ goog.require('Util');
  *                                       response.
  * @constructor
  */
-DNSResponsePacketAnalyzer = function(queryManager) {
+netdebugger.DNSResponsePacketAnalyzer = function(queryManager) {
   this.dnsQueryManager_ = queryManager;
 };
 
@@ -27,7 +27,7 @@ DNSResponsePacketAnalyzer = function(queryManager) {
  * List of IPv4 addresses in Google's netblock.
  * @type {Array}
  */
-DNSResponsePacketAnalyzer.googleIp4Netblock = [
+netdebugger.DNSResponsePacketAnalyzer.googleIp4Netblock = [
   '216.239.32.0/19', '64.233.160.0/19', '66.249.80.0/20', '72.14.192.0/18',
   '209.85.128.0/17', '66.102.0.0/20', '74.125.0.0/16', '64.18.0.0/20',
   '207.126.144.0/20', '173.194.0.0/16'
@@ -38,7 +38,7 @@ DNSResponsePacketAnalyzer.googleIp4Netblock = [
  * List of IPv6 addresses in Google's netblock.
  * @type {Array}
  */
-DNSResponsePacketAnalyzer.googleIp6Netblock = [
+netdebugger.DNSResponsePacketAnalyzer.googleIp6Netblock = [
   '6:2607:f8b0:4000::/36', '2a00:1450:4000::/36'
 ];
 
@@ -49,7 +49,8 @@ DNSResponsePacketAnalyzer.googleIp6Netblock = [
  * @param {string} cidrRange CIDR range (e.g., 173.194.0.0/16).
  * @return {boolean} Whether address is in a specific IPv4 CIDR range.
  */
-DNSResponsePacketAnalyzer.isIp4AddressInCidrBlock = function(testIp,
+netdebugger.DNSResponsePacketAnalyzer.isIp4AddressInCidrBlock = function(
+                                                             testIp,
                                                              cidrRange) {
   function pad(strNumber, length) {
     while (strNumber.length < length) {
@@ -67,7 +68,7 @@ DNSResponsePacketAnalyzer.isIp4AddressInCidrBlock = function(testIp,
   var binaryAddressTestIp = '';
   for (var i = 0; i < octectTestArr.length; i++) {
     var decimalOctet = Number(octectTestArr[i]);
-    var binaryOctet = Util.baseConversion(decimalOctet, 2, 10);
+    var binaryOctet = netdebugger.Util.baseConversion(decimalOctet, 2, 10);
     var paddedBinaryOctet = pad(binaryOctet, 8);
     binaryAddressTestIp += paddedBinaryOctet;
   }
@@ -77,7 +78,7 @@ DNSResponsePacketAnalyzer.isIp4AddressInCidrBlock = function(testIp,
   var binaryAddressCidrIp = '';
   for (var n = 0; n < octectCidrArr.length; n++) {
     var decimalOctet = Number(octectCidrArr[n]);
-    var binaryOctet = Util.baseConversion(decimalOctet, 2, 10);
+    var binaryOctet = netdebugger.Util.baseConversion(decimalOctet, 2, 10);
     var paddedBinaryOctet = pad(binaryOctet, 8);
     binaryAddressCidrIp += paddedBinaryOctet;
   }
@@ -94,11 +95,13 @@ DNSResponsePacketAnalyzer.isIp4AddressInCidrBlock = function(testIp,
  * @param {string} addressToTest IPv4 address to test.
  * @return {boolean} Whether address is in Google's IPv4 netblocks.
  */
-DNSResponsePacketAnalyzer.isGoogleIp4Address = function(addressToTest) {
-  var numNetblocks = DNSResponsePacketAnalyzer.googleIp4Netblock.length;
+netdebugger.DNSResponsePacketAnalyzer.isGoogleIp4Address = function(addressToTest) {
+  var numNetblocks =
+    netdebugger.DNSResponsePacketAnalyzer.googleIp4Netblock.length;
   for (var i = 0; i < numNetblocks; i++) {
-    if (DNSResponsePacketAnalyzer.isIp4AddressInCidrBlock(addressToTest,
-        DNSResponsePacketAnalyzer.googleIp4Netblock[i])) {
+    if (netdebugger.DNSResponsePacketAnalyzer.isIp4AddressInCidrBlock(
+          addressToTest,
+          netdebugger.DNSResponsePacketAnalyzer.googleIp4Netblock[i])) {
       return true;
     }
   }
@@ -112,7 +115,7 @@ DNSResponsePacketAnalyzer.isGoogleIp4Address = function(addressToTest) {
  * @type {DNSQueryManager}
  * @private
  */
-DNSResponsePacketAnalyzer.prototype.dnsQueryManager_ = null;
+netdebugger.DNSResponsePacketAnalyzer.prototype.dnsQueryManager_ = null;
 
 
 /**
@@ -121,7 +124,7 @@ DNSResponsePacketAnalyzer.prototype.dnsQueryManager_ = null;
  * @return {DNSQueryManager} DNS query manager containing the query and its
  *                           response.
  */
-DNSResponsePacketAnalyzer.prototype.getDnsQueryManager = function() {
+netdebugger.DNSResponsePacketAnalyzer.prototype.getDnsQueryManager = function() {
   return this.dnsQueryManager_;
 };
 
@@ -129,10 +132,10 @@ DNSResponsePacketAnalyzer.prototype.getDnsQueryManager = function() {
 /**
  * Print the default packet response.
  */
-DNSResponsePacketAnalyzer.prototype.defaultPrintResponse = function() {
+netdebugger.DNSResponsePacketAnalyzer.prototype.defaultPrintResponse = function() {
   // represent question section
   this.dnsQueryManager_.getResponsePacket().eachRecord(
-                            DNSUtil.PacketSection.QUESTION,
+      netdebugger.DNSUtil.PacketSection.QUESTION,
                             function(dnsPacket) {}.bind(this));
 
   // represent answer section
@@ -140,27 +143,27 @@ DNSResponsePacketAnalyzer.prototype.defaultPrintResponse = function() {
 
     // add general information to the DEBUG logs
     var str = '';
-    str += DNSUtil.getRecordTypeNameByRecordTypeNum(
+    str += netdebugger.DNSUtil.getRecordTypeNameByRecordTypeNum(
            dnsRecord.getType()) +
            ' record with name ' +
            dnsRecord.getName() + ' and TTL ' + dnsRecord.getTTL() +
            ' and data section of ' + dnsRecord.getDataText() + '\r\n';
 
     this.dnsQueryManager_.getOutputRecordManager().pushEntry(
-          OutputRecord.DetailLevel.DEBUG,
+        netdebugger.OutputRecord.DetailLevel.DEBUG,
           str);
 
       // parse each specific record type and perform analysis
       switch (dnsRecord.getType()) {
-        case DNSUtil.RecordNumber.A:
+        case netdebugger.DNSUtil.RecordNumber.A:
           var ip = dnsRecord.getIp();
-            if (!DNSResponsePacketAnalyzer.isGoogleIp4Address(ip)) {
+            if (!netdebugger.DNSResponsePacketAnalyzer.isGoogleIp4Address(ip)) {
               this.dnsQueryManager_.getOutputRecordManager().pushEntry(
-                  OutputRecord.DetailLevel.ERROR,
+                  netdebugger.OutputRecord.DetailLevel.ERROR,
                   'Query returned non-Google IP, ' + ip);
             } else {
               this.dnsQueryManager_.getOutputRecordManager().pushEntry(
-                  OutputRecord.DetailLevel.DEBUG,
+                  netdebugger.OutputRecord.DetailLevel.DEBUG,
                   'Query returned Google IP, ' + ip);
             }
         break;
@@ -168,10 +171,11 @@ DNSResponsePacketAnalyzer.prototype.defaultPrintResponse = function() {
     };
 
     this.dnsQueryManager_.getResponsePacket().eachRecord(
-      DNSUtil.PacketSection.ANSWER, analyzeAnswerResponsePackets.bind(this));
+        netdebugger.DNSUtil.PacketSection.ANSWER,
+        analyzeAnswerResponsePackets.bind(this));
 
     // represent authority section
     this.dnsQueryManager_.getResponsePacket().eachRecord(
-                              DNSUtil.PacketSection.AUTHORITY,
+        netdebugger.DNSUtil.PacketSection.AUTHORITY,
                               function(dnsPacket) {});
 };

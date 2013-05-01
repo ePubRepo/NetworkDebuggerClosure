@@ -6,10 +6,10 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('ResponseLabelPointerManager');
+goog.provide('netdebugger.ResponseLabelPointerManager');
 
-goog.require('DNSPacketDeserializer');
-goog.require('Deserializer');
+goog.require('netdebugger.DNSPacketDeserializer');
+goog.require('netdebugger.Deserializer');
 
 /**
  * ResponseLabelPointerManager handles DNS's name compression and labeling,
@@ -20,7 +20,7 @@ goog.require('Deserializer');
  * @see  RFC 1035 section 4.1.4.
  * @constructor
  */
-ResponseLabelPointerManager = function(arg) {
+netdebugger.ResponseLabelPointerManager = function(arg) {
   if (arg instanceof Uint8Array) {
     this.view_ = arg;
   } else {
@@ -34,7 +34,7 @@ ResponseLabelPointerManager = function(arg) {
  * @type {Uint8Array}
  * @private
  */
-ResponseLabelPointerManager.prototype.view_ = null;
+netdebugger.ResponseLabelPointerManager.prototype.view_ = null;
 
 
 /**
@@ -44,13 +44,14 @@ ResponseLabelPointerManager.prototype.view_ = null;
  * @param {number} ref Offset number of byte containing full name.
  * @return {string} Reassembled DNS name.
  */
-ResponseLabelPointerManager.prototype.getNameFromReference = function(ref) {
+netdebugger.ResponseLabelPointerManager.prototype.getNameFromReference =
+  function(ref) {
   // Array Buffer containing data from the beginning offset to the end
   var subArrayBuffer = this.view_.subarray(ref);
 
   // Reassemble name from reference in DNS packet
-  var subPacketDeserializer = new DNSPacketDeserializer(subArrayBuffer, this);
-  var sectionDeserializer = new Deserializer(subArrayBuffer);
+  var subPacketDeserializer = new netdebugger.DNSPacketDeserializer(subArrayBuffer, this);
+  var sectionDeserializer = new netdebugger.Deserializer(subArrayBuffer);
   var subName = subPacketDeserializer.parseName(this, sectionDeserializer);
   return subName;
 };

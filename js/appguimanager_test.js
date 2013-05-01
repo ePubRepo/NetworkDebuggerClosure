@@ -1,25 +1,25 @@
 // Copyright 2013. All Rights Reserved.
 
 /**
- * @fileoverview Tests for AppGuiManager class.
+ * @fileoverview Tests for netdebugger.AppGuiManager class.
  *
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('test.AppGuiManager');
+goog.provide('netdebugger.test.AppGuiManager');
 
-goog.require('AppGuiManager');
-goog.require('TestHelper');
+goog.require('netdebugger.AppGuiManager');
+goog.require('netdebugger.TestHelper');
 goog.require('goog.testing.jsunit');
 
-goog.setTestOnly('Tests for AppGuiManager');
+goog.setTestOnly('Tests for netdebugger.AppGuiManager');
 
 
 /**
  * Create objects for testing.
  */
 function setUp() {
-  var myTestHelper = new TestHelper();
+  var myTestHelper = new netdebugger.TestHelper();
   myTestHelper.setupDom();
 }
 
@@ -29,7 +29,7 @@ function setUp() {
  */
 function testConsoleClearBtnClicked() {
   document.getElementById('console').value = 'testing testing testing';
-  AppGuiManager.consoleClearBtnClicked();
+  netdebugger.AppGuiManager.consoleClearBtnClicked();
   assertTrue(document.getElementById('console').value.length == 0);
 }
 
@@ -38,10 +38,10 @@ function testConsoleClearBtnClicked() {
  * Test the hideLoadTestConfigurationsGui() method.
  */
 function testHideLoadTestConfigurationsGui() {
-  AppGuiManager.showLoadTestConfigurationsGui();
+  netdebugger.AppGuiManager.showLoadTestConfigurationsGui();
   assertTrue(document.getElementById('page-contents').className ==
     'display-none');
-  AppGuiManager.hideLoadTestConfigurationsGui();
+  netdebugger.AppGuiManager.hideLoadTestConfigurationsGui();
   assertTrue(document.getElementById('page-contents').className ==
     'center-container display-full');
 }
@@ -55,7 +55,7 @@ function testDisplayParseError() {
   assertTrue(
       document.getElementById('test-config-error').innerHTML.indexOf(
           testingErrorText) == -1);
-  AppGuiManager.displayParseError(testingErrorText);
+  netdebugger.AppGuiManager.displayParseError(testingErrorText);
   assertTrue(
       document.getElementById('test-config-error').innerHTML.indexOf(
           testingErrorText) != -1);
@@ -69,8 +69,8 @@ function testPrintOutputToScreenConsole() {
   var testString = 'test output record';
   assertTrue(
       document.getElementById('console').value.indexOf(testString) == -1);
-  AppGuiManager.printOutputToScreenConsole(testString,
-      OutputRecord.DetailLevel.INFO, new Date());
+  netdebugger.AppGuiManager.printOutputToScreenConsole(testString,
+      netdebugger.OutputRecord.DetailLevel.INFO, new Date());
   assertTrue(
       document.getElementById('console').value.indexOf(testString) != -1);
 }

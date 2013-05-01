@@ -6,9 +6,9 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('Telnet');
+goog.provide('netdebugger.Telnet');
 
-goog.require('SocketInfo');
+goog.require('netdebugger.SocketInfo');
 
 /**
  * Open a TCP connection with a specific host on a specific port.
@@ -17,7 +17,7 @@ goog.require('SocketInfo');
  * @param {OutputRecordManager} outputRecordManager Manage output logs.
  * @constructor
  */
-Telnet = function(host, port, outputRecordManager) {
+netdebugger.Telnet = function(host, port, outputRecordManager) {
   this.host_ = host;
   this.port_ = port;
   this.outputRecordManager_ = outputRecordManager;
@@ -29,7 +29,7 @@ Telnet = function(host, port, outputRecordManager) {
  * @type {string}
  * @private
  */
-Telnet.prototype.host_ = null;
+netdebugger.Telnet.prototype.host_ = null;
 
 
 /**
@@ -37,7 +37,7 @@ Telnet.prototype.host_ = null;
  * @type {number}
  * @private
  */
-Telnet.prototype.port_ = null;
+netdebugger.Telnet.prototype.port_ = null;
 
 
 /**
@@ -45,7 +45,7 @@ Telnet.prototype.port_ = null;
  * @type {number}
  * @private
  */
-Telnet.prototype.socketId_ = null;
+netdebugger.Telnet.prototype.socketId_ = null;
 
 
 /**
@@ -53,7 +53,7 @@ Telnet.prototype.socketId_ = null;
  * @type {ArrayBuffer}
  * @private
  */
-Telnet.prototype.abDataToSend_ = null;
+netdebugger.Telnet.prototype.abDataToSend_ = null;
 
 
 /**
@@ -61,7 +61,7 @@ Telnet.prototype.abDataToSend_ = null;
  * @type {string}
  * @private
  */
-Telnet.prototype.strDataToSend_ = null;
+netdebugger.Telnet.prototype.strDataToSend_ = null;
 
 
 /**
@@ -69,7 +69,7 @@ Telnet.prototype.strDataToSend_ = null;
  * @type {SocketInfo}
  * @private
  */
-Telnet.prototype.objSocketInfo_ = null;
+netdebugger.Telnet.prototype.objSocketInfo_ = null;
 
 
 /**
@@ -77,7 +77,7 @@ Telnet.prototype.objSocketInfo_ = null;
  * @type {OutputRecordManager}
  * @private
  */
-Telnet.prototype.outputRecordManager_ = null;
+netdebugger.Telnet.prototype.outputRecordManager_ = null;
 
 
 /**
@@ -85,7 +85,7 @@ Telnet.prototype.outputRecordManager_ = null;
  * @type {function(OutputRecordManager)}
  * @private
  */
-Telnet.prototype.completedCallbackFnc_ = null;
+netdebugger.Telnet.prototype.completedCallbackFnc_ = null;
 
 
 /**
@@ -93,7 +93,7 @@ Telnet.prototype.completedCallbackFnc_ = null;
  * @param {function(OutputRecordManager)} fnc Function to call upon completion
  *                                            of telnet session.
  */
-Telnet.prototype.setCompletedCallbackFnc = function(fnc) {
+netdebugger.Telnet.prototype.setCompletedCallbackFnc = function(fnc) {
   this.completedCallbackFnc_ = fnc;
 };
 
@@ -104,7 +104,7 @@ Telnet.prototype.setCompletedCallbackFnc = function(fnc) {
   * @param {Function} callback The function to call when conversion is complete.
   * @private
   */
-Telnet.prototype.arrayBufferToString_ = function(buf, callback) {
+netdebugger.Telnet.prototype.arrayBufferToString_ = function(buf, callback) {
   var bb = new Blob([new Uint8Array(buf)]);
   var f = new FileReader();
   f.onload = function(e) {
@@ -120,7 +120,7 @@ Telnet.prototype.arrayBufferToString_ = function(buf, callback) {
  * @param {Function} callback The function to call when conversion is complete.
  * @private
  */
-Telnet.prototype.stringToArrayBuffer_ = function(str, callback) {
+netdebugger.Telnet.prototype.stringToArrayBuffer_ = function(str, callback) {
   var bb = new Blob([str]);
   var f = new FileReader();
   f.onload = function(e) {
@@ -134,7 +134,7 @@ Telnet.prototype.stringToArrayBuffer_ = function(str, callback) {
  * Set the text to send to the host.
  * @param {string} textToSend Text to send to the host.
  */
-Telnet.prototype.setPlainTextDataToSend = function(textToSend) {
+netdebugger.Telnet.prototype.setPlainTextDataToSend = function(textToSend) {
   this.strDataToSend_ = textToSend;
 };
 
@@ -145,7 +145,7 @@ Telnet.prototype.setPlainTextDataToSend = function(textToSend) {
  * @see http://developer.chrome.com/apps/socket.html#type-ReadInfo
  * @private
  */
-Telnet.prototype.onReadCompletedCallback_ = function(readInfo) {
+netdebugger.Telnet.prototype.onReadCompletedCallback_ = function(readInfo) {
   /**
    * Receive string response from host.
    * @param {string} str Text received from destination host.
@@ -159,11 +159,11 @@ Telnet.prototype.onReadCompletedCallback_ = function(readInfo) {
   }
 
   if (readInfo.resultCode > 0) {
-    this.outputRecordManager_.pushEntry(OutputRecord.DetailLevel.DEBUG,
+    this.outputRecordManager_.pushEntry(netdebugger.OutputRecord.DetailLevel.DEBUG,
         'Successfully read ' + readInfo.resultCode + ' bytes of data');
     this.arrayBufferToString_(readInfo.data, receiveString_.bind(this));
   } else {
-    this.outputRecordManager_.pushEntry(OutputRecord.DetailLevel.ERROR,
+    this.outputRecordManager_.pushEntry(netdebugger.OutputRecord.DetailLevel.ERROR,
         'Error reading data. Code ' + readInfo.resultCode);
   }
 };
@@ -173,7 +173,7 @@ Telnet.prototype.onReadCompletedCallback_ = function(readInfo) {
  * Read data from the TCP socket.
  * @private
  */
-Telnet.prototype.read_ = function() {
+netdebugger.Telnet.prototype.read_ = function() {
   chrome.socket.read(this.socketId_, this.onReadCompletedCallback_.bind(this));
 };
 
@@ -184,8 +184,8 @@ Telnet.prototype.read_ = function() {
  * @see http://developer.chrome.com/apps/socket.html#type-WriteInfo
  * @private
  */
-Telnet.prototype.onWriteCompleteCallback_ = function(writeInfo) {
-  this.outputRecordManager_.pushEntry(OutputRecord.DetailLevel.DEBUG,
+netdebugger.Telnet.prototype.onWriteCompleteCallback_ = function(writeInfo) {
+  this.outputRecordManager_.pushEntry(netdebugger.OutputRecord.DetailLevel.DEBUG,
       'Successfully sent ' + writeInfo.bytesWritten + ' bytes of data');
   this.read_();
 };
@@ -195,8 +195,8 @@ Telnet.prototype.onWriteCompleteCallback_ = function(writeInfo) {
  * Write binary data to destination host.
  * @private
  */
-Telnet.prototype.write_ = function() {
-  this.outputRecordManager_.pushEntry(OutputRecord.DetailLevel.DEBUG,
+netdebugger.Telnet.prototype.write_ = function() {
+  this.outputRecordManager_.pushEntry(netdebugger.OutputRecord.DetailLevel.DEBUG,
       'Prepared to send ' + this.abDataToSend_.byteLength + ' bytes of data');
 
   chrome.socket.write(this.socketId_,
@@ -209,10 +209,10 @@ Telnet.prototype.write_ = function() {
  * Process socket information upon successful TCP connection with host.
  * @private
  */
-Telnet.prototype.onConnectedCallback_ = function() {
-  this.objSocketInfo_ = new SocketInfo(this.socketId_,
+netdebugger.Telnet.prototype.onConnectedCallback_ = function() {
+  this.objSocketInfo_ = new netdebugger.SocketInfo(this.socketId_,
                                        this.outputRecordManager_);
-  this.outputRecordManager_.pushEntry(OutputRecord.DetailLevel.DEBUG,
+  this.outputRecordManager_.pushEntry(netdebugger.OutputRecord.DetailLevel.DEBUG,
       'TCP connection with ' + this.host_ +
       ' on port ' + this.port_ + ' established');
   this.objSocketInfo_.recordSocketInfo();
@@ -237,7 +237,7 @@ Telnet.prototype.onConnectedCallback_ = function() {
 /**
  * Create a TCP socket.
  */
-Telnet.prototype.createSocket = function() {
+netdebugger.Telnet.prototype.createSocket = function() {
   /**
    * Process created socket information.
    * @param {CreatedInfo} createInfo Info on created socket.
@@ -261,6 +261,6 @@ Telnet.prototype.createSocket = function() {
  * Close TCP socket.
  * @private
  */
-Telnet.prototype.closeSocket_ = function() {
+netdebugger.Telnet.prototype.closeSocket_ = function() {
   chrome.socket.disconnect(this.socketId_);
 };

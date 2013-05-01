@@ -1,27 +1,27 @@
 // Copyright 2013. All Rights Reserved.
 
 /**
- * @fileoverview Tests for DNSRecordTXT class.
+ * @fileoverview Tests for netdebugger.DNSRecordTXT class.
  *
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('test.DNSRecordTXT');
+goog.provide('netdebugger.test.DNSRecordTXT');
 
-goog.require('DNSRecordTXT');
-goog.require('DNSUtil');
+goog.require('netdebugger.DNSRecordTXT');
+goog.require('netdebugger.DNSUtil');
 goog.require('goog.testing.jsunit');
 
-goog.setTestOnly('Tests for DNSRecordTXT');
+goog.setTestOnly('Tests for netdebugger.DNSRecordTXT');
 
 
 /**
  * Create objects for testing.
  */
 function setUp() {
-  myDnsRecordTXT1 = new DNSRecordTXT('t1.com', 555);
+  myDnsRecordTXT1 = new netdebugger.DNSRecordTXT('t1.com', 555);
   myDnsRecordTXT1.setText('v=spf1 include:_spf.google.com ~all');
-  myDnsRecordTXT2 = new DNSRecordTXT('t2.com', 550);
+  myDnsRecordTXT2 = new netdebugger.DNSRecordTXT('t2.com', 550);
   myDnsRecordTXT2.setText('v=spf1 ip4:216.73.93.72/31 ~all');
 }
 
@@ -39,8 +39,8 @@ function testGetName() {
  * Test the getType() method.
  */
 function testGetType() {
-  assertEquals(DNSUtil.RecordNumber.TXT, myDnsRecordTXT1.getType());
-  assertEquals(DNSUtil.RecordNumber.TXT, myDnsRecordTXT2.getType());
+  assertEquals(netdebugger.DNSUtil.RecordNumber.TXT, myDnsRecordTXT1.getType());
+  assertEquals(netdebugger.DNSUtil.RecordNumber.TXT, myDnsRecordTXT2.getType());
 }
 
 

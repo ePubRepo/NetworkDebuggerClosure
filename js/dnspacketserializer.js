@@ -6,16 +6,16 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('DNSPacketSerializer');
+goog.provide('netdebugger.DNSPacketSerializer');
 
-goog.require('Serializer');
+goog.require('netdebugger.Serializer');
 
 /**
  * Serialize a DNS packet to be sent over the socket.
  * @param {DNSPacket} dnsPacket The DNS packet to be serialized.
  * @constructor
  */
-DNSPacketSerializer = function(dnsPacket) {
+netdebugger.DNSPacketSerializer = function(dnsPacket) {
   this.dnsPacket_ = dnsPacket;
 };
 
@@ -25,19 +25,19 @@ DNSPacketSerializer = function(dnsPacket) {
  * @type {DNSPacket}
  * @private
  */
-DNSPacketSerializer.prototype.dnsPacket_ = null;
+netdebugger.DNSPacketSerializer.prototype.dnsPacket_ = null;
 
 
 /**
  * Serialize the DNS packet.
  * @return {ArrayBuffer} Serialized DNS packet.
  */
-DNSPacketSerializer.prototype.serialize = function() {
-  var dataSerializer = new Serializer();
-  var arrPacketSections = [DNSUtil.PacketSection.QUESTION,
-             DNSUtil.PacketSection.ANSWER,
-             DNSUtil.PacketSection.AUTHORITY,
-             DNSUtil.PacketSection.ADDITIONAL];
+netdebugger.DNSPacketSerializer.prototype.serialize = function() {
+  var dataSerializer = new netdebugger.Serializer();
+  var arrPacketSections = [netdebugger.DNSUtil.PacketSection.QUESTION,
+                           netdebugger.DNSUtil.PacketSection.ANSWER,
+                           netdebugger.DNSUtil.PacketSection.AUTHORITY,
+                           netdebugger.DNSUtil.PacketSection.ADDITIONAL];
 
   dataSerializer.setShort(0).setShort(this.dnsPacket_.getFlags());
 
@@ -69,7 +69,7 @@ DNSPacketSerializer.prototype.serialize = function() {
  *                            See Section 4.1.4 of RFC 1035.
  * @return {Serializer} This instance of a Serializer.
  */
-DNSPacketSerializer.prototype.serializeName = function(dnsName,
+netdebugger.DNSPacketSerializer.prototype.serializeName = function(dnsName,
                                                        dnsSerializer,
                                                        opt_ref) {
   var parts = dnsName.split('.');

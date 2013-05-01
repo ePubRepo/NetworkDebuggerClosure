@@ -6,7 +6,7 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('SocketInfo');
+goog.provide('netdebugger.SocketInfo');
 
 /**
  * @param {number} id ID of Chrome socket.
@@ -14,7 +14,7 @@ goog.provide('SocketInfo');
  *                                                  info.
  * @constructor
  */
-SocketInfo = function(id, outputRecordManager) {
+netdebugger.SocketInfo = function(id, outputRecordManager) {
   this.socketId_ = id;
   this.outputRecordManager_ = outputRecordManager;
 };
@@ -25,7 +25,7 @@ SocketInfo = function(id, outputRecordManager) {
  * @type {number}
  * @private
  */
-SocketInfo.prototype.socketId_ = null;
+netdebugger.SocketInfo.prototype.socketId_ = null;
 
 
 /**
@@ -33,14 +33,14 @@ SocketInfo.prototype.socketId_ = null;
  * @type {OutputRecordManager}
  * @private
  */
-SocketInfo.prototype.outputRecordManager_ = null;
+netdebugger.SocketInfo.prototype.outputRecordManager_ = null;
 
 
 /**
  * Set the function to be used for console logging.
  * @param {OutputRecordManager} manager Object to record output information.
  */
-SocketInfo.prototype.setOutputRecordManager = function(manager) {
+netdebugger.SocketInfo.prototype.setOutputRecordManager = function(manager) {
   this.outputRecordManager_ = manager;
 };
 
@@ -48,13 +48,13 @@ SocketInfo.prototype.setOutputRecordManager = function(manager) {
 /**
  * Record information about this socket to an available console function.
  */
-SocketInfo.prototype.recordSocketInfo = function() {
+netdebugger.SocketInfo.prototype.recordSocketInfo = function() {
   var parseSocketInfo = function(socketInfo) {
     var strSocketInfo = 'A ' + socketInfo.socketType + ' connection from ' +
       socketInfo.localAddress + ':' + socketInfo.localPort + ' to ' +
       socketInfo.peerAddress + ':' + socketInfo.peerPort + ' now exists';
 
-    this.outputRecordManager_.pushEntry(OutputRecord.DetailLevel.DEBUG,
+    this.outputRecordManager_.pushEntry(netdebugger.OutputRecord.DetailLevel.DEBUG,
                                         strSocketInfo);
   };
 

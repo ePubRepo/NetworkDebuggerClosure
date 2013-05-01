@@ -6,7 +6,7 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('NetworkInterfaceInformation');
+goog.provide('netdebugger.NetworkInterfaceInformation');
 
 /**
  * Capture information about currently running network interfaces.
@@ -16,7 +16,7 @@ goog.provide('NetworkInterfaceInformation');
  *                                          populated.
  * @constructor
  */
-NetworkInterfaceInformation = function(outputRecordManager,
+netdebugger.NetworkInterfaceInformation = function(outputRecordManager,
                                        completedCallbackFnc) {
   this.outputRecordManager_ = outputRecordManager;
   this.completedCallbackFnc_ = completedCallbackFnc;
@@ -28,7 +28,7 @@ NetworkInterfaceInformation = function(outputRecordManager,
  * @type {function(OutputRecordManager)}
  * @private
  */
-NetworkInterfaceInformation.prototype.completedCallbackFnc_ = null;
+netdebugger.NetworkInterfaceInformation.prototype.completedCallbackFnc_ = null;
 
 
 /**
@@ -36,13 +36,13 @@ NetworkInterfaceInformation.prototype.completedCallbackFnc_ = null;
  * @type {OutputRecordManager}
  * @private
  */
-NetworkInterfaceInformation.prototype.outputRecordManager_ = null;
+netdebugger.NetworkInterfaceInformation.prototype.outputRecordManager_ = null;
 
 
 /**
  * Print NIC information to output record manager.
  */
-NetworkInterfaceInformation.prototype.getNicInformation = function() {
+netdebugger.NetworkInterfaceInformation.prototype.getNicInformation = function() {
   var receiveNicInfo = function(info) {
     var strNicInfo = 'There are ' + info.length +
        ' network interfaces on this machine.\r\n';
@@ -53,7 +53,7 @@ NetworkInterfaceInformation.prototype.getNicInformation = function() {
     }
     strNicInfo = strNicInfo.substring(0, strNicInfo.length - 2);
 
-    this.outputRecordManager_.pushEntry(OutputRecord.DetailLevel.INFO,
+    this.outputRecordManager_.pushEntry(netdebugger.OutputRecord.DetailLevel.INFO,
         strNicInfo);
     this.completedCallbackFnc_(this.outputRecordManager_);
   };

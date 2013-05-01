@@ -7,19 +7,19 @@
  */
 
 
-goog.provide('TestHelper');
+goog.provide('netdebugger.TestHelper');
 
 
 /**
  * Object to help in testing.
  */
-TestHelper = function() {};
+netdebugger.TestHelper = function() {};
 
 
 /**
  * Setup a default DOM for testing.
  */
-TestHelper.prototype.setupDom = function() {
+netdebugger.TestHelper.prototype.setupDom = function() {
   document.body.innerHTML =
     '<body>' +
     '<!-- Begin Page Top -->' +

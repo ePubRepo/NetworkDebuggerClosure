@@ -6,19 +6,19 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('DNSUtil');
+goog.provide('netdebugger.DNSUtil');
 
 /**
  * Static helper class for DNS information.
  */
-DNSUtil = function() {};
+netdebugger.DNSUtil = function() {};
 
 
 /**
  * Enum for DNS record type.
  * @enum {number}
  */
-DNSUtil.RecordNumber = {
+netdebugger.DNSUtil.RecordNumber = {
   A: 1,
   AAAA: 28,
   MX: 15,
@@ -31,7 +31,7 @@ DNSUtil.RecordNumber = {
  * Enum for section of the DNS packet (i.e., type of resource record).
  * @enum {string}
  */
-DNSUtil.PacketSection = {
+netdebugger.DNSUtil.PacketSection = {
   QUESTION: 'qd',
   ANSWER: 'an',
   AUTHORITY: 'ns',
@@ -43,18 +43,18 @@ DNSUtil.PacketSection = {
  * @param {string} name Name of DNS record type.
  * @return {DNSUtil.RecordNumber} RFC 1035 DNS record number type.
  */
-DNSUtil.getRecordTypeNumByRecordTypeName = function(name) {
+netdebugger.DNSUtil.getRecordTypeNumByRecordTypeName = function(name) {
   switch (name.toUpperCase()) {
     case 'MX':
-      return DNSUtil.RecordNumber.MX;
+      return netdebugger.DNSUtil.RecordNumber.MX;
     case 'AAAA':
-      return DNSUtil.RecordNumber.AAAA;
+      return netdebugger.DNSUtil.RecordNumber.AAAA;
     case 'CNAME':
-      return DNSUtil.RecordNumber.CNAME;
+      return netdebugger.DNSUtil.RecordNumber.CNAME;
     case 'TXT':
-      return DNSUtil.RecordNumber.TXT;
+      return netdebugger.DNSUtil.RecordNumber.TXT;
     default:
-      return DNSUtil.RecordNumber.A;
+      return netdebugger.DNSUtil.RecordNumber.A;
   }
 };
 
@@ -64,21 +64,21 @@ DNSUtil.getRecordTypeNumByRecordTypeName = function(name) {
  * @param {number} num DNS record type number.
  * @return {string} The DNS record type as a string.
  */
-DNSUtil.getRecordTypeNameByRecordTypeNum = function(num) {
+netdebugger.DNSUtil.getRecordTypeNameByRecordTypeNum = function(num) {
   switch (num) {
-    case DNSUtil.RecordNumber.AAAA:
+    case netdebugger.DNSUtil.RecordNumber.AAAA:
       return 'AAAA';
 
-    case DNSUtil.RecordNumber.MX:
+    case netdebugger.DNSUtil.RecordNumber.MX:
       return 'MX';
 
-    case DNSUtil.RecordNumber.CNAME:
+    case netdebugger.DNSUtil.RecordNumber.CNAME:
       return 'CNAME';
 
-    case DNSUtil.RecordNumber.TXT:
+    case netdebugger.DNSUtil.RecordNumber.TXT:
       return 'TXT';
       
-    case DNSUtil.RecordNumber.A:
+    case netdebugger.DNSUtil.RecordNumber.A:
     default:
       return 'A';
    }

@@ -6,4 +6,4 @@
 // files is messed up so start the process only after the framework
 // dependencies have loaded. In particular, launch a new Bootstrap();
 // at the bottom of the bootstrap.js file, thereby ensuring it has been loaded.
-goog.require('Bootstrap');
+goog.require('netdebugger.Bootstrap');

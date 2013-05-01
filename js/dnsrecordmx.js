@@ -6,24 +6,24 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('DNSRecordMX');
+goog.provide('netdebugger.DNSRecordMX');
 
-goog.require('DNSRecord');
+goog.require('netdebugger.DNSRecord');
 
 /**
  * MX Record.
  * @param {string} name Name of the MX record.
  * @param {number} ttl Time to live of the record.
- * @extends DNSRecord
+ * @extends netdebugger.DNSRecord
  * @constructor
  */
-DNSRecordMX = function(name, ttl) {
+netdebugger.DNSRecordMX = function(name, ttl) {
   this.name_ = name;
-  this.type_ = DNSUtil.RecordNumber.MX;
+  this.type_ = netdebugger.DNSUtil.RecordNumber.MX;
   this.cl_ = 1;
   this.ttl_ = ttl;
 };
-goog.inherits(DNSRecordMX, DNSRecord);
+goog.inherits(netdebugger.DNSRecordMX, netdebugger.DNSRecord);
 
 
 /**
@@ -31,7 +31,7 @@ goog.inherits(DNSRecordMX, DNSRecord);
  * @type {string}
  * @private
  */
-DNSRecordMX.prototype.mailExchanger_ = null;
+netdebugger.DNSRecordMX.prototype.mailExchanger_ = null;
 
 
 /**
@@ -39,14 +39,14 @@ DNSRecordMX.prototype.mailExchanger_ = null;
  * @type {number}
  * @private
  */
-DNSRecordMX.prototype.preferenceNumber_ = null;
+netdebugger.DNSRecordMX.prototype.preferenceNumber_ = null;
 
 
 /**
  * Set the mail exchange of the record.
  * @param {string} mx Mail exchange address.
  */
-DNSRecordMX.prototype.setMailExchanger = function(mx) {
+netdebugger.DNSRecordMX.prototype.setMailExchanger = function(mx) {
   this.mailExchanger_ = mx;
 };
 
@@ -55,7 +55,7 @@ DNSRecordMX.prototype.setMailExchanger = function(mx) {
  * Return the mail exchange pointed to by this MX record.
  * @return {string} Mail exchange address.
  */
-DNSRecordMX.prototype.getMailExchanger = function() {
+netdebugger.DNSRecordMX.prototype.getMailExchanger = function() {
   return this.mailExchanger_;
 };
 
@@ -64,7 +64,7 @@ DNSRecordMX.prototype.getMailExchanger = function() {
  * Set the preference number of the record.
  * @param {number} n Preference number.
  */
-DNSRecordMX.prototype.setPreferenceNumber = function(n) {
+netdebugger.DNSRecordMX.prototype.setPreferenceNumber = function(n) {
   this.preferenceNumber_ = n;
 };
 
@@ -73,6 +73,6 @@ DNSRecordMX.prototype.setPreferenceNumber = function(n) {
  * Return the preference number of this MX record.
  * @return {number} MX record preference number.
  */
-DNSRecordMX.prototype.getPreferenceNumber = function() {
+netdebugger.DNSRecordMX.prototype.getPreferenceNumber = function() {
   return this.preferenceNumber_;
 };

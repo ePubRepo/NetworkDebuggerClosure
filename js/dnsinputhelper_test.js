@@ -6,21 +6,21 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('test.DNSInputHelper');
+goog.provide('netdebugger.test.DNSInputHelper');
 
-goog.require('DNSInputHelper');
-goog.require('DNSUtil');
-goog.require('TestHelper');
+goog.require('netdebugger.DNSInputHelper');
+goog.require('netdebugger.DNSUtil');
+goog.require('netdebugger.TestHelper');
 goog.require('goog.testing.jsunit');
 
-goog.setTestOnly('Tests for DNSInputHelper');
+goog.setTestOnly('Tests for netdebugger.DNSInputHelper');
 
 
 /**
  * Create objects for testing.
  */
 function setUp() {
-  var myTestHelper = new TestHelper();
+  var myTestHelper = new netdebugger.TestHelper();
   myTestHelper.setupDom();
 }
 
@@ -29,7 +29,7 @@ function setUp() {
  * Test the testSerializePacket() method.
  */
 function testIsValidHostnameEntered() {
-  var inputHelper = new DNSInputHelper();
+  var inputHelper = new netdebugger.DNSInputHelper();
   assertTrue(inputHelper.isValidHostnameEntered());
 
   document.getElementById('dnsHostname').value = 'mail';
@@ -41,7 +41,7 @@ function testIsValidHostnameEntered() {
  * Test the getHostnameEntered() method.
  */
 function testGetHostnameEntered() {
-  var inputHelper = new DNSInputHelper();
+  var inputHelper = new netdebugger.DNSInputHelper();
   assertEquals('google.com', inputHelper.getHostnameEntered());
 
   document.getElementById('dnsHostname').value = 'mail.google.com';
@@ -53,7 +53,7 @@ function testGetHostnameEntered() {
  * Test the getCustomResolverIp() method.
  */
 function testGetCustomResolverIp() {
-  var inputHelper = new DNSInputHelper();
+  var inputHelper = new netdebugger.DNSInputHelper();
   assertEquals('google.com', inputHelper.getHostnameEntered());
 
   document.getElementById('dnsHostname').value = 'mail.google.com';
@@ -65,18 +65,18 @@ function testGetCustomResolverIp() {
  * Test the getRecordType() method.
  */
 function testGetRecordType() {
-  var inputHelper = new DNSInputHelper();
-  assertEquals(DNSUtil.RecordNumber.A, inputHelper.getRecordType());
+  var inputHelper = new netdebugger.DNSInputHelper();
+  assertEquals(netdebugger.DNSUtil.RecordNumber.A, inputHelper.getRecordType());
 
   document.getElementById('dnsRecordType').selectedIndex = 1;
-  assertEquals(DNSUtil.RecordNumber.AAAA, inputHelper.getRecordType());
+  assertEquals(netdebugger.DNSUtil.RecordNumber.AAAA, inputHelper.getRecordType());
 
   document.getElementById('dnsRecordType').selectedIndex = 2;
-  assertEquals(DNSUtil.RecordNumber.MX, inputHelper.getRecordType());
+  assertEquals(netdebugger.DNSUtil.RecordNumber.MX, inputHelper.getRecordType());
 
   document.getElementById('dnsRecordType').selectedIndex = 3;
-  assertEquals(DNSUtil.RecordNumber.TXT, inputHelper.getRecordType());
+  assertEquals(netdebugger.DNSUtil.RecordNumber.TXT, inputHelper.getRecordType());
 
   document.getElementById('dnsRecordType').selectedIndex = 4;
-  assertEquals(DNSUtil.RecordNumber.CNAME, inputHelper.getRecordType());
+  assertEquals(netdebugger.DNSUtil.RecordNumber.CNAME, inputHelper.getRecordType());
 }

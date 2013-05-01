@@ -6,11 +6,11 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('TestConfigurationParser');
+goog.provide('netdebugger.TestConfigurationParser');
 
-goog.require('DNSQueryManager');
-goog.require('OutputRecordManager');
-goog.require('Telnet');
+goog.require('netdebugger.DNSQueryManager');
+goog.require('netdebugger.OutputRecordManager');
+goog.require('netdebugger.Telnet');
 
 /*
 <tests>
@@ -35,7 +35,7 @@ goog.require('Telnet');
  *                               tests to parse.
  * @constructor
  */
-TestConfigurationParser = function(xmlStrToParse) {
+netdebugger.TestConfigurationParser = function(xmlStrToParse) {
   this.xmlStr_ = xmlStrToParse;
   this.xmlParser_ = new DOMParser();
 };
@@ -45,7 +45,7 @@ TestConfigurationParser = function(xmlStrToParse) {
  * @type {string}
  * @private
  */
-TestConfigurationParser.prototype.xmlStr_ = null;
+netdebugger.TestConfigurationParser.prototype.xmlStr_ = null;
 
 
 /**
@@ -54,14 +54,16 @@ TestConfigurationParser.prototype.xmlStr_ = null;
  * @type {function(string)}
  * @private
  */
-TestConfigurationParser.prototype.fncParseErrorCallback_ = function() {};
+netdebugger.TestConfigurationParser.prototype.fncParseErrorCallback_ =
+  function() {};
 
 
 /**
  * Set a function to be called upon parse error.
  * @param {function(string)} fnc Function to call upon parse error.
  */
-TestConfigurationParser.prototype.setErrorCallbackFnc = function(fnc) {
+netdebugger.TestConfigurationParser.prototype.setErrorCallbackFnc =
+  function(fnc) {
   this.fncParseErrorCallback_ = fnc;
 };
 
@@ -70,14 +72,14 @@ TestConfigurationParser.prototype.setErrorCallbackFnc = function(fnc) {
  * @type {DOMParser}
  * @private
  */
-TestConfigurationParser.prototype.xmlParser_ = null;
+netdebugger.TestConfigurationParser.prototype.xmlParser_ = null;
 
 
 /**
  * Parse string into tests and execute them.
  * @return {null} Null value to break execution flow upon error.
  */
-TestConfigurationParser.prototype.parseInput = function() {
+netdebugger.TestConfigurationParser.prototype.parseInput = function() {
   var doc = this.xmlParser_.parseFromString(
       this.xmlStr_, 'application/xml');
 
@@ -138,7 +140,8 @@ TestConfigurationParser.prototype.parseInput = function() {
  * Parse a DNS test, validating input and, if appropriate, executing test.
  * @param {DOMElement} test DNS query parameters for a DNS test.
  */
-TestConfigurationParser.prototype.parseDnsTestConfig = function(test) {
+netdebugger.TestConfigurationParser.prototype.parseDnsTestConfig =
+  function(test) {
   if (test.childNodes.length != 3) {
     this.fncParseErrorCallback_('error - not proper field count');
   }
@@ -173,7 +176,8 @@ TestConfigurationParser.prototype.parseDnsTestConfig = function(test) {
  * Parse a Telnet test, validating input and, if appropriate, executing test.
  * @param {DOMElement} test Telnet query parameters for a Telnet test.
  */
-TestConfigurationParser.prototype.parseTelnetTestConfig = function(test) {
+netdebugger.TestConfigurationParser.prototype.parseTelnetTestConfig =
+  function(test) {
   if (test.childNodes.length != 2) {
     this.fncParseErrorCallback_('error - invalid number of telnet parameters');
   }

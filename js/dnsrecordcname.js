@@ -6,9 +6,9 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('DNSRecordCNAME');
+goog.provide('netdebugger.DNSRecordCNAME');
 
-goog.require('DNSRecord');
+goog.require('netdebugger.DNSRecord');
 
 /**
  * CNAME DNS record.
@@ -17,13 +17,13 @@ goog.require('DNSRecord');
  * @extends DNSRecord
  * @constructor
  */
-DNSRecordCNAME = function(name, ttl) {
+netdebugger.DNSRecordCNAME = function(name, ttl) {
   this.name_ = name;
-  this.type_ = DNSUtil.RecordNumber.CNAME;
+  this.type_ = netdebugger.DNSUtil.RecordNumber.CNAME;
   this.cl_ = 1;
   this.ttl_ = ttl;
 };
-goog.inherits(DNSRecordCNAME, DNSRecord);
+goog.inherits(netdebugger.DNSRecordCNAME, netdebugger.DNSRecord);
 
 
 /**
@@ -31,14 +31,14 @@ goog.inherits(DNSRecordCNAME, DNSRecord);
  * @type {string}
  * @private
  */
-DNSRecordCNAME.prototype.cname_ = null;
+netdebugger.DNSRecordCNAME.prototype.cname_ = null;
 
 
 /**
  * Set the cname of the record.
  * @param {string} cname Text value.
  */
-DNSRecordCNAME.prototype.setCname = function(cname) {
+netdebugger.DNSRecordCNAME.prototype.setCname = function(cname) {
   this.cname_ = cname;
 };
 
@@ -47,6 +47,6 @@ DNSRecordCNAME.prototype.setCname = function(cname) {
  * Return the cname stored by this record.
  * @return {string} CNAME value.
  */
-DNSRecordCNAME.prototype.getCname = function() {
+netdebugger.DNSRecordCNAME.prototype.getCname = function() {
   return this.cname_;
 };

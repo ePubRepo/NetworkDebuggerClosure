@@ -6,10 +6,10 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('test.OutputRecordManager');
+goog.provide('netdebugger.test.OutputRecordManager');
 
-goog.require('OutputRecord');
-goog.require('OutputRecordManager');
+goog.require('netdebugger.OutputRecord');
+goog.require('netdebugger.OutputRecordManager');
 goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('Tests for OutputRecordManager');
@@ -19,19 +19,19 @@ goog.setTestOnly('Tests for OutputRecordManager');
  * Test the getOutputRecords() method.
  */
 function testGetOutputRecords() {
-  var myRecordManager = new OutputRecordManager();
-  myRecordManager.pushEntry(OutputRecord.DetailLevel.ERROR, 'test1');
+  var myRecordManager = new netdebugger.OutputRecordManager();
+  myRecordManager.pushEntry(netdebugger.OutputRecord.DetailLevel.ERROR, 'test1');
 
   assertEquals('test1',
       myRecordManager.getOutputRecords()[0].getMessage());
-  assertEquals(OutputRecord.DetailLevel.ERROR,
+  assertEquals(netdebugger.OutputRecord.DetailLevel.ERROR,
       myRecordManager.getOutputRecords()[0].getLevel());
 
-  var myRecordManager = new OutputRecordManager();
-  myRecordManager.pushEntry(OutputRecord.DetailLevel.DEBUG, 'test2');
+  var myRecordManager = new netdebugger.OutputRecordManager();
+  myRecordManager.pushEntry(netdebugger.OutputRecord.DetailLevel.DEBUG, 'test2');
 
   assertEquals('test2',
       myRecordManager.getOutputRecords()[0].getMessage());
-  assertEquals(OutputRecord.DetailLevel.DEBUG,
+  assertEquals(netdebugger.OutputRecord.DetailLevel.DEBUG,
       myRecordManager.getOutputRecords()[0].getLevel());
 }

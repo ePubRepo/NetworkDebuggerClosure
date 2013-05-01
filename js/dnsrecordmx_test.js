@@ -6,23 +6,23 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('test.DNSRecordMX');
+goog.provide('netdebugger.test.DNSRecordMX');
 
-goog.require('DNSRecordMX');
-goog.require('DNSUtil');
+goog.require('netdebugger.DNSRecordMX');
+goog.require('netdebugger.DNSUtil');
 goog.require('goog.testing.jsunit');
 
-goog.setTestOnly('Tests for DNSRecordMX');
+goog.setTestOnly('Tests for netdebugger.DNSRecordMX');
 
 
 /**
  * Create objects for testing.
  */
 function setUp() {
-  myDnsRecordMX1 = new DNSRecordMX('t1.com', 555);
+  myDnsRecordMX1 = new netdebugger.DNSRecordMX('t1.com', 555);
   myDnsRecordMX1.setPreferenceNumber(10);
   myDnsRecordMX1.setMailExchanger('aspmx.l.google.com');
-  myDnsRecordMX2 = new DNSRecordMX('t2.com', 550);
+  myDnsRecordMX2 = new netdebugger.DNSRecordMX('t2.com', 550);
   myDnsRecordMX2.setPreferenceNumber(20);
   myDnsRecordMX2.setMailExchanger('alt2.aspmx.l.google.com');
 }
@@ -41,8 +41,8 @@ function testGetName() {
  * Test the getType() method.
  */
 function testGetType() {
-  assertEquals(DNSUtil.RecordNumber.MX, myDnsRecordMX1.getType());
-  assertEquals(DNSUtil.RecordNumber.MX, myDnsRecordMX2.getType());
+  assertEquals(netdebugger.DNSUtil.RecordNumber.MX, myDnsRecordMX1.getType());
+  assertEquals(netdebugger.DNSUtil.RecordNumber.MX, myDnsRecordMX2.getType());
 }
 
 

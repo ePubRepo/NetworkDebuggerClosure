@@ -6,27 +6,27 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('test.DNSResponsePacketAnalyzer');
+goog.provide('netdebugger.test.DNSResponsePacketAnalyzer');
 
-goog.require('DNSQueryManager');
-goog.require('DNSRecord');
-goog.require('DNSResponsePacketAnalyzer');
+goog.require('netdebugger.DNSQueryManager');
+goog.require('netdebugger.DNSRecord');
+goog.require('netdebugger.DNSResponsePacketAnalyzer');
 goog.require('goog.testing.jsunit');
 
-goog.setTestOnly('Tests for DNSResponsePacketAnalyzer');
+goog.setTestOnly('Tests for netdebugger.DNSResponsePacketAnalyzer');
 
 
 /**
  * Test the isIp4AddressInCidrBlock() method.
  */
 function testIsIp4AddressInCidrBlock() {
-  assertTrue(DNSResponsePacketAnalyzer.isIp4AddressInCidrBlock(
+  assertTrue(netdebugger.DNSResponsePacketAnalyzer.isIp4AddressInCidrBlock(
       '173.194.0.0', '173.194.0.0/16'));
-  assertFalse(DNSResponsePacketAnalyzer.isIp4AddressInCidrBlock(
+  assertFalse(netdebugger.DNSResponsePacketAnalyzer.isIp4AddressInCidrBlock(
       '173.192.0.0', '173.194.0.0/16'));
-  assertTrue(DNSResponsePacketAnalyzer.isIp4AddressInCidrBlock(
+  assertTrue(netdebugger.DNSResponsePacketAnalyzer.isIp4AddressInCidrBlock(
       '173.194.1.1', '173.194.0.0/16'));
-  assertFalse(DNSResponsePacketAnalyzer.isIp4AddressInCidrBlock(
+  assertFalse(netdebugger.DNSResponsePacketAnalyzer.isIp4AddressInCidrBlock(
       '173.195.0.0', '173.194.0.0/16'));
 }
 
@@ -35,7 +35,7 @@ function testIsIp4AddressInCidrBlock() {
  * Test the isGoogleIp4Address() method.
  */
 function testIsGoogleIp4Address() {
-  assertTrue(DNSResponsePacketAnalyzer.isGoogleIp4Address('74.125.224.110'));
-  assertFalse(DNSResponsePacketAnalyzer.isGoogleIp4Address('99.23.29.13'));
-  assertFalse(DNSResponsePacketAnalyzer.isGoogleIp4Address('209.230.12.23'));
+  assertTrue(netdebugger.DNSResponsePacketAnalyzer.isGoogleIp4Address('74.125.224.110'));
+  assertFalse(netdebugger.DNSResponsePacketAnalyzer.isGoogleIp4Address('99.23.29.13'));
+  assertFalse(netdebugger.DNSResponsePacketAnalyzer.isGoogleIp4Address('209.230.12.23'));
 }

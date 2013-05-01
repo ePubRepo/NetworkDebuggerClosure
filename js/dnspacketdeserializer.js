@@ -6,17 +6,17 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('DNSPacketDeserializer');
+goog.provide('netdebugger.DNSPacketDeserializer');
 
-goog.require('DNSPacket');
-goog.require('DNSRecord');
-goog.require('DNSRecordA');
-goog.require('DNSRecordAAAA');
-goog.require('DNSRecordCNAME');
-goog.require('DNSRecordMX');
-goog.require('DNSRecordTXT');
-goog.require('DNSUtil');
-goog.require('Deserializer');
+goog.require('netdebugger.DNSPacket');
+goog.require('netdebugger.DNSRecord');
+goog.require('netdebugger.DNSRecordA');
+goog.require('netdebugger.DNSRecordAAAA');
+goog.require('netdebugger.DNSRecordCNAME');
+goog.require('netdebugger.DNSRecordMX');
+goog.require('netdebugger.DNSRecordTXT');
+goog.require('netdebugger.DNSUtil');
+goog.require('netdebugger.Deserializer');
 
 /**
  * Take an ArrayBuffer of binary data from a socket and parse a DNSPacket.
@@ -26,32 +26,32 @@ goog.require('Deserializer');
  *                                                      DNS names.
  * @constructor
  */
-DNSPacketDeserializer = function(arBuffer, lblPointManager) {
-  this.dataDeserializer_ = new Deserializer(arBuffer);
+netdebugger.DNSPacketDeserializer = function(arBuffer, lblPointManager) {
+  this.dataDeserializer_ = new netdebugger.Deserializer(arBuffer);
   this.lblPointManager_ = lblPointManager;
 };
 
 
 /**
  * Deserializer to unpack a DNSPacket.
- * @type {Deserializer}
+ * @type {netdebugger.Deserializer}
  * @private
  */
-DNSPacketDeserializer.prototype.dataDeserializer_ = null;
+netdebugger.DNSPacketDeserializer.prototype.dataDeserializer_ = null;
 
 
 /**
  * Parsed and deserialized DNS packet.
- * @type {DNSPacket}
+ * @type {netdebugger.DNSPacket}
  * @private
  */
-DNSPacketDeserializer.prototype.deserializedPacket_ = null;
+netdebugger.DNSPacketDeserializer.prototype.deserializedPacket_ = null;
 
 
 /**
  * Parse binary data from an ArrayBuffer and store it as a DNSPacket.
  */
-DNSPacketDeserializer.prototype.deserializePacket = function() {
+netdebugger.DNSPacketDeserializer.prototype.deserializePacket = function() {
   // check the initial two bytes of the packet, which must start with 0s
   var firstTwoBytes = this.dataDeserializer_.getShort();
   if (firstTwoBytes) {
@@ -68,20 +68,20 @@ DNSPacketDeserializer.prototype.deserializePacket = function() {
 
   // determine how many DNS records will be in each section of the DNS packet
   var sectionCount = {};
-  sectionCount[DNSUtil.PacketSection.QUESTION] =
+  sectionCount[netdebugger.DNSUtil.PacketSection.QUESTION] =
     this.dataDeserializer_.getShort();
-  sectionCount[DNSUtil.PacketSection.ANSWER] =
+  sectionCount[netdebugger.DNSUtil.PacketSection.ANSWER] =
     this.dataDeserializer_.getShort();
-  sectionCount[DNSUtil.PacketSection.AUTHORITY] =
+  sectionCount[netdebugger.DNSUtil.PacketSection.AUTHORITY] =
     this.dataDeserializer_.getShort();
-  sectionCount[DNSUtil.PacketSection.ADDITIONAL] =
+  sectionCount[netdebugger.DNSUtil.PacketSection.ADDITIONAL] =
     this.dataDeserializer_.getShort();
 
-  var packet = new DNSPacket(flags);
+  var packet = new netdebugger.DNSPacket(flags);
 
   // Parse the QUESTION section.
-  for (var qI = 0; qI < sectionCount[DNSUtil.PacketSection.QUESTION]; ++qI) {
-    var dnsRecord = new DNSRecord(
+  for (var qI = 0; qI < sectionCount[netdebugger.DNSUtil.PacketSection.QUESTION]; ++qI) {
+    var dnsRecord = new netdebugger.DNSRecord(
       // dns record name
       this.parseName(this.lblPointManager_, this.dataDeserializer_),
 
@@ -96,13 +96,13 @@ DNSPacketDeserializer.prototype.deserializePacket = function() {
     dnsRecord.setLblPointManager(this.lblPointManager_);
 
     // add DNS question record to broader DNS packet
-    packet.push(DNSUtil.PacketSection.QUESTION, dnsRecord);
+    packet.push(netdebugger.DNSUtil.PacketSection.QUESTION, dnsRecord);
   }
 
   // Parse the ANSWER, AUTHORITY and ADDITIONAL sections.
-  var parseSections = [DNSUtil.PacketSection.ANSWER,
-                         DNSUtil.PacketSection.AUTHORITY,
-                         DNSUtil.PacketSection.ADDITIONAL];
+  var parseSections = [netdebugger.DNSUtil.PacketSection.ANSWER,
+                       netdebugger.DNSUtil.PacketSection.AUTHORITY,
+                       netdebugger.DNSUtil.PacketSection.ADDITIONAL];
 
   parseSections.forEach(function(section) {
     for (var aI = 0; aI < sectionCount[section]; ++aI) {
@@ -121,28 +121,28 @@ DNSPacketDeserializer.prototype.deserializePacket = function() {
 
       // create the proper DNS record type
       switch (recType) {
-        case DNSUtil.RecordNumber.A:
-          var dnsRecord = new DNSRecordA(recName, recTTL);
+        case netdebugger.DNSUtil.RecordNumber.A:
+          var dnsRecord = new netdebugger.DNSRecordA(recName, recTTL);
           break;
 
-        case DNSUtil.RecordNumber.MX:
-          var dnsRecord = new DNSRecordMX(recName, recTTL);
+        case netdebugger.DNSUtil.RecordNumber.MX:
+          var dnsRecord = new netdebugger.DNSRecordMX(recName, recTTL);
           break;
 
-        case DNSUtil.RecordNumber.AAAA:
-          var dnsRecord = new DNSRecordAAAA(recName, recTTL);
+        case netdebugger.DNSUtil.RecordNumber.AAAA:
+          var dnsRecord = new netdebugger.DNSRecordAAAA(recName, recTTL);
           break;
 
-        case DNSUtil.RecordNumber.TXT:
-          var dnsRecord = new DNSRecordTXT(recName, recTTL);
+        case netdebugger.DNSUtil.RecordNumber.TXT:
+          var dnsRecord = new netdebugger.DNSRecordTXT(recName, recTTL);
           break;
 
         case DNSUtil.RecordNumber.CNAME:
-          var dnsRecord = new DNSRecordCNAME(recName, recTTL);
+          var dnsRecord = new netdebugger.DNSRecordCNAME(recName, recTTL);
           break;
 
         default:
-          var dnsRecord = new DNSRecord(recName,
+          var dnsRecord = new netdebugger.DNSRecord(recName,
                                  recType,
                                  recClass,
                                  recTTL,
@@ -178,14 +178,15 @@ DNSPacketDeserializer.prototype.deserializePacket = function() {
  * @param {ArrayBuffer} dataSectionBinary Binary data of data section.
  * @param {DNSRecord} dnsRecord DNS packet to parse.
  */
-DNSPacketDeserializer.prototype.parseDataSection = function(recordTypeNum,
+netdebugger.DNSPacketDeserializer.prototype.parseDataSection = function(
+                                                            recordTypeNum,
                                                             dataSectionBinary,
                                                             dnsRecord) {
-  var dataSectionDeserializer = new Deserializer(dataSectionBinary);
+  var dataSectionDeserializer = new netdebugger.Deserializer(dataSectionBinary);
   var dataSectionTxt = '';
 
   switch (recordTypeNum) {
-    case DNSUtil.RecordNumber.A:
+    case netdebugger.DNSUtil.RecordNumber.A:
       var arrOctect = [];
       while (!dataSectionDeserializer.isEOF()) {
         arrOctect.push(dataSectionDeserializer.getByte());
@@ -194,17 +195,17 @@ DNSPacketDeserializer.prototype.parseDataSection = function(recordTypeNum,
       dnsRecord.setIp(dataSectionTxt);
       break;
 
-    case DNSUtil.RecordNumber.AAAA:
+    case netdebugger.DNSUtil.RecordNumber.AAAA:
       // take 16 byte data and parse into the 16 bytes of an IPv6 address
       var nibbleNum = 0;
       while (!dataSectionDeserializer.isEOF()) {
         var nextByte = dataSectionDeserializer.getByte();
         var nibbleADec = (nextByte & 0xf0) >> 4;
-        var nibbleAHex = Util.baseConversion(nibbleADec, 16);
+        var nibbleAHex = netdebugger.Util.baseConversion(nibbleADec, 16);
         nibbleNum++;
 
         var nibbleBDec = nextByte & 0x0f;
-        var nibbleBHex = Util.baseConversion(nibbleBDec, 16);
+        var nibbleBHex = netdebugger.Util.baseConversion(nibbleBDec, 16);
         nibbleNum++;
 
         dataSectionTxt += nibbleAHex + nibbleBHex;
@@ -213,13 +214,13 @@ DNSPacketDeserializer.prototype.parseDataSection = function(recordTypeNum,
       }
       break;
 
-    case DNSUtil.RecordNumber.CNAME:
+    case netdebugger.DNSUtil.RecordNumber.CNAME:
       dataSectionTxt += this.parseName(this.lblPointManager_,
                                        dataSectionDeserializer);
       dnsRecord.setCname(dataSectionTxt);
       break;
 
-    case DNSUtil.RecordNumber.TXT:
+    case netdebugger.DNSUtil.RecordNumber.TXT:
       while (!dataSectionDeserializer.isEOF()) {
         var nextByte = dataSectionDeserializer.getByte();
         var nextChar = String.fromCharCode(nextByte);
@@ -228,7 +229,7 @@ DNSPacketDeserializer.prototype.parseDataSection = function(recordTypeNum,
       dnsRecord.setText(dataSectionTxt);
       break;
 
-     case DNSUtil.RecordNumber.MX:
+     case netdebugger.DNSUtil.RecordNumber.MX:
        var preferenceNum = dataSectionDeserializer.getShort();
        var mailExchanger = this.parseName(this.lblPointManager_,
                                           dataSectionDeserializer);
@@ -250,7 +251,7 @@ DNSPacketDeserializer.prototype.parseDataSection = function(recordTypeNum,
  * @param {Deserializer} nameDeserializer Deserializer used to parse name.
  * @return {string} Parsed and re-assembled DNS name.
  */
-DNSPacketDeserializer.prototype.parseName = function(lblPtManager,
+netdebugger.DNSPacketDeserializer.prototype.parseName = function(lblPtManager,
                                                      nameDeserializer) {
   var parts = [];
   for (;;) {
@@ -289,6 +290,6 @@ DNSPacketDeserializer.prototype.parseName = function(lblPtManager,
  * Return the parsed DNS packet.
  * @return {DNSPacket} Parsed DNS packet with associated DNS records.
  */
-DNSPacketDeserializer.prototype.getDeserializedPacket = function() {
+netdebugger.DNSPacketDeserializer.prototype.getDeserializedPacket = function() {
   return this.deserializedPacket_;
 };

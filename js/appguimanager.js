@@ -6,20 +6,20 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('AppGuiManager');
+goog.provide('netdebugger.AppGuiManager');
 
-goog.require('TestConfigurationParser');
+goog.require('netdebugger.TestConfigurationParser');
 
 /**
  * Abstract class to help manage GUI.
  */
-AppGuiManager = function() {};
+netdebugger.AppGuiManager = function() {};
 
 
 /**
  * Run diagnostics currently selected by user.
  */
-AppGuiManager.runDiagnostics = function() {
+netdebugger.AppGuiManager.runDiagnostics = function() {
   // Step 1: Determine Which Telnet Tests to Run
   if (document.getElementById('google-com-http-telnet').checked == true)
     gHttpBtnClick();
@@ -56,7 +56,7 @@ AppGuiManager.runDiagnostics = function() {
 /**
  * Toggle the GUI from basic mode to advanced options (and back).
  */
-AppGuiManager.toggleAdvancedOptions = function() {
+netdebugger.AppGuiManager.toggleAdvancedOptions = function() {
   var toggleBtn = document.getElementById('advancedOptionsToggleBtn');
   if (toggleBtn.innerHTML == 'Customize Diagnostics' ||
       document.getElementById('overlay-window-frame').className ==
@@ -76,7 +76,7 @@ AppGuiManager.toggleAdvancedOptions = function() {
 /**
  * Clear the output console.
  */
-AppGuiManager.consoleClearBtnClicked = function() {
+netdebugger.AppGuiManager.consoleClearBtnClicked = function() {
   document.getElementById('console').value = '';
 };
 
@@ -84,7 +84,7 @@ AppGuiManager.consoleClearBtnClicked = function() {
 /**
  * Copy the contents of the output console to the clipboard.
  */
-AppGuiManager.consoleCopyBtnClicked = function() {
+netdebugger.AppGuiManager.consoleCopyBtnClicked = function() {
   document.getElementById('console').select();
   document.execCommand('Copy');
 };
@@ -93,7 +93,7 @@ AppGuiManager.consoleCopyBtnClicked = function() {
 /**
  * Show the GUI to load test configurations.
  */
-AppGuiManager.showLoadTestConfigurationsGui = function() {
+netdebugger.AppGuiManager.showLoadTestConfigurationsGui = function() {
   document.getElementById('overlay-window-frame').className =
     'center-container display-full';
   document.getElementById('test-config-input').focus();
@@ -104,7 +104,7 @@ AppGuiManager.showLoadTestConfigurationsGui = function() {
 /**
  * Hide the GUI to load test configurations.
  */
-AppGuiManager.hideLoadTestConfigurationsGui = function() {
+netdebugger.AppGuiManager.hideLoadTestConfigurationsGui = function() {
   document.getElementById('overlay-window-frame').className = 'display-none';
   document.getElementById('page-contents').className =
     'center-container display-full';
@@ -115,7 +115,7 @@ AppGuiManager.hideLoadTestConfigurationsGui = function() {
  * Display information about error parsing configuration.
  * @param {string} error Text of parse error to display to user.
  */
-AppGuiManager.displayParseError = function(error) {
+netdebugger.AppGuiManager.displayParseError = function(error) {
   document.getElementById('test-config-error').innerHTML = error;
   document.getElementById('test-config-error').className = 'display-full';
 };
@@ -124,7 +124,7 @@ AppGuiManager.displayParseError = function(error) {
 /**
  * Process inputed test configurations.
  */
-AppGuiManager.processInputTestConfigurations = function() {
+netdebugger.AppGuiManager.processInputTestConfigurations = function() {
   document.getElementById('test-config-error').className = 'display-none';
   var rawInputText = document.getElementById('test-config-input').value;
   var parser = new TestConfigurationParser(rawInputText);
@@ -139,10 +139,10 @@ AppGuiManager.processInputTestConfigurations = function() {
  * @param {OutputRecord.DetailLevel} logLevel Level of detail of log.
  * @param {number} timestamp Timestamp of log entry.
  */
-AppGuiManager.printOutputToScreenConsole = function(outStr,
+netdebugger.AppGuiManager.printOutputToScreenConsole = function(outStr,
                                                     logLevel,
                                                     timestamp) {
-  AppGuiManager.hideLoadTestConfigurationsGui();
+  netdebugger.AppGuiManager.hideLoadTestConfigurationsGui();
   var outputBoxClass = document.getElementById('test-output-area').className;
   if (document.getElementById('test-output-area').className !=
         'center-container display-full') {

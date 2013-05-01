@@ -6,28 +6,28 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('test.DNSUtil');
+goog.provide('netdebugger.test.DNSUtil');
 
-goog.require('DNSUtil');
+goog.require('netdebugger.DNSUtil');
 goog.require('goog.testing.jsunit');
 
-goog.setTestOnly('Tests for DNSUtil');
+goog.setTestOnly('Tests for netdebugger.DNSUtil');
 
 
 /**
  * Test for getRecordTypeNumByRecordTypeName() method.
  */
 function testGetRecordTypeNumByRecordTypeName() {
-  assertEquals(DNSUtil.RecordNumber.MX,
-      DNSUtil.getRecordTypeNumByRecordTypeName('MX'));
-  assertEquals(DNSUtil.RecordNumber.A,
-      DNSUtil.getRecordTypeNumByRecordTypeName('A'));
-  assertEquals(DNSUtil.RecordNumber.AAAA,
-      DNSUtil.getRecordTypeNumByRecordTypeName('AAAA'));
-  assertEquals(DNSUtil.RecordNumber.CNAME,
-      DNSUtil.getRecordTypeNumByRecordTypeName('CNAME'));
-  assertEquals(DNSUtil.RecordNumber.TXT,
-      DNSUtil.getRecordTypeNumByRecordTypeName('TXT'));
+  assertEquals(netdebugger.DNSUtil.RecordNumber.MX,
+      netdebugger.DNSUtil.getRecordTypeNumByRecordTypeName('MX'));
+  assertEquals(netdebugger.DNSUtil.RecordNumber.A,
+      netdebugger.DNSUtil.getRecordTypeNumByRecordTypeName('A'));
+  assertEquals(netdebugger.DNSUtil.RecordNumber.AAAA,
+      netdebugger.DNSUtil.getRecordTypeNumByRecordTypeName('AAAA'));
+  assertEquals(netdebugger.DNSUtil.RecordNumber.CNAME,
+      netdebugger.DNSUtil.getRecordTypeNumByRecordTypeName('CNAME'));
+  assertEquals(netdebugger.DNSUtil.RecordNumber.TXT,
+      netdebugger.DNSUtil.getRecordTypeNumByRecordTypeName('TXT'));
 }
 
 
@@ -36,15 +36,21 @@ function testGetRecordTypeNumByRecordTypeName() {
  */
 function testGetRecordTypeNameByRecordTypeNum() {
   assertEquals('MX',
-      DNSUtil.getRecordTypeNameByRecordTypeNum(DNSUtil.RecordNumber.MX));
+      netdebugger.DNSUtil.getRecordTypeNameByRecordTypeNum(
+          netdebugger.DNSUtil.RecordNumber.MX));
   assertEquals('A',
-      DNSUtil.getRecordTypeNameByRecordTypeNum(DNSUtil.RecordNumber.A));
+      netdebugger.DNSUtil.getRecordTypeNameByRecordTypeNum(
+          netdebugger.DNSUtil.RecordNumber.A));
   assertEquals('AAAA',
-      DNSUtil.getRecordTypeNameByRecordTypeNum(DNSUtil.RecordNumber.AAAA));
+      netdebugger.DNSUtil.getRecordTypeNameByRecordTypeNum(
+          netdebugger.DNSUtil.RecordNumber.AAAA));
   assertEquals('MX',
-      DNSUtil.getRecordTypeNameByRecordTypeNum(DNSUtil.RecordNumber.MX));
+      netdebugger.DNSUtil.getRecordTypeNameByRecordTypeNum(
+          netdebugger.DNSUtil.RecordNumber.MX));
   assertEquals('TXT',
-      DNSUtil.getRecordTypeNameByRecordTypeNum(DNSUtil.RecordNumber.TXT));
+      netdebugger.DNSUtil.getRecordTypeNameByRecordTypeNum(
+          netdebugger.DNSUtil.RecordNumber.TXT));
   assertEquals('CNAME',
-      DNSUtil.getRecordTypeNameByRecordTypeNum(DNSUtil.RecordNumber.CNAME));
+      netdebugger.DNSUtil.getRecordTypeNameByRecordTypeNum(
+          netdebugger.DNSUtil.RecordNumber.CNAME));
 }
