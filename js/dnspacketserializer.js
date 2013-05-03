@@ -12,7 +12,7 @@ goog.require('netdebugger.Serializer');
 
 /**
  * Serialize a DNS packet to be sent over the socket.
- * @param {DNSPacket} dnsPacket The DNS packet to be serialized.
+ * @param {netdebugger.DNSPacket} dnsPacket The DNS packet to be serialized.
  * @constructor
  */
 netdebugger.DNSPacketSerializer = function(dnsPacket) {
@@ -22,7 +22,7 @@ netdebugger.DNSPacketSerializer = function(dnsPacket) {
 
 /**
  * DNS packet to be serialized.
- * @type {DNSPacket}
+ * @type {netdebugger.DNSPacket}
  * @private
  */
 netdebugger.DNSPacketSerializer.prototype.dnsPacket_ = null;
@@ -63,11 +63,11 @@ netdebugger.DNSPacketSerializer.prototype.serialize = function() {
  * byte.
  *
  * @param {string} dnsName A DNS name such as "mail.google.com".
- * @param {Serializer} dnsSerializer Data serializer being used to serialize
+ * @param {netdebugger.Serializer} dnsSerializer Data serializer being used to serialize
  *                                   a DNS packet.
  * @param {number} opt_ref Packet location of DNS name being referenced.
  *                            See Section 4.1.4 of RFC 1035.
- * @return {Serializer} This instance of a Serializer.
+ * @return {netdebugger.Serializer} This instance of a Serializer.
  */
 netdebugger.DNSPacketSerializer.prototype.serializeName = function(dnsName,
                                                        dnsSerializer,

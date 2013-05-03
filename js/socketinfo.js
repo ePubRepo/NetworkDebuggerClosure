@@ -10,7 +10,7 @@ goog.provide('netdebugger.SocketInfo');
 
 /**
  * @param {number} id ID of Chrome socket.
- * @param {OutputRecordManager} outputRecordManager Manage and record socket
+ * @param {netdebugger.OutputRecordManager} outputRecordManager Manage and record socket
  *                                                  info.
  * @constructor
  */
@@ -30,7 +30,7 @@ netdebugger.SocketInfo.prototype.socketId_ = null;
 
 /**
  * Object to manage output records from.
- * @type {OutputRecordManager}
+ * @type {netdebugger.OutputRecordManager}
  * @private
  */
 netdebugger.SocketInfo.prototype.outputRecordManager_ = null;
@@ -38,7 +38,7 @@ netdebugger.SocketInfo.prototype.outputRecordManager_ = null;
 
 /**
  * Set the function to be used for console logging.
- * @param {OutputRecordManager} manager Object to record output information.
+ * @param {netdebugger.OutputRecordManager} manager Object to record output information.
  */
 netdebugger.SocketInfo.prototype.setOutputRecordManager = function(manager) {
   this.outputRecordManager_ = manager;

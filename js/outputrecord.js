@@ -11,7 +11,7 @@ goog.provide('netdebugger.OutputRecord');
 /**
  * Store a log output from a test along with a timestamp and log level.
  *
- * @param {OutputRecord.DetailLevel} level Level of output record.
+ * @param {netdebugger.OutputRecord.DetailLevel} level Level of output record.
  * @param {string} message Message to be recorded.
  * @constructor
  */
@@ -45,7 +45,7 @@ netdebugger.OutputRecord.prototype.timestamp_ = null;
 
 /**
  * Detail level of output message.
- * @type {OutputRecord.DetailLevel}
+ * @type {netdebugger.OutputRecord.DetailLevel}
  * @private
  */
 netdebugger.OutputRecord.prototype.level_ = null;
@@ -70,7 +70,7 @@ netdebugger.OutputRecord.prototype.getTimestamp = function() {
 
 /**
  * Return the log level for this record entry.
- * @return {OutputRecord.DetailLevel} Level of log entry.
+ * @return {netdebugger.OutputRecord.DetailLevel} Level of log entry.
  */
 netdebugger.OutputRecord.prototype.getLevel = function() {
   return this.level_;

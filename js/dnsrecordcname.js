@@ -14,7 +14,7 @@ goog.require('netdebugger.DNSRecord');
  * CNAME DNS record.
  * @param {string} name Name of the CNAME record.
  * @param {number} ttl Time to live of the record.
- * @extends DNSRecord
+ * @extends netdebugger.DNSRecord
  * @constructor
  */
 netdebugger.DNSRecordCNAME = function(name, ttl) {

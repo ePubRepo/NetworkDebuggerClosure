@@ -8,10 +8,10 @@
 
 goog.provide('netdebugger.test.DNSQueryManager');
 
+goog.require('goog.testing.jsunit');
 goog.require('netdebugger.DNSQueryManager');
 goog.require('netdebugger.DNSUtil');
 goog.require('netdebugger.OutputRecordManager');
-goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('Tests for DNSQueryManager');
 

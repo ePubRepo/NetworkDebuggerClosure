@@ -12,3 +12,16 @@ chrome.socket.destroy = function(socketId) {};
 chrome.socket.connect = function(socketId, hostname, port, callbackFnc) {};
 chrome.socket.write = function(socketId, arrBuff, callbackFnc) {};
 chrome.socket.read = function(socketId, callbackFnc) {};
+
+var CreatedInfo = function() {};
+
+var WriteInfo = function() {};
+
+var ReadInfo = function() {};
+
+var SocketInfo = function() {};
+SocketInfo.localPort;
+SocketInfo.peerPort;
+SocketInfo.socketType;
+SocketInfo.localAddress;
+SocketInfo.peerAddress;

@@ -40,7 +40,7 @@ netdebugger.DNSPacket.prototype.flags_ = null;
 /**
  * Array containing the specific DNS records that are a part of each
  *   section of the DNS packet.
- * @type Array.<string>.<DNSRecord>
+ * @type Array.<string>.<netdebugger.DNSRecord>
  * @private
  */
 netdebugger.DNSPacket.prototype.data_ = null;
@@ -67,8 +67,8 @@ netdebugger.DNSPacket.prototype.getAnswerRecordCount = function() {
 
 /**
  * Add a DNS record to a particular section of this DNS packet.
- * @param {DNSUtil.PacketSection} packetSection Section of the DNS record.
- * @param {DNSRecord} dnsRecord DNS record to add to this packet.
+ * @param {netdebugger.DNSUtil.PacketSection} packetSection Section of the DNS record.
+ * @param {netdebugger.DNSRecord} dnsRecord DNS record to add to this packet.
  */
 netdebugger.DNSPacket.prototype.push = function(packetSection, dnsRecord) {
   this.data_[packetSection].push(dnsRecord);
@@ -78,8 +78,8 @@ netdebugger.DNSPacket.prototype.push = function(packetSection, dnsRecord) {
 /**
  * Invoke a callback function and pass each DNSRecord that is part of a
  *   specific DNS packet section.
- * @param {DNSUtil.PacketSection} packetSection Section of the DNS record.
- * @param {function(DNSRecord)} callbackFunction Function to pass each
+ * @param {netdebugger.DNSUtil.PacketSection} packetSection Section of the DNS record.
+ * @param {function(netdebugger.DNSRecord)} callbackFunction Function to pass each
  *                                               DNS record that is part of
  *                                               a section to.
  */

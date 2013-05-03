@@ -8,8 +8,8 @@
 
 goog.provide('netdebugger.test.OutputRecord');
 
-goog.require('netdebugger.OutputRecord');
 goog.require('goog.testing.jsunit');
+goog.require('netdebugger.OutputRecord');
 
 goog.setTestOnly('Tests for OutputRecord');
 

@@ -62,7 +62,7 @@ function finishedDnsFnc(completedDnsQueryManager) {
   var finishedOutputRecords = finishedOutputRecordManager.getOutputRecords();
 
   for (var n = 0; n < finishedOutputRecords.length; n++) {
-    AppGuiManager.printOutputToScreenConsole(
+    netdebugger.AppGuiManager.printOutputToScreenConsole(
                finishedOutputRecords[n].getMessage(),
                finishedOutputRecords[n].getLevel(),
                finishedOutputRecords[n].getTimestamp());
@@ -72,7 +72,7 @@ function finishedDnsFnc(completedDnsQueryManager) {
 function basicDiagnostics() {
   // hosts to query Google Public DNS
 
-  for (var i = 0; i < Util.hostnamesToTest.length; i++) {
+  for (var i = 0; i < netdebugger.Util.hostnamesToTest.length; i++) {
     var outputRecordManager = new netdebugger.OutputRecordManager();
     var gDnsQuery = new netdebugger.DNSQueryManager(netdebugger.Util.hostnamesToTest[i],
         netdebugger.DNSUtil.RecordNumber.A,
@@ -128,7 +128,7 @@ function gDnsBtnClick() {
 function whoAmIDnsBtnClick() {
   var outputRecordManager = new netdebugger.OutputRecordManager();
     var gDnsQuery = new netdebugger.DNSQueryManager('o-o.myaddr.google.com',
-            DNSUtil.RecordNumber.TXT,
+        netdebugger.DNSUtil.RecordNumber.TXT,
             '8.8.8.8',
             finishedDnsFnc,
             outputRecordManager);
@@ -154,7 +154,7 @@ function customDnsBtnClick() {
 function printFinishedTelnetOutput(outputRecordManager) {
   var nicOutputRecords = outputRecordManager.getOutputRecords();
   for (var j = 0; j < nicOutputRecords.length; j++) {
-    AppGuiManager.printOutputToScreenConsole(
+    netdebugger.AppGuiManager.printOutputToScreenConsole(
                nicOutputRecords[j].getMessage(),
                nicOutputRecords[j].getLevel(),
                nicOutputRecords[j].getTimestamp());

@@ -8,8 +8,8 @@
 
 goog.provide('netdebugger.test.Deserializer');
 
-goog.require('netdebugger.Deserializer');
 goog.require('goog.testing.jsunit');
+goog.require('netdebugger.Deserializer');
 
 goog.setTestOnly('Tests for netdebugger.Deserializer');
 

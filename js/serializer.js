@@ -45,7 +45,7 @@ netdebugger.Serializer.prototype.buffer_ = null;
 /**
  * Add a byte of data to the ArrayBuffer.
  * @param {number} b Byte of binary data to add to the ArrayBuffer.
- * @return {Serializer} This instance of a Serializer.
+ * @return {netdebugger.Serializer} This instance of a Serializer.
  */
 netdebugger.Serializer.prototype.setByte = function(b) {
   this.view_[this.loc_] = b;
@@ -58,7 +58,7 @@ netdebugger.Serializer.prototype.setByte = function(b) {
 /**
  * Add two bytes of data to an ArrayBuffer.
  * @param {number} b Two bytes of binary data to add to the ArrayBuffer.
- * @return {Serializer} This instance of a Serializer.
+ * @return {netdebugger.Serializer} This instance of a Serializer.
  */
 netdebugger.Serializer.prototype.setShort = function(b) {
   return this.setByte((b >> 8) & 0xff).setByte(b & 0xff);

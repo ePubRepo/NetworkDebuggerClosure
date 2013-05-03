@@ -23,7 +23,7 @@ netdebugger.OutputRecordManager = function() {
 
 /**
  * Store instances of OutputRecord.
- * @type Array.<OutputRecord>
+ * @type Array.<netdebugger.OutputRecord>
  * @private
  */
 netdebugger.OutputRecordManager.prototype.outputEntries_ = null;
@@ -31,7 +31,7 @@ netdebugger.OutputRecordManager.prototype.outputEntries_ = null;
 
 /**
  * Push a message to the record.
- * @param {OutputRecord.DetailLevel} level Level of log information.
+ * @param {netdebugger.OutputRecord.DetailLevel} level Level of log information.
  * @param {string} msg Message to be recorded.
  */
 netdebugger.OutputRecordManager.prototype.pushEntry = function(level, msg) {
@@ -42,7 +42,7 @@ netdebugger.OutputRecordManager.prototype.pushEntry = function(level, msg) {
 
 /**
  * Return set of output entries.
- * @return {Array.<OutputRecord>} Set of output entries with log records.
+ * @return {Array.<netdebugger.OutputRecord>} Set of output entries with log records.
  */
 netdebugger.OutputRecordManager.prototype.getOutputRecords = function() {
   return this.outputEntries_;

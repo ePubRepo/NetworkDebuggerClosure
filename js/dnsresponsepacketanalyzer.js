@@ -14,7 +14,7 @@ goog.require('netdebugger.Util');
 
 /**
  * Parse a completed DNS response.
- * @param {DNSQueryManager} queryManager DNS query manager with query and
+ * @param {netdebugger.DNSQueryManager} queryManager DNS query manager with query and
  *                                       response.
  * @constructor
  */
@@ -112,7 +112,7 @@ netdebugger.DNSResponsePacketAnalyzer.isGoogleIp4Address = function(addressToTes
 /**
  * DNS query manager containing a query and response.
  *
- * @type {DNSQueryManager}
+ * @type {netdebugger.DNSQueryManager}
  * @private
  */
 netdebugger.DNSResponsePacketAnalyzer.prototype.dnsQueryManager_ = null;
@@ -121,7 +121,7 @@ netdebugger.DNSResponsePacketAnalyzer.prototype.dnsQueryManager_ = null;
 /**
  * Return DNS query manager containing the query and its response.
  *
- * @return {DNSQueryManager} DNS query manager containing the query and its
+ * @return {netdebugger.DNSQueryManager} DNS query manager containing the query and its
  *                           response.
  */
 netdebugger.DNSResponsePacketAnalyzer.prototype.getDnsQueryManager = function() {

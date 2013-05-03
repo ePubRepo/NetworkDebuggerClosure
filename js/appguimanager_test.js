@@ -8,9 +8,9 @@
 
 goog.provide('netdebugger.test.AppGuiManager');
 
+goog.require('goog.testing.jsunit');
 goog.require('netdebugger.AppGuiManager');
 goog.require('netdebugger.TestHelper');
-goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('Tests for netdebugger.AppGuiManager');
 

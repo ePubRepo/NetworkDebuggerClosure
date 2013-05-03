@@ -61,7 +61,7 @@ netdebugger.AppGuiManager.toggleAdvancedOptions = function() {
   if (toggleBtn.innerHTML == 'Customize Diagnostics' ||
       document.getElementById('overlay-window-frame').className ==
         'center-container display-full') {
-    AppGuiManager.hideLoadTestConfigurationsGui();
+    netdebugger.AppGuiManager.hideLoadTestConfigurationsGui();
     document.getElementById('test-detailed-options').className =
       'center-container display-full';
     toggleBtn.innerHTML = 'Basic Mode';
@@ -127,8 +127,8 @@ netdebugger.AppGuiManager.displayParseError = function(error) {
 netdebugger.AppGuiManager.processInputTestConfigurations = function() {
   document.getElementById('test-config-error').className = 'display-none';
   var rawInputText = document.getElementById('test-config-input').value;
-  var parser = new TestConfigurationParser(rawInputText);
-  parser.setErrorCallbackFnc(AppGuiManager.displayParseError);
+  var parser = new netdebugger.TestConfigurationParser(rawInputText);
+  parser.setErrorCallbackFnc(netdebugger.AppGuiManager.displayParseError);
   parser.parseInput();
 };
 
@@ -136,7 +136,7 @@ netdebugger.AppGuiManager.processInputTestConfigurations = function() {
 /**
  * Print output to page console.
  * @param {string} outStr Message to print to the console.
- * @param {OutputRecord.DetailLevel} logLevel Level of detail of log.
+ * @param {netdebugger.OutputRecord.DetailLevel} logLevel Level of detail of log.
  * @param {number} timestamp Timestamp of log entry.
  */
 netdebugger.AppGuiManager.printOutputToScreenConsole = function(outStr,

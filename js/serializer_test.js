@@ -8,8 +8,8 @@
 
 goog.provide('netdebugger.test.Serializer');
 
-goog.require('netdebugger.Serializer');
 goog.require('goog.testing.jsunit');
+goog.require('netdebugger.Serializer');
 
 goog.setTestOnly('Tests for netdebugger.Serializer');
 

@@ -62,7 +62,7 @@ netdebugger.DNSRecord.prototype.cl_ = null;
 /**
  * Label pointer manager that keeps track of entire DNS packet, so labels
  * and names can be reassembled from DNS compression.
- * @type {ResponseLabelPointerManager}
+ * @type {netdebugger.ResponseLabelPointerManager}
  * @see Section 4.1.4 of RFC 1035.
  * @private
  */
@@ -87,7 +87,7 @@ netdebugger.DNSRecord.prototype.dataTxt_ = null;
 
 /**
  * Set the label pointer manager for the DNS packet to which the record belongs.
- * @param {ResponseLabelPointerManager} obj Label manager to help reassemble
+ * @param {netdebugger.ResponseLabelPointerManager} obj Label manager to help reassemble
  *                                          DNS packet data.
  */
 netdebugger.DNSRecord.prototype.setLblPointManager = function(obj) {

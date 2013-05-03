@@ -8,9 +8,9 @@
 
 goog.provide('netdebugger.test.DNSRecordCNAME');
 
+goog.require('goog.testing.jsunit');
 goog.require('netdebugger.DNSRecordCNAME');
 goog.require('netdebugger.DNSUtil');
-goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('Tests for DNSRecordCNAME');
 

@@ -8,9 +8,9 @@
 
 goog.provide('netdebugger.test.OutputRecordManager');
 
+goog.require('goog.testing.jsunit');
 goog.require('netdebugger.OutputRecord');
 goog.require('netdebugger.OutputRecordManager');
-goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('Tests for OutputRecordManager');
 

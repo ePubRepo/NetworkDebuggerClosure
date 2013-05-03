@@ -8,8 +8,8 @@
 
 goog.provide('netdebugger.test.DNSUtil');
 
-goog.require('netdebugger.DNSUtil');
 goog.require('goog.testing.jsunit');
+goog.require('netdebugger.DNSUtil');
 
 goog.setTestOnly('Tests for netdebugger.DNSUtil');
 

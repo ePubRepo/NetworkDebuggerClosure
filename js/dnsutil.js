@@ -41,7 +41,7 @@ netdebugger.DNSUtil.PacketSection = {
 
 /**
  * @param {string} name Name of DNS record type.
- * @return {DNSUtil.RecordNumber} RFC 1035 DNS record number type.
+ * @return {netdebugger.DNSUtil.RecordNumber} RFC 1035 DNS record number type.
  */
 netdebugger.DNSUtil.getRecordTypeNumByRecordTypeName = function(name) {
   switch (name.toUpperCase()) {

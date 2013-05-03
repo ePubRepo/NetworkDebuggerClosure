@@ -8,9 +8,9 @@
 
 goog.provide('netdebugger.test.DNSRecordA');
 
+goog.require('goog.testing.jsunit');
 goog.require('netdebugger.DNSRecordA');
 goog.require('netdebugger.DNSUtil');
-goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('Tests for netdebugger.DNSRecordA');
 

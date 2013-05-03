@@ -8,8 +8,8 @@
 
 goog.provide('netdebugger.test.ResponseLabelPointerManager');
 
-goog.require('netdebugger.ResponseLabelPointerManager');
 goog.require('goog.testing.jsunit');
+goog.require('netdebugger.ResponseLabelPointerManager');
 
 goog.setTestOnly('Tests for ResponseLabelPointerManager');
 

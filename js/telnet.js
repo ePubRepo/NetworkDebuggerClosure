@@ -14,7 +14,7 @@ goog.require('netdebugger.SocketInfo');
  * Open a TCP connection with a specific host on a specific port.
  * @param {string} host Hostname to open a connection with.
  * @param {number} port Port number to connect on.
- * @param {OutputRecordManager} outputRecordManager Manage output logs.
+ * @param {netdebugger.OutputRecordManager} outputRecordManager Manage output logs.
  * @constructor
  */
 netdebugger.Telnet = function(host, port, outputRecordManager) {
@@ -74,7 +74,7 @@ netdebugger.Telnet.prototype.objSocketInfo_ = null;
 
 /**
  * Store log/record of technical details.
- * @type {OutputRecordManager}
+ * @type {netdebugger.OutputRecordManager}
  * @private
  */
 netdebugger.Telnet.prototype.outputRecordManager_ = null;
@@ -82,7 +82,7 @@ netdebugger.Telnet.prototype.outputRecordManager_ = null;
 
 /**
  * Function to callback upon completion of the telnet session.
- * @type {function(OutputRecordManager)}
+ * @type {function(netdebugger.OutputRecordManager)}
  * @private
  */
 netdebugger.Telnet.prototype.completedCallbackFnc_ = null;
@@ -90,7 +90,7 @@ netdebugger.Telnet.prototype.completedCallbackFnc_ = null;
 
 /**
  * Set function to be called when telnet is finished.
- * @param {function(OutputRecordManager)} fnc Function to call upon completion
+ * @param {function(netdebugger.OutputRecordManager)} fnc Function to call upon completion
  *                                            of telnet session.
  */
 netdebugger.Telnet.prototype.setCompletedCallbackFnc = function(fnc) {
@@ -149,10 +149,10 @@ netdebugger.Telnet.prototype.onReadCompletedCallback_ = function(readInfo) {
   /**
    * Receive string response from host.
    * @param {string} str Text received from destination host.
-   * @this {Telnet}
+   * @this {netdebugger.Telnet}
    */
   function receiveString_(str) {
-    this.outputRecordManager_.pushEntry(OutputRecord.DetailLevel.DEBUG,
+    this.outputRecordManager_.pushEntry(netdebugger.OutputRecord.DetailLevel.DEBUG,
         str);
     this.closeSocket_();
     this.completedCallbackFnc_(this.outputRecordManager_);
@@ -221,7 +221,7 @@ netdebugger.Telnet.prototype.onConnectedCallback_ = function() {
   /**
    * Receive converted ArrayBuffer.
    * @param {ArrayBuffer} ab ArrayBuffer of information to send.
-   * @this {Telnet}
+   * @this {netdebugger.Telnet}
    */
   function receiveArrBuffer(ab) {
     this.abDataToSend_ = ab;
@@ -241,7 +241,7 @@ netdebugger.Telnet.prototype.createSocket = function() {
   /**
    * Process created socket information.
    * @param {CreatedInfo} createInfo Info on created socket.
-   * @this {Telnet}
+   * @this {netdebugger.Telnet}
    * @see http://developer.chrome.com/apps/socket.html#type-CreateInfo
    * @private
    */

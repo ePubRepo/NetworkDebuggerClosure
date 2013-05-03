@@ -8,10 +8,10 @@
 
 goog.provide('netdebugger.test.DNSResponsePacketAnalyzer');
 
+goog.require('goog.testing.jsunit');
 goog.require('netdebugger.DNSQueryManager');
 goog.require('netdebugger.DNSRecord');
 goog.require('netdebugger.DNSResponsePacketAnalyzer');
-goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('Tests for netdebugger.DNSResponsePacketAnalyzer');
 

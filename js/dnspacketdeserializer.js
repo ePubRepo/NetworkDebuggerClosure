@@ -22,7 +22,7 @@ goog.require('netdebugger.Deserializer');
  * Take an ArrayBuffer of binary data from a socket and parse a DNSPacket.
  * @param {Uint8Array|ArrayBuffer} arBuffer Uint8Array of binary data
  *                                          representing a DNS packet.
- * @param {ResponseLabelPointerManager} lblPointManager Reassemble compressed
+ * @param {netdebugger.ResponseLabelPointerManager} lblPointManager Reassemble compressed
  *                                                      DNS names.
  * @constructor
  */
@@ -137,7 +137,7 @@ netdebugger.DNSPacketDeserializer.prototype.deserializePacket = function() {
           var dnsRecord = new netdebugger.DNSRecordTXT(recName, recTTL);
           break;
 
-        case DNSUtil.RecordNumber.CNAME:
+        case netdebugger.DNSUtil.RecordNumber.CNAME:
           var dnsRecord = new netdebugger.DNSRecordCNAME(recName, recTTL);
           break;
 
@@ -174,9 +174,9 @@ netdebugger.DNSPacketDeserializer.prototype.deserializePacket = function() {
  *   DNS compression and parsing based upon various record types.
  * Set the parsed data section into the DNS record and set any associated
  *   fields.
- * @param {DNSUtil.RecordNumber} recordTypeNum DNS record type number.
+ * @param {netdebugger.DNSUtil.RecordNumber} recordTypeNum DNS record type number.
  * @param {ArrayBuffer} dataSectionBinary Binary data of data section.
- * @param {DNSRecord} dnsRecord DNS packet to parse.
+ * @param {netdebugger.DNSRecord} dnsRecord DNS packet to parse.
  */
 netdebugger.DNSPacketDeserializer.prototype.parseDataSection = function(
                                                             recordTypeNum,
@@ -246,9 +246,9 @@ netdebugger.DNSPacketDeserializer.prototype.parseDataSection = function(
 /**
  * Parse a DNS name, which will either finish with a NULL byte or a suffix
  * reference (i.e., 0xc0 <ref>).
- * @param {ResponseLabelPointerManager} lblPtManager Reassemble compressed
+ * @param {netdebugger.ResponseLabelPointerManager} lblPtManager Reassemble compressed
  *                                                   DNS names.
- * @param {Deserializer} nameDeserializer Deserializer used to parse name.
+ * @param {netdebugger.Deserializer} nameDeserializer Deserializer used to parse name.
  * @return {string} Parsed and re-assembled DNS name.
  */
 netdebugger.DNSPacketDeserializer.prototype.parseName = function(lblPtManager,
@@ -288,7 +288,7 @@ netdebugger.DNSPacketDeserializer.prototype.parseName = function(lblPtManager,
 
 /**
  * Return the parsed DNS packet.
- * @return {DNSPacket} Parsed DNS packet with associated DNS records.
+ * @return {netdebugger.DNSPacket} Parsed DNS packet with associated DNS records.
  */
 netdebugger.DNSPacketDeserializer.prototype.getDeserializedPacket = function() {
   return this.deserializedPacket_;

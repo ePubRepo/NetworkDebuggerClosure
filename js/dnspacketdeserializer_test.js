@@ -8,9 +8,9 @@
 
 goog.provide('netdebugger.test.DNSPacketDeserializer');
 
+goog.require('goog.testing.jsunit');
 goog.require('netdebugger.DNSPacketDeserializer');
 goog.require('netdebugger.ResponseLabelPointerManager');
-goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('Tests for netdebugger.DNSPacketDeserializer');
 

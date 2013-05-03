@@ -8,10 +8,10 @@
 
 goog.provide('netdebugger.test.DNSPacket');
 
+goog.require('goog.testing.jsunit');
 goog.require('netdebugger.DNSPacket');
 goog.require('netdebugger.DNSRecordMX');
 goog.require('netdebugger.DNSUtil');
-goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('Tests for netdebugger.DNSPacket');
 

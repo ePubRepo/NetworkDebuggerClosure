@@ -14,7 +14,7 @@ goog.require('netdebugger.DNSRecord');
  * DNS A-record, storing the name, TTL, IP, etc..
  * @param {string} name Name of the A record.
  * @param {number} ttl Time to live.
- * @extends DNSRecord
+ * @extends netdebugger.DNSRecord
  * @constructor
  */
 netdebugger.DNSRecordA = function(name, ttl) {

@@ -8,10 +8,10 @@
 
 goog.provide('netdebugger.test.DNSInputHelper');
 
+goog.require('goog.testing.jsunit');
 goog.require('netdebugger.DNSInputHelper');
 goog.require('netdebugger.DNSUtil');
 goog.require('netdebugger.TestHelper');
-goog.require('goog.testing.jsunit');
 
 goog.setTestOnly('Tests for netdebugger.DNSInputHelper');
 

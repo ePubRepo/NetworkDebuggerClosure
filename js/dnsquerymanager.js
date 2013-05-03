@@ -20,7 +20,7 @@ goog.require('netdebugger.ResponseLabelPointerManager');
  * @param {string} hostname Hostname to lookup a record for.
  * @param {number} recordTypeNum Type of record to lookup.
  * @param {string} dnsServer Server to query against records.
- * @param {function(DNSQueryManager)} finalCallbackFnc Callback function run
+ * @param {function(netdebugger.DNSQueryManager)} finalCallbackFnc Callback function run
  *                                                     when query done.
  * @param {netdebugger.OutputRecordManager} outputRecordManager
  *                                                     Manage output logs.
@@ -87,7 +87,7 @@ netdebugger.DNSQueryManager.prototype.socketId_ = null;
 
 /**
  * Store log/record of technical details.
- * @type {OutputRecordManager}
+ * @type {netdebugger.OutputRecordManager}
  * @private
  */
 netdebugger.DNSQueryManager.prototype.outputRecordManager_ = null;
@@ -104,7 +104,7 @@ netdebugger.DNSQueryManager.prototype.socketInfo_ = null;
 
 /**
  * DNS Packet sent as a DNS query.
- * @type {DNSPacket}
+ * @type {netdebugger.DNSPacket}
  * @private
  */
 netdebugger.DNSQueryManager.prototype.queryPacket_ = null;
@@ -128,7 +128,7 @@ netdebugger.DNSQueryManager.prototype.serializedResponsePacket_ = null;
 
 /**
  * DNS packet received in response to the DNS query.
- * @type {DNSPacket}
+ * @type {netdebugger.DNSPacket}
  * @private
  */
 netdebugger.DNSQueryManager.prototype.responsePacket_ = null;
@@ -136,7 +136,7 @@ netdebugger.DNSQueryManager.prototype.responsePacket_ = null;
 
 /**
  * Function to be called when DNS query reaches an end.
- * @type {function(DNSQueryManager)}
+ * @type {function(netdebugger.DNSQueryManager)}
  * @private
  */
 netdebugger.DNSQueryManager.prototype.finalCallbackFnc_ = null;
@@ -144,7 +144,7 @@ netdebugger.DNSQueryManager.prototype.finalCallbackFnc_ = null;
 
 /**
  * Store the status of the DNS query.
- * @type {DNSQueryManager.QueryResultStatus} Status of the DNS query.
+ * @type {netdebugger.DNSQueryManager.QueryResultStatus} Status of the DNS query.
  * @private
  */
 netdebugger.DNSQueryManager.prototype.queryResultStatus_ = null;
@@ -152,7 +152,7 @@ netdebugger.DNSQueryManager.prototype.queryResultStatus_ = null;
 
 /**
  * Get the DNS packet returned in the query.
- * @return {DNSPacket} DNS packet returned in DNS query.
+ * @return {netdebugger.DNSPacket} DNS packet returned in DNS query.
  */
 netdebugger.DNSQueryManager.prototype.getResponsePacket = function() {
   return this.responsePacket_;
@@ -180,7 +180,7 @@ netdebugger.DNSQueryManager.prototype.setSerializedResponsePacket = function(dat
 
 /**
  * Return the output manager that records output logs on this DNS query.
- * @return {OutputRecordManager} Recorded information from DNS query.
+ * @return {netdebugger.OutputRecordManager} Recorded information from DNS query.
  */
 netdebugger.DNSQueryManager.prototype.getOutputRecordManager = function() {
   return this.outputRecordManager_;
@@ -216,15 +216,15 @@ netdebugger.DNSQueryManager.prototype.getFormattedHeader_ = function() {
  * After the query has returned serialized data, parse it.
  */
 netdebugger.DNSQueryManager.prototype.parsePacketFromSerializedData = function() {
-  var lblNameManager = new ResponseLabelPointerManager(
+  var lblNameManager = new netdebugger.ResponseLabelPointerManager(
       this.serializedResponsePacket_);
-  var packetDeserializer = new DNSPacketDeserializer(
+  var packetDeserializer = new netdebugger.DNSPacketDeserializer(
       this.serializedResponsePacket_,
       lblNameManager);
   packetDeserializer.deserializePacket();
   this.responsePacket_ = packetDeserializer.getDeserializedPacket();
 
-  this.outputRecordManager_.pushEntry(OutputRecord.DetailLevel.DEBUG,
+  this.outputRecordManager_.pushEntry(netdebugger.OutputRecord.DetailLevel.DEBUG,
       'Query response contains ' +
       this.responsePacket_.getAnswerRecordCount() + ' answer ' +
       'records');
@@ -241,7 +241,7 @@ netdebugger.DNSQueryManager.prototype.sendRequest = function() {
 
   /**
    * Perform clean up operation on the socket, such as closing it.
-   * @this {DNSQueryManager}
+   * @this {netdebugger.DNSQueryManager}
    * @private
    */
   function cleanUp_() {
@@ -257,7 +257,7 @@ netdebugger.DNSQueryManager.prototype.sendRequest = function() {
 
   /**
    * Clean up socket as no response is coming back.
-   * @this {DNSQueryManager}
+   * @this {netdebugger.DNSQueryManager}
    * @private
    */
   function timeout_() {
@@ -272,7 +272,7 @@ netdebugger.DNSQueryManager.prototype.sendRequest = function() {
 
   /**
    * @param {ReadInfo} readInfo Information about data read over the socket.
-   * @this {DNSQueryManager}
+   * @this {netdebugger.DNSQueryManager}
    * @see http://developer.chrome.com/apps/socket.html
    * @private
    */
@@ -293,7 +293,7 @@ netdebugger.DNSQueryManager.prototype.sendRequest = function() {
 
   /**
    * Read data over socket from DNS server.
-   * @this {DNSQueryManager}
+   * @this {netdebugger.DNSQueryManager}
    * @private
    */
   function readData_() {
@@ -304,7 +304,7 @@ netdebugger.DNSQueryManager.prototype.sendRequest = function() {
  /**
   * Receive and handle information about data written to DNS server.
   * @param {WriteInfo} writeInfo Information about data written over socket.
-  * @this {DNSQueryManager}
+  * @this {netdebugger.DNSQueryManager}
   * @see http://developer.chrome.com/apps/socket.html
   * @private
   */
@@ -324,7 +324,7 @@ netdebugger.DNSQueryManager.prototype.sendRequest = function() {
 
   /**
    * Send serialized UDP packet data composing a DNS request to DNS server.
-   * @this {DNSQueryManager}
+   * @this {netdebugger.DNSQueryManager}
    * @private
    */
   function sendData_() {
@@ -356,7 +356,7 @@ netdebugger.DNSQueryManager.prototype.sendRequest = function() {
   /**
    * Receive the result of a connection attempt.
    * @param {number} result Information about connected socket.
-   * @this {DNSQueryManager}
+   * @this {netdebugger.DNSQueryManager}
    * @private
    */
   function onConnectedCallback_(result) {
@@ -370,7 +370,7 @@ netdebugger.DNSQueryManager.prototype.sendRequest = function() {
 
   /**
    * Connect to the DNS server.
-   * @this {DNSQueryManager}
+   * @this {netdebugger.DNSQueryManager}
    * @private
    */
   function connect_() {
@@ -384,7 +384,7 @@ netdebugger.DNSQueryManager.prototype.sendRequest = function() {
   /**
    * Process information about a socket after creation.
    * @param {CreateInfo} createInfo CreateInfo about a socket.
-   * @this {DNSQueryManager}
+   * @this {netdebugger.DNSQueryManager}
    * @see http://developer.chrome.com/apps/socket.html
    * @private
    */
