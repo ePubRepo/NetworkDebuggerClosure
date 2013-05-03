@@ -6,22 +6,22 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.test.DNSRecordA');
+goog.provide('ndebug.test.DNSRecordA');
 
 goog.require('goog.testing.jsunit');
-goog.require('netdebugger.DNSRecordA');
-goog.require('netdebugger.DNSUtil');
+goog.require('ndebug.DNSRecordA');
+goog.require('ndebug.DNSUtil');
 
-goog.setTestOnly('Tests for netdebugger.DNSRecordA');
+goog.setTestOnly('Tests for ndebug.DNSRecordA');
 
 
 /**
  * Create objects for testing.
  */
 function setUp() {
-  myDnsRecordA1 = new netdebugger.DNSRecordA('t1.com', 555);
+  myDnsRecordA1 = new ndebug.DNSRecordA('t1.com', 555);
   myDnsRecordA1.setIp('98.76.54.32');
-  myDnsRecordA2 = new netdebugger.DNSRecordA('t2.com', 500);
+  myDnsRecordA2 = new ndebug.DNSRecordA('t2.com', 500);
   myDnsRecordA2.setIp('12.34.56.78');
 }
 
@@ -39,8 +39,8 @@ function testGetName() {
  * Test the getType() method.
  */
 function testGetType() {
-  assertEquals(netdebugger.DNSUtil.RecordNumber.A, myDnsRecordA1.getType());
-  assertEquals(netdebugger.DNSUtil.RecordNumber.A, myDnsRecordA2.getType());
+  assertEquals(ndebug.DNSUtil.RecordNumber.A, myDnsRecordA1.getType());
+  assertEquals(ndebug.DNSUtil.RecordNumber.A, myDnsRecordA2.getType());
 }
 
 

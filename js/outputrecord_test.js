@@ -6,10 +6,10 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.test.OutputRecord');
+goog.provide('ndebug.test.OutputRecord');
 
 goog.require('goog.testing.jsunit');
-goog.require('netdebugger.OutputRecord');
+goog.require('ndebug.OutputRecord');
 
 goog.setTestOnly('Tests for OutputRecord');
 
@@ -18,16 +18,16 @@ goog.setTestOnly('Tests for OutputRecord');
  * Create objects for testing.
  */
 function setUp() {
-  outputRecord1 = new netdebugger.OutputRecord(
-      netdebugger.OutputRecord.DetailLevel.ERROR, 'Message1');
-  outputRecord2 = new netdebugger.OutputRecord(
-      netdebugger.OutputRecord.DetailLevel.WARNING, 'Message2');
-  outputRecord3 = new netdebugger.OutputRecord(
-      netdebugger.OutputRecord.DetailLevel.INFO, 'Message3');
-  outputRecord4 = new netdebugger.OutputRecord(
-      netdebugger.OutputRecord.DetailLevel.DEBUG, 'Message4');
-  outputRecord5 = new netdebugger.OutputRecord(
-      netdebugger.OutputRecord.DetailLevel.TRACE, 'Message5');
+  outputRecord1 = new ndebug.OutputRecord(
+      ndebug.OutputRecord.DetailLevel.ERROR, 'Message1');
+  outputRecord2 = new ndebug.OutputRecord(
+      ndebug.OutputRecord.DetailLevel.WARNING, 'Message2');
+  outputRecord3 = new ndebug.OutputRecord(
+      ndebug.OutputRecord.DetailLevel.INFO, 'Message3');
+  outputRecord4 = new ndebug.OutputRecord(
+      ndebug.OutputRecord.DetailLevel.DEBUG, 'Message4');
+  outputRecord5 = new ndebug.OutputRecord(
+      ndebug.OutputRecord.DetailLevel.TRACE, 'Message5');
 }
 
 
@@ -49,15 +49,15 @@ function testGetTimestamp() {
  * Test the getLevel() thread.
  */
 function testGetLevel() {
-  assertEquals(netdebugger.OutputRecord.DetailLevel.ERROR,
+  assertEquals(ndebug.OutputRecord.DetailLevel.ERROR,
       outputRecord1.getLevel());
-  assertEquals(netdebugger.OutputRecord.DetailLevel.WARNING,
+  assertEquals(ndebug.OutputRecord.DetailLevel.WARNING,
       outputRecord2.getLevel());
-  assertEquals(netdebugger.OutputRecord.DetailLevel.INFO,
+  assertEquals(ndebug.OutputRecord.DetailLevel.INFO,
       outputRecord3.getLevel());
-  assertEquals(netdebugger.OutputRecord.DetailLevel.DEBUG,
+  assertEquals(ndebug.OutputRecord.DetailLevel.DEBUG,
       outputRecord4.getLevel());
-  assertEquals(netdebugger.OutputRecord.DetailLevel.TRACE,
+  assertEquals(ndebug.OutputRecord.DetailLevel.TRACE,
       outputRecord5.getLevel());
 }
 

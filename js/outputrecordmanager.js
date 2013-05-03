@@ -6,9 +6,9 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.OutputRecordManager');
+goog.provide('ndebug.OutputRecordManager');
 
-goog.require('netdebugger.OutputRecord');
+goog.require('ndebug.OutputRecord');
 
 /**
  * Receive output messages from one test and record it along with an associated
@@ -16,34 +16,34 @@ goog.require('netdebugger.OutputRecord');
  *
  * @constructor
  */
-netdebugger.OutputRecordManager = function() {
+ndebug.OutputRecordManager = function() {
   this.outputEntries_ = new Array();
 };
 
 
 /**
  * Store instances of OutputRecord.
- * @type Array.<netdebugger.OutputRecord>
+ * @type Array.<ndebug.OutputRecord>
  * @private
  */
-netdebugger.OutputRecordManager.prototype.outputEntries_ = null;
+ndebug.OutputRecordManager.prototype.outputEntries_ = null;
 
 
 /**
  * Push a message to the record.
- * @param {netdebugger.OutputRecord.DetailLevel} level Level of log information.
+ * @param {ndebug.OutputRecord.DetailLevel} level Level of log information.
  * @param {string} msg Message to be recorded.
  */
-netdebugger.OutputRecordManager.prototype.pushEntry = function(level, msg) {
-  var record = new netdebugger.OutputRecord(level, msg);
+ndebug.OutputRecordManager.prototype.pushEntry = function(level, msg) {
+  var record = new ndebug.OutputRecord(level, msg);
   this.outputEntries_.push(record);
 };
 
 
 /**
  * Return set of output entries.
- * @return {Array.<netdebugger.OutputRecord>} Set of output entries with log records.
+ * @return {Array.<ndebug.OutputRecord>} Set of output entries with log records.
  */
-netdebugger.OutputRecordManager.prototype.getOutputRecords = function() {
+ndebug.OutputRecordManager.prototype.getOutputRecords = function() {
   return this.outputEntries_;
 };

@@ -6,12 +6,12 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.test.Deserializer');
+goog.provide('ndebug.test.Deserializer');
 
 goog.require('goog.testing.jsunit');
-goog.require('netdebugger.Deserializer');
+goog.require('ndebug.Deserializer');
 
-goog.setTestOnly('Tests for netdebugger.Deserializer');
+goog.setTestOnly('Tests for ndebug.Deserializer');
 
 
 /**
@@ -33,7 +33,7 @@ function setUp() {
  * Test the ifEOF method.
  */
 function testIsEOF() {
-  var myDeserializer = new netdebugger.Deserializer(myUnit8Array);
+  var myDeserializer = new ndebug.Deserializer(myUnit8Array);
   for (var i = 0; i < 7; i++) {
     assertFalse(myDeserializer.isEOF());
     myDeserializer.getByte();
@@ -46,7 +46,7 @@ function testIsEOF() {
  * Test the slide method.
  */
 function testSlice() {
-  var myDeserializer = new netdebugger.Deserializer(myUnit8Array);
+  var myDeserializer = new ndebug.Deserializer(myUnit8Array);
   myDeserializer.getByte();
   var subArray = myDeserializer.slice(3);
   assertEquals(230, subArray[0]);
@@ -59,7 +59,7 @@ function testSlice() {
  * Test the byte method.
  */
 function testGetByte() {
-  var myDeserializer = new netdebugger.Deserializer(myUnit8Array);
+  var myDeserializer = new ndebug.Deserializer(myUnit8Array);
   assertEquals(12, myDeserializer.getByte());
   assertEquals(230, myDeserializer.getByte());
   assertEquals(233, myDeserializer.getByte());
@@ -74,7 +74,7 @@ function testGetByte() {
  * Test method to get next short.
  */
 function testGetShort() {
-  var myDeserializer = new netdebugger.Deserializer(myUnit8Array);
+  var myDeserializer = new ndebug.Deserializer(myUnit8Array);
   assertEquals(3302, myDeserializer.getShort());
   assertEquals(59671, myDeserializer.getShort());
 }
@@ -84,7 +84,7 @@ function testGetShort() {
  * Test the method to get the next long.
  */
 function testGetLong() {
-  var myDeserializer = new netdebugger.Deserializer(myUnit8Array);
+  var myDeserializer = new ndebug.Deserializer(myUnit8Array);
   assertEquals(216459543, myDeserializer.getLong());
 }
 
@@ -93,7 +93,7 @@ function testGetLong() {
  * Test the method to get the number of bytes read.
  */
 function testGetBytesRead() {
-  var myDeserializer = new netdebugger.Deserializer(myUnit8Array);
+  var myDeserializer = new ndebug.Deserializer(myUnit8Array);
   assertEquals(0, myDeserializer.getBytesRead());
   myDeserializer.getByte();
   assertEquals(1, myDeserializer.getBytesRead());
@@ -112,6 +112,6 @@ function testGetBytesRead() {
  * Test the method to get the total bytes.
  */
 function testGetTotalBytes() {
-  var myDeserializer = new netdebugger.Deserializer(myUnit8Array);
+  var myDeserializer = new ndebug.Deserializer(myUnit8Array);
   assertEquals(7, myDeserializer.getTotalBytes());
 }

@@ -6,15 +6,15 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.SocketInfo');
+goog.provide('ndebug.SocketInfo');
 
 /**
  * @param {number} id ID of Chrome socket.
- * @param {netdebugger.OutputRecordManager} outputRecordManager Manage and record socket
- *                                                  info.
+ * @param {ndebug.OutputRecordManager} outputRecordManager Manage and record
+ *                                                         socket info.
  * @constructor
  */
-netdebugger.SocketInfo = function(id, outputRecordManager) {
+ndebug.SocketInfo = function(id, outputRecordManager) {
   this.socketId_ = id;
   this.outputRecordManager_ = outputRecordManager;
 };
@@ -25,22 +25,22 @@ netdebugger.SocketInfo = function(id, outputRecordManager) {
  * @type {number}
  * @private
  */
-netdebugger.SocketInfo.prototype.socketId_ = null;
+ndebug.SocketInfo.prototype.socketId_ = null;
 
 
 /**
  * Object to manage output records from.
- * @type {netdebugger.OutputRecordManager}
+ * @type {ndebug.OutputRecordManager}
  * @private
  */
-netdebugger.SocketInfo.prototype.outputRecordManager_ = null;
+ndebug.SocketInfo.prototype.outputRecordManager_ = null;
 
 
 /**
  * Set the function to be used for console logging.
- * @param {netdebugger.OutputRecordManager} manager Object to record output information.
+ * @param {ndebug.OutputRecordManager} manager Object to record output info.
  */
-netdebugger.SocketInfo.prototype.setOutputRecordManager = function(manager) {
+ndebug.SocketInfo.prototype.setOutputRecordManager = function(manager) {
   this.outputRecordManager_ = manager;
 };
 
@@ -48,13 +48,13 @@ netdebugger.SocketInfo.prototype.setOutputRecordManager = function(manager) {
 /**
  * Record information about this socket to an available console function.
  */
-netdebugger.SocketInfo.prototype.recordSocketInfo = function() {
+ndebug.SocketInfo.prototype.recordSocketInfo = function() {
   var parseSocketInfo = function(socketInfo) {
     var strSocketInfo = 'A ' + socketInfo.socketType + ' connection from ' +
       socketInfo.localAddress + ':' + socketInfo.localPort + ' to ' +
       socketInfo.peerAddress + ':' + socketInfo.peerPort + ' now exists';
 
-    this.outputRecordManager_.pushEntry(netdebugger.OutputRecord.DetailLevel.DEBUG,
+    this.outputRecordManager_.pushEntry(ndebug.OutputRecord.DetailLevel.DEBUG,
                                         strSocketInfo);
   };
 

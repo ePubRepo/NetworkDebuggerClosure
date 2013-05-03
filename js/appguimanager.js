@@ -6,20 +6,20 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.AppGuiManager');
+goog.provide('ndebug.AppGuiManager');
 
-goog.require('netdebugger.TestConfigurationParser');
+goog.require('ndebug.TestConfigurationParser');
 
 /**
  * Abstract class to help manage GUI.
  */
-netdebugger.AppGuiManager = function() {};
+ndebug.AppGuiManager = function() {};
 
 
 /**
  * Run diagnostics currently selected by user.
  */
-netdebugger.AppGuiManager.runDiagnostics = function() {
+ndebug.AppGuiManager.runDiagnostics = function() {
   // Step 1: Determine Which Telnet Tests to Run
   if (document.getElementById('google-com-http-telnet').checked == true)
     gHttpBtnClick();
@@ -56,12 +56,12 @@ netdebugger.AppGuiManager.runDiagnostics = function() {
 /**
  * Toggle the GUI from basic mode to advanced options (and back).
  */
-netdebugger.AppGuiManager.toggleAdvancedOptions = function() {
+ndebug.AppGuiManager.toggleAdvancedOptions = function() {
   var toggleBtn = document.getElementById('advancedOptionsToggleBtn');
   if (toggleBtn.innerHTML == 'Customize Diagnostics' ||
       document.getElementById('overlay-window-frame').className ==
         'center-container display-full') {
-    netdebugger.AppGuiManager.hideLoadTestConfigurationsGui();
+    ndebug.AppGuiManager.hideLoadTestConfigurationsGui();
     document.getElementById('test-detailed-options').className =
       'center-container display-full';
     toggleBtn.innerHTML = 'Basic Mode';
@@ -76,7 +76,7 @@ netdebugger.AppGuiManager.toggleAdvancedOptions = function() {
 /**
  * Clear the output console.
  */
-netdebugger.AppGuiManager.consoleClearBtnClicked = function() {
+ndebug.AppGuiManager.consoleClearBtnClicked = function() {
   document.getElementById('console').value = '';
 };
 
@@ -84,7 +84,7 @@ netdebugger.AppGuiManager.consoleClearBtnClicked = function() {
 /**
  * Copy the contents of the output console to the clipboard.
  */
-netdebugger.AppGuiManager.consoleCopyBtnClicked = function() {
+ndebug.AppGuiManager.consoleCopyBtnClicked = function() {
   document.getElementById('console').select();
   document.execCommand('Copy');
 };
@@ -93,7 +93,7 @@ netdebugger.AppGuiManager.consoleCopyBtnClicked = function() {
 /**
  * Show the GUI to load test configurations.
  */
-netdebugger.AppGuiManager.showLoadTestConfigurationsGui = function() {
+ndebug.AppGuiManager.showLoadTestConfigurationsGui = function() {
   document.getElementById('overlay-window-frame').className =
     'center-container display-full';
   document.getElementById('test-config-input').focus();
@@ -104,7 +104,7 @@ netdebugger.AppGuiManager.showLoadTestConfigurationsGui = function() {
 /**
  * Hide the GUI to load test configurations.
  */
-netdebugger.AppGuiManager.hideLoadTestConfigurationsGui = function() {
+ndebug.AppGuiManager.hideLoadTestConfigurationsGui = function() {
   document.getElementById('overlay-window-frame').className = 'display-none';
   document.getElementById('page-contents').className =
     'center-container display-full';
@@ -115,7 +115,7 @@ netdebugger.AppGuiManager.hideLoadTestConfigurationsGui = function() {
  * Display information about error parsing configuration.
  * @param {string} error Text of parse error to display to user.
  */
-netdebugger.AppGuiManager.displayParseError = function(error) {
+ndebug.AppGuiManager.displayParseError = function(error) {
   document.getElementById('test-config-error').innerHTML = error;
   document.getElementById('test-config-error').className = 'display-full';
 };
@@ -124,11 +124,11 @@ netdebugger.AppGuiManager.displayParseError = function(error) {
 /**
  * Process inputed test configurations.
  */
-netdebugger.AppGuiManager.processInputTestConfigurations = function() {
+ndebug.AppGuiManager.processInputTestConfigurations = function() {
   document.getElementById('test-config-error').className = 'display-none';
   var rawInputText = document.getElementById('test-config-input').value;
-  var parser = new netdebugger.TestConfigurationParser(rawInputText);
-  parser.setErrorCallbackFnc(netdebugger.AppGuiManager.displayParseError);
+  var parser = new ndebug.TestConfigurationParser(rawInputText);
+  parser.setErrorCallbackFnc(ndebug.AppGuiManager.displayParseError);
   parser.parseInput();
 };
 
@@ -136,13 +136,13 @@ netdebugger.AppGuiManager.processInputTestConfigurations = function() {
 /**
  * Print output to page console.
  * @param {string} outStr Message to print to the console.
- * @param {netdebugger.OutputRecord.DetailLevel} logLevel Level of detail of log.
+ * @param {ndebug.OutputRecord.DetailLevel} logLevel Level of detail of log.
  * @param {number} timestamp Timestamp of log entry.
  */
-netdebugger.AppGuiManager.printOutputToScreenConsole = function(outStr,
+ndebug.AppGuiManager.printOutputToScreenConsole = function(outStr,
                                                     logLevel,
                                                     timestamp) {
-  netdebugger.AppGuiManager.hideLoadTestConfigurationsGui();
+  ndebug.AppGuiManager.hideLoadTestConfigurationsGui();
   var outputBoxClass = document.getElementById('test-output-area').className;
   if (document.getElementById('test-output-area').className !=
         'center-container display-full') {

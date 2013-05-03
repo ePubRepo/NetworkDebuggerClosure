@@ -6,13 +6,13 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.test.DNSPacketDeserializer');
+goog.provide('ndebug.test.DNSPacketDeserializer');
 
 goog.require('goog.testing.jsunit');
-goog.require('netdebugger.DNSPacketDeserializer');
-goog.require('netdebugger.ResponseLabelPointerManager');
+goog.require('ndebug.DNSPacketDeserializer');
+goog.require('ndebug.ResponseLabelPointerManager');
 
-goog.setTestOnly('Tests for netdebugger.DNSPacketDeserializer');
+goog.setTestOnly('Tests for ndebug.DNSPacketDeserializer');
 
 
 /**
@@ -146,8 +146,8 @@ function setUp() {
   myArrayBuffer[122] = 137;
   myArrayBuffer[123] = 139;
 
-  myLabelPointerManager = new netdebugger.ResponseLabelPointerManager(myArrayBuffer);
-  myDeserializer = new netdebugger.DNSPacketDeserializer(myArrayBuffer,
+  myLabelPointerManager = new ndebug.ResponseLabelPointerManager(myArrayBuffer);
+  myDeserializer = new ndebug.DNSPacketDeserializer(myArrayBuffer,
       myLabelPointerManager);
 }
 
@@ -165,8 +165,8 @@ function testDeserializePacket() {
   function testDnsRecord(record) {
     assertEquals('google.com', record.getName());
     assertEquals(267, record.getTTL());
-    assertEquals(netdebugger.DNSUtil.RecordNumber.A, record.getType());
+    assertEquals(ndebug.DNSUtil.RecordNumber.A, record.getType());
   }
 
-  myDnsPacket.eachRecord(netdebugger.DNSUtil.PacketSection.ANSWER, testDnsRecord);
+  myDnsPacket.eachRecord(ndebug.DNSUtil.PacketSection.ANSWER, testDnsRecord);
 }

@@ -6,17 +6,17 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.NetworkInterfaceInformation');
+goog.provide('ndebug.NetworkInterfaceInformation');
 
 /**
  * Capture information about currently running network interfaces.
- * @param {netdebugger.OutputRecordManager} outputRecordManager Manage output logs.
- * @param {function(netdebugger.OutputRecordManager)} completedCallbackFnc Function to
+ * @param {ndebug.OutputRecordManager} outputRecordManager Manage output logs.
+ * @param {function(ndebug.OutputRecordManager)} completedCallbackFnc Function to
  *                                          call when NIC information is
  *                                          populated.
  * @constructor
  */
-netdebugger.NetworkInterfaceInformation = function(outputRecordManager,
+ndebug.NetworkInterfaceInformation = function(outputRecordManager,
                                        completedCallbackFnc) {
   this.outputRecordManager_ = outputRecordManager;
   this.completedCallbackFnc_ = completedCallbackFnc;
@@ -25,24 +25,24 @@ netdebugger.NetworkInterfaceInformation = function(outputRecordManager,
 
 /**
  * Function to call upon completion of population of network interface info.
- * @type {function(netdebugger.OutputRecordManager)}
+ * @type {function(ndebug.OutputRecordManager)}
  * @private
  */
-netdebugger.NetworkInterfaceInformation.prototype.completedCallbackFnc_ = null;
+ndebug.NetworkInterfaceInformation.prototype.completedCallbackFnc_ = null;
 
 
 /**
  * Record output diagnostic information.
- * @type {netdebugger.OutputRecordManager}
+ * @type {ndebug.OutputRecordManager}
  * @private
  */
-netdebugger.NetworkInterfaceInformation.prototype.outputRecordManager_ = null;
+ndebug.NetworkInterfaceInformation.prototype.outputRecordManager_ = null;
 
 
 /**
  * Print NIC information to output record manager.
  */
-netdebugger.NetworkInterfaceInformation.prototype.getNicInformation = function() {
+ndebug.NetworkInterfaceInformation.prototype.getNicInformation = function() {
   var receiveNicInfo = function(info) {
     var strNicInfo = 'There are ' + info.length +
        ' network interfaces on this machine.\r\n';
@@ -53,7 +53,7 @@ netdebugger.NetworkInterfaceInformation.prototype.getNicInformation = function()
     }
     strNicInfo = strNicInfo.substring(0, strNicInfo.length - 2);
 
-    this.outputRecordManager_.pushEntry(netdebugger.OutputRecord.DetailLevel.INFO,
+    this.outputRecordManager_.pushEntry(ndebug.OutputRecord.DetailLevel.INFO,
         strNicInfo);
     this.completedCallbackFnc_(this.outputRecordManager_);
   };

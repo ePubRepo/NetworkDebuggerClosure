@@ -6,13 +6,13 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.Serializer');
+goog.provide('ndebug.Serializer');
 
 /**
  * Serializer writes an object data to an ArrayBuffer.
  * @constructor
  */
-netdebugger.Serializer = function() {
+ndebug.Serializer = function() {
   this.loc_ = 0;
   this.view_ = new Uint8Array(new ArrayBuffer(512));
 };
@@ -23,7 +23,7 @@ netdebugger.Serializer = function() {
  * @type {Unit8Array}
  * @private
  */
-netdebugger.Serializer.prototype.view_ = null;
+ndebug.Serializer.prototype.view_ = null;
 
 
 /**
@@ -31,7 +31,7 @@ netdebugger.Serializer.prototype.view_ = null;
  * @type {number}
  * @private
  */
-netdebugger.Serializer.prototype.loc_ = null;
+ndebug.Serializer.prototype.loc_ = null;
 
 
 /**
@@ -39,15 +39,15 @@ netdebugger.Serializer.prototype.loc_ = null;
  * @type {Unit8Array}
  * @private
  */
-netdebugger.Serializer.prototype.buffer_ = null;
+ndebug.Serializer.prototype.buffer_ = null;
 
 
 /**
  * Add a byte of data to the ArrayBuffer.
  * @param {number} b Byte of binary data to add to the ArrayBuffer.
- * @return {netdebugger.Serializer} This instance of a Serializer.
+ * @return {ndebug.Serializer} This instance of a Serializer.
  */
-netdebugger.Serializer.prototype.setByte = function(b) {
+ndebug.Serializer.prototype.setByte = function(b) {
   this.view_[this.loc_] = b;
   ++this.loc_;
   this.buffer_ = this.view_.buffer.slice(0, this.loc_);
@@ -58,9 +58,9 @@ netdebugger.Serializer.prototype.setByte = function(b) {
 /**
  * Add two bytes of data to an ArrayBuffer.
  * @param {number} b Two bytes of binary data to add to the ArrayBuffer.
- * @return {netdebugger.Serializer} This instance of a Serializer.
+ * @return {ndebug.Serializer} This instance of a Serializer.
  */
-netdebugger.Serializer.prototype.setShort = function(b) {
+ndebug.Serializer.prototype.setShort = function(b) {
   return this.setByte((b >> 8) & 0xff).setByte(b & 0xff);
 };
 
@@ -69,6 +69,6 @@ netdebugger.Serializer.prototype.setShort = function(b) {
  * Return serialized ArrayBuffer representation of an object.
  * @return {ArrayBuffer} ArrayBuffer representation of an object.
  */
-netdebugger.Serializer.prototype.getBuffer = function() {
+ndebug.Serializer.prototype.getBuffer = function() {
   return this.buffer_;
 };

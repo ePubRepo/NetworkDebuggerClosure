@@ -6,25 +6,25 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.test.DNSPacketSerializer');
+goog.provide('ndebug.test.DNSPacketSerializer');
 
 goog.require('goog.testing.jsunit');
-goog.require('netdebugger.DNSPacket');
-goog.require('netdebugger.DNSPacketSerializer');
-goog.require('netdebugger.DNSRecord');
-goog.require('netdebugger.DNSUtil');
+goog.require('ndebug.DNSPacket');
+goog.require('ndebug.DNSPacketSerializer');
+goog.require('ndebug.DNSRecord');
+goog.require('ndebug.DNSUtil');
 
-goog.setTestOnly('Tests for netdebugger.DNSPacketSerializer');
+goog.setTestOnly('Tests for ndebug.DNSPacketSerializer');
 
 
 /**
  * Create objects for testing.
  */
 function setUp() {
-  myDnsPacket = new netdebugger.DNSPacket(0x100);
-  myDnsPacket.push(netdebugger.DNSUtil.PacketSection.QUESTION,
-                   new netdebugger.DNSRecord('google.com',
-                       netdebugger.DNSUtil.RecordNumber.A,
+  myDnsPacket = new ndebug.DNSPacket(0x100);
+  myDnsPacket.push(ndebug.DNSUtil.PacketSection.QUESTION,
+                   new ndebug.DNSRecord('google.com',
+                       ndebug.DNSUtil.RecordNumber.A,
                                  1));
 }
 
@@ -33,7 +33,7 @@ function setUp() {
  * Test the testSerializePacket() method.
  */
 function testSerializePacket() {
-  var serializer = new netdebugger.DNSPacketSerializer(myDnsPacket);
+  var serializer = new ndebug.DNSPacketSerializer(myDnsPacket);
   var serializedQueryPacket = serializer.serialize();
   var queryAsArrayBuffer = new Uint8Array(serializedQueryPacket);
 

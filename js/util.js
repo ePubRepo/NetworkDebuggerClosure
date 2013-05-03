@@ -6,19 +6,19 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.Util');
+goog.provide('ndebug.Util');
 
 /**
  * Abstract class to provide various utilities to the app.
  */
-netdebugger.Util = function() {};
+ndebug.Util = function() {};
 
 /**
  * Array of hostnames to perform defaut tests on.
  */
-netdebugger.Util.hostnamesToTest = ['google.com', 'mail.google.com', 'docs.google.com',
-                        'accounts.google.com', 'apis.google.com',
-                        'drive.google.com'];
+ndebug.Util.hostnamesToTest = ['google.com', 'mail.google.com',
+                               'docs.google.com', 'accounts.google.com',
+                               'apis.google.com', 'drive.google.com'];
 
 /**
  * Convert a number from one base to another, often used to convert from
@@ -29,6 +29,6 @@ netdebugger.Util.hostnamesToTest = ['google.com', 'mail.google.com', 'docs.googl
  * @return {string} Number after conversion from the source base to
  *               the destination base.
  */
-netdebugger.Util.baseConversion = function(n, to, opt_from) {
+ndebug.Util.baseConversion = function(n, to, opt_from) {
   return parseInt(n, opt_from || 10).toString(to);
 };

@@ -6,10 +6,10 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.test.ResponseLabelPointerManager');
+goog.provide('ndebug.test.ResponseLabelPointerManager');
 
 goog.require('goog.testing.jsunit');
-goog.require('netdebugger.ResponseLabelPointerManager');
+goog.require('ndebug.ResponseLabelPointerManager');
 
 goog.setTestOnly('Tests for ResponseLabelPointerManager');
 
@@ -160,7 +160,7 @@ function setUp() {
 
 
 function testGetNameFromReference() {
-  var myLabelManager = new netdebugger.ResponseLabelPointerManager(myArray);
+  var myLabelManager = new ndebug.ResponseLabelPointerManager(myArray);
   assertEquals('google.com', myLabelManager.getNameFromReference(12));
   assertEquals('aspmx.l.google.com', myLabelManager.getNameFromReference(47));
 }

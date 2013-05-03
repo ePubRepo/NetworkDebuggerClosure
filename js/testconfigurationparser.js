@@ -6,11 +6,11 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.TestConfigurationParser');
+goog.provide('ndebug.TestConfigurationParser');
 
-goog.require('netdebugger.DNSQueryManager');
-goog.require('netdebugger.OutputRecordManager');
-goog.require('netdebugger.Telnet');
+goog.require('ndebug.DNSQueryManager');
+goog.require('ndebug.OutputRecordManager');
+goog.require('ndebug.Telnet');
 
 /*
 <tests>
@@ -35,7 +35,7 @@ goog.require('netdebugger.Telnet');
  *                               tests to parse.
  * @constructor
  */
-netdebugger.TestConfigurationParser = function(xmlStrToParse) {
+ndebug.TestConfigurationParser = function(xmlStrToParse) {
   this.xmlStr_ = xmlStrToParse;
   this.xmlParser_ = new DOMParser();
 };
@@ -45,7 +45,7 @@ netdebugger.TestConfigurationParser = function(xmlStrToParse) {
  * @type {string}
  * @private
  */
-netdebugger.TestConfigurationParser.prototype.xmlStr_ = null;
+ndebug.TestConfigurationParser.prototype.xmlStr_ = null;
 
 
 /**
@@ -54,7 +54,7 @@ netdebugger.TestConfigurationParser.prototype.xmlStr_ = null;
  * @type {function(string)}
  * @private
  */
-netdebugger.TestConfigurationParser.prototype.fncParseErrorCallback_ =
+ndebug.TestConfigurationParser.prototype.fncParseErrorCallback_ =
   function() {};
 
 
@@ -62,7 +62,7 @@ netdebugger.TestConfigurationParser.prototype.fncParseErrorCallback_ =
  * Set a function to be called upon parse error.
  * @param {function(string)} fnc Function to call upon parse error.
  */
-netdebugger.TestConfigurationParser.prototype.setErrorCallbackFnc =
+ndebug.TestConfigurationParser.prototype.setErrorCallbackFnc =
   function(fnc) {
   this.fncParseErrorCallback_ = fnc;
 };
@@ -72,14 +72,14 @@ netdebugger.TestConfigurationParser.prototype.setErrorCallbackFnc =
  * @type {DOMParser}
  * @private
  */
-netdebugger.TestConfigurationParser.prototype.xmlParser_ = null;
+ndebug.TestConfigurationParser.prototype.xmlParser_ = null;
 
 
 /**
  * Parse string into tests and execute them.
  * @return {null} Null value to break execution flow upon error.
  */
-netdebugger.TestConfigurationParser.prototype.parseInput = function() {
+ndebug.TestConfigurationParser.prototype.parseInput = function() {
   var doc = this.xmlParser_.parseFromString(
       this.xmlStr_, 'application/xml');
 
@@ -140,7 +140,7 @@ netdebugger.TestConfigurationParser.prototype.parseInput = function() {
  * Parse a DNS test, validating input and, if appropriate, executing test.
  * @param {DOMElement} test DNS query parameters for a DNS test.
  */
-netdebugger.TestConfigurationParser.prototype.parseDnsTestConfig =
+ndebug.TestConfigurationParser.prototype.parseDnsTestConfig =
   function(test) {
   if (test.childNodes.length != 3) {
     this.fncParseErrorCallback_('error - not proper field count');
@@ -162,9 +162,9 @@ netdebugger.TestConfigurationParser.prototype.parseDnsTestConfig =
   var hostname = test.getElementsByTagName('hostname')[0].textContent;
   var resolver = test.getElementsByTagName('resolver')[0].textContent;
 
-  var outputRecordManager = new netdebugger.OutputRecordManager();
-  var gDnsQuery = new netdebugger.DNSQueryManager(hostname,
-      netdebugger.DNSUtil.getRecordTypeNumByRecordTypeName(recordTypeName),
+  var outputRecordManager = new ndebug.OutputRecordManager();
+  var gDnsQuery = new ndebug.DNSQueryManager(hostname,
+      ndebug.DNSUtil.getRecordTypeNumByRecordTypeName(recordTypeName),
       resolver,
       finishedDnsFnc,
       outputRecordManager);
@@ -176,7 +176,7 @@ netdebugger.TestConfigurationParser.prototype.parseDnsTestConfig =
  * Parse a Telnet test, validating input and, if appropriate, executing test.
  * @param {DOMElement} test Telnet query parameters for a Telnet test.
  */
-netdebugger.TestConfigurationParser.prototype.parseTelnetTestConfig =
+ndebug.TestConfigurationParser.prototype.parseTelnetTestConfig =
   function(test) {
   if (test.childNodes.length != 2) {
     this.fncParseErrorCallback_('error - invalid number of telnet parameters');
@@ -192,8 +192,8 @@ netdebugger.TestConfigurationParser.prototype.parseTelnetTestConfig =
 
   var host = test.getElementsByTagName('host')[0].textContent;
   var port = Number(test.getElementsByTagName('port')[0].textContent);
-  var outputRecordManager = new netdebugger.OutputRecordManager();
-  var objTelnet = new netdebugger.Telnet(host, port, outputRecordManager);
+  var outputRecordManager = new ndebug.OutputRecordManager();
+  var objTelnet = new ndebug.Telnet(host, port, outputRecordManager);
   objTelnet.
       setPlainTextDataToSend('GET / HTTP/1.1\r\nHost: ' +
           host + '\r\n\r\n');

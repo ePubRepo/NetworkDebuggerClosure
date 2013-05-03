@@ -6,38 +6,38 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.DNSPacketSerializer');
+goog.provide('ndebug.DNSPacketSerializer');
 
-goog.require('netdebugger.Serializer');
+goog.require('ndebug.Serializer');
 
 /**
  * Serialize a DNS packet to be sent over the socket.
- * @param {netdebugger.DNSPacket} dnsPacket The DNS packet to be serialized.
+ * @param {ndebug.DNSPacket} dnsPacket The DNS packet to be serialized.
  * @constructor
  */
-netdebugger.DNSPacketSerializer = function(dnsPacket) {
+ndebug.DNSPacketSerializer = function(dnsPacket) {
   this.dnsPacket_ = dnsPacket;
 };
 
 
 /**
  * DNS packet to be serialized.
- * @type {netdebugger.DNSPacket}
+ * @type {ndebug.DNSPacket}
  * @private
  */
-netdebugger.DNSPacketSerializer.prototype.dnsPacket_ = null;
+ndebug.DNSPacketSerializer.prototype.dnsPacket_ = null;
 
 
 /**
  * Serialize the DNS packet.
  * @return {ArrayBuffer} Serialized DNS packet.
  */
-netdebugger.DNSPacketSerializer.prototype.serialize = function() {
-  var dataSerializer = new netdebugger.Serializer();
-  var arrPacketSections = [netdebugger.DNSUtil.PacketSection.QUESTION,
-                           netdebugger.DNSUtil.PacketSection.ANSWER,
-                           netdebugger.DNSUtil.PacketSection.AUTHORITY,
-                           netdebugger.DNSUtil.PacketSection.ADDITIONAL];
+ndebug.DNSPacketSerializer.prototype.serialize = function() {
+  var dataSerializer = new ndebug.Serializer();
+  var arrPacketSections = [ndebug.DNSUtil.PacketSection.QUESTION,
+                           ndebug.DNSUtil.PacketSection.ANSWER,
+                           ndebug.DNSUtil.PacketSection.AUTHORITY,
+                           ndebug.DNSUtil.PacketSection.ADDITIONAL];
 
   dataSerializer.setShort(0).setShort(this.dnsPacket_.getFlags());
 
@@ -63,13 +63,13 @@ netdebugger.DNSPacketSerializer.prototype.serialize = function() {
  * byte.
  *
  * @param {string} dnsName A DNS name such as "mail.google.com".
- * @param {netdebugger.Serializer} dnsSerializer Data serializer being used to serialize
+ * @param {ndebug.Serializer} dnsSerializer Data serializer being used to serialize
  *                                   a DNS packet.
  * @param {number} opt_ref Packet location of DNS name being referenced.
  *                            See Section 4.1.4 of RFC 1035.
- * @return {netdebugger.Serializer} This instance of a Serializer.
+ * @return {ndebug.Serializer} This instance of a Serializer.
  */
-netdebugger.DNSPacketSerializer.prototype.serializeName = function(dnsName,
+ndebug.DNSPacketSerializer.prototype.serializeName = function(dnsName,
                                                        dnsSerializer,
                                                        opt_ref) {
   var parts = dnsName.split('.');

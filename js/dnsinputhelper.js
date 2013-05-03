@@ -7,16 +7,16 @@
  */
 
 
-goog.provide('netdebugger.DNSInputHelper');
+goog.provide('ndebug.DNSInputHelper');
 
-goog.require('netdebugger.DNSUtil');
+goog.require('ndebug.DNSUtil');
 
 
 /**
  * Assist with handeling DNS input from the App.
  * @constructor
  */
-netdebugger.DNSInputHelper = function() {};
+ndebug.DNSInputHelper = function() {};
 
 
 /**
@@ -24,7 +24,7 @@ netdebugger.DNSInputHelper = function() {};
  * @type {string}
  * @private
  */
-netdebugger.DNSInputHelper.prototype.domIdDnsHostname_ = 'dnsHostname';
+ndebug.DNSInputHelper.prototype.domIdDnsHostname_ = 'dnsHostname';
 
 
 /**
@@ -32,7 +32,7 @@ netdebugger.DNSInputHelper.prototype.domIdDnsHostname_ = 'dnsHostname';
  * @type {string}
  * @private
  */
-netdebugger.DNSInputHelper.prototype.domIdDnsRecordType_ = 'dnsRecordType';
+ndebug.DNSInputHelper.prototype.domIdDnsRecordType_ = 'dnsRecordType';
 
 
 /**
@@ -40,7 +40,7 @@ netdebugger.DNSInputHelper.prototype.domIdDnsRecordType_ = 'dnsRecordType';
  * @type {string}
  * @private
  */
-netdebugger.DNSInputHelper.prototype.domIdDnsCustomResolverIp_ = 'dnsResolver';
+ndebug.DNSInputHelper.prototype.domIdDnsCustomResolverIp_ = 'dnsResolver';
 
 
 /**
@@ -48,7 +48,7 @@ netdebugger.DNSInputHelper.prototype.domIdDnsCustomResolverIp_ = 'dnsResolver';
  * @return {boolean} True if the hostname is valid.
  */
 //TODO: Substitute in a regular expression
-netdebugger.DNSInputHelper.prototype.isValidHostnameEntered = function() {
+ndebug.DNSInputHelper.prototype.isValidHostnameEntered = function() {
   var hostname = document.getElementById(this.domIdDnsHostname_).value;
   return (hostname.length >= 3 && hostname.indexOf('.') != -1);
 };
@@ -58,7 +58,7 @@ netdebugger.DNSInputHelper.prototype.isValidHostnameEntered = function() {
  * Obtain the hostname the user provided for lookup.
  * @return {string} Hostname user provided.
  */
-netdebugger.DNSInputHelper.prototype.getHostnameEntered = function() {
+ndebug.DNSInputHelper.prototype.getHostnameEntered = function() {
   return document.getElementById(this.domIdDnsHostname_).value;
 };
 
@@ -67,7 +67,7 @@ netdebugger.DNSInputHelper.prototype.getHostnameEntered = function() {
  * Obtain the DNS resolver IP the user wishes to use for lookups.
  * @return {boolean} True if the ip is valid.
  */
-netdebugger.DNSInputHelper.prototype.isValidCustomResolverIpEntered = function() {
+ndebug.DNSInputHelper.prototype.isValidCustomResolverIpEntered = function() {
   //TODO: implement this in future versions
   var ip = document.getElementById(this.domIdDnsCustomResolverIp_).value;
   return true;
@@ -78,7 +78,7 @@ netdebugger.DNSInputHelper.prototype.isValidCustomResolverIpEntered = function()
  * Obtain the hostname the user provided for lookup.
  * @return {string} User provided resolver IP.
  */
-netdebugger.DNSInputHelper.prototype.getCustomResolverIp = function() {
+ndebug.DNSInputHelper.prototype.getCustomResolverIp = function() {
   return document.getElementById(this.domIdDnsCustomResolverIp_).value;
 };
 
@@ -87,7 +87,7 @@ netdebugger.DNSInputHelper.prototype.getCustomResolverIp = function() {
  * Obtain the DNS record type number the user wishes to lookup.
  * @return {number} DNS record type number.
  */
-netdebugger.DNSInputHelper.prototype.getRecordType = function() {
+ndebug.DNSInputHelper.prototype.getRecordType = function() {
   var recordTypeName = document.getElementById(this.domIdDnsRecordType_).value;
-  return netdebugger.DNSUtil.getRecordTypeNumByRecordTypeName(recordTypeName);
+  return ndebug.DNSUtil.getRecordTypeNumByRecordTypeName(recordTypeName);
 };

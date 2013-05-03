@@ -6,19 +6,19 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.test.Serializer');
+goog.provide('ndebug.test.Serializer');
 
 goog.require('goog.testing.jsunit');
-goog.require('netdebugger.Serializer');
+goog.require('ndebug.Serializer');
 
-goog.setTestOnly('Tests for netdebugger.Serializer');
+goog.setTestOnly('Tests for ndebug.Serializer');
 
 
 /**
  * Test method to add bytes for serialization.
  */
 function testSetByte() {
-  var mySerializer = new netdebugger.Serializer();
+  var mySerializer = new ndebug.Serializer();
   mySerializer.setByte(123);
   mySerializer.setByte(1);
   mySerializer.setByte(43);
@@ -37,7 +37,7 @@ function testSetByte() {
  * Test method to add shorts for serialization.
  */
 function testSetShort() {
-  var mySerializer = new netdebugger.Serializer();
+  var mySerializer = new ndebug.Serializer();
   mySerializer.setShort(294);
   mySerializer.setShort(510);
   mySerializer.setShort(411);
@@ -56,7 +56,7 @@ function testSetShort() {
  * Test method to get array buffer.
  */
 function testGetBuffer() {
-  var mySerializer = new netdebugger.Serializer();
+  var mySerializer = new ndebug.Serializer();
   mySerializer.setByte(1);
   mySerializer.setByte(123);
   mySerializer.setByte(43);

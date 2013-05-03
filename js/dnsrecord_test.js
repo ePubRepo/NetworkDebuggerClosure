@@ -6,23 +6,23 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.test.DNSRecord');
+goog.provide('ndebug.test.DNSRecord');
 
 goog.require('goog.testing.jsunit');
-goog.require('netdebugger.DNSRecord');
-goog.require('netdebugger.DNSUtil');
+goog.require('ndebug.DNSRecord');
+goog.require('ndebug.DNSUtil');
 
-goog.setTestOnly('Tests for netdebugger.DNSRecord');
+goog.setTestOnly('Tests for ndebug.DNSRecord');
 
 
 /**
  * Create objects for testing.
  */
 function setUp() {
-  myDnsRecordA = new netdebugger.DNSRecord('t.com', netdebugger.DNSUtil.RecordNumber.A, 1, 555);
-  myDnsRecordAAAA = new netdebugger.DNSRecord('t.com', netdebugger.DNSUtil.RecordNumber.AAAA, 1, 550);
-  myDnsRecordCNAME = new netdebugger.DNSRecord('t.com', netdebugger.DNSUtil.RecordNumber.CNAME, 1, 525);
-  myDnsRecordMX = new netdebugger.DNSRecord('t.com', netdebugger.DNSUtil.RecordNumber.MX, 1, 500);
+  myDnsRecordA = new ndebug.DNSRecord('t.com', ndebug.DNSUtil.RecordNumber.A, 1, 555);
+  myDnsRecordAAAA = new ndebug.DNSRecord('t.com', ndebug.DNSUtil.RecordNumber.AAAA, 1, 550);
+  myDnsRecordCNAME = new ndebug.DNSRecord('t.com', ndebug.DNSUtil.RecordNumber.CNAME, 1, 525);
+  myDnsRecordMX = new ndebug.DNSRecord('t.com', ndebug.DNSUtil.RecordNumber.MX, 1, 500);
 }
 
 
@@ -41,10 +41,10 @@ function testGetName() {
  * Test the getType() method.
  */
 function testGetType() {
-  assertEquals(netdebugger.DNSUtil.RecordNumber.A, myDnsRecordA.getType());
-  assertEquals(netdebugger.DNSUtil.RecordNumber.AAAA, myDnsRecordAAAA.getType());
-  assertEquals(netdebugger.DNSUtil.RecordNumber.CNAME, myDnsRecordCNAME.getType());
-  assertEquals(netdebugger.DNSUtil.RecordNumber.MX, myDnsRecordMX.getType());
+  assertEquals(ndebug.DNSUtil.RecordNumber.A, myDnsRecordA.getType());
+  assertEquals(ndebug.DNSUtil.RecordNumber.AAAA, myDnsRecordAAAA.getType());
+  assertEquals(ndebug.DNSUtil.RecordNumber.CNAME, myDnsRecordCNAME.getType());
+  assertEquals(ndebug.DNSUtil.RecordNumber.MX, myDnsRecordMX.getType());
 }
 
 

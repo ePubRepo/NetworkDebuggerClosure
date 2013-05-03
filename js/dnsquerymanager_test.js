@@ -6,12 +6,12 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.test.DNSQueryManager');
+goog.provide('ndebug.test.DNSQueryManager');
 
 goog.require('goog.testing.jsunit');
-goog.require('netdebugger.DNSQueryManager');
-goog.require('netdebugger.DNSUtil');
-goog.require('netdebugger.OutputRecordManager');
+goog.require('ndebug.DNSQueryManager');
+goog.require('ndebug.DNSUtil');
+goog.require('ndebug.OutputRecordManager');
 
 goog.setTestOnly('Tests for DNSQueryManager');
 
@@ -21,9 +21,9 @@ goog.setTestOnly('Tests for DNSQueryManager');
  */
 function setUp() {
   function callback() {}
-  myOutputRecordManager = new netdebugger.OutputRecordManager();
-  myQueryManager1 = new netdebugger.DNSQueryManager('google.com',
-      netdebugger.DNSUtil.RecordNumber.A, '8.8.8.8', callback, myOutputRecordManager);
+  myOutputRecordManager = new ndebug.OutputRecordManager();
+  myQueryManager1 = new ndebug.DNSQueryManager('google.com',
+      ndebug.DNSUtil.RecordNumber.A, '8.8.8.8', callback, myOutputRecordManager);
 }
 
 

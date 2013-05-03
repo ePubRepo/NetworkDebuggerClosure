@@ -6,7 +6,7 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.DNSRecord');
+goog.provide('ndebug.DNSRecord');
 
 /**
  * DNSRecord is a record inside a DNS packet; e.g. a QUESTION, or an ANSWER,
@@ -21,7 +21,7 @@ goog.provide('netdebugger.DNSRecord');
  *                                          extra data (optional).
  * @constructor
  */
-netdebugger.DNSRecord = function(name, type, cl, opt_ttl, opt_data) {
+ndebug.DNSRecord = function(name, type, cl, opt_ttl, opt_data) {
   this.name_ = name;
   this.type_ = type;
   this.cl_ = cl;
@@ -38,7 +38,7 @@ netdebugger.DNSRecord = function(name, type, cl, opt_ttl, opt_data) {
  * @type {string}
  * @protected
  */
-netdebugger.DNSRecord.prototype.name_ = null;
+ndebug.DNSRecord.prototype.name_ = null;
 
 
 /**
@@ -47,7 +47,7 @@ netdebugger.DNSRecord.prototype.name_ = null;
  * @see Section 3.2.2. of RFC 1035.
  * @protected
  */
-netdebugger.DNSRecord.prototype.type_ = null;
+ndebug.DNSRecord.prototype.type_ = null;
 
 
 /**
@@ -56,17 +56,17 @@ netdebugger.DNSRecord.prototype.type_ = null;
  * @see Section 3.2.2. of RFC 1035.
  * @protected
  */
-netdebugger.DNSRecord.prototype.cl_ = null;
+ndebug.DNSRecord.prototype.cl_ = null;
 
 
 /**
  * Label pointer manager that keeps track of entire DNS packet, so labels
  * and names can be reassembled from DNS compression.
- * @type {netdebugger.ResponseLabelPointerManager}
+ * @type {ndebug.ResponseLabelPointerManager}
  * @see Section 4.1.4 of RFC 1035.
  * @private
  */
-netdebugger.DNSRecord.prototype.lblPointManager_ = null;
+ndebug.DNSRecord.prototype.lblPointManager_ = null;
 
 
 /**
@@ -74,7 +74,7 @@ netdebugger.DNSRecord.prototype.lblPointManager_ = null;
  * @type {ArrayBuffer}
  * @private
  */
-netdebugger.DNSRecord.prototype.data_ = null;
+ndebug.DNSRecord.prototype.data_ = null;
 
 
 /**
@@ -82,15 +82,15 @@ netdebugger.DNSRecord.prototype.data_ = null;
  * @type {string}
  * @private
  */
-netdebugger.DNSRecord.prototype.dataTxt_ = null;
+ndebug.DNSRecord.prototype.dataTxt_ = null;
 
 
 /**
  * Set the label pointer manager for the DNS packet to which the record belongs.
- * @param {netdebugger.ResponseLabelPointerManager} obj Label manager to help reassemble
+ * @param {ndebug.ResponseLabelPointerManager} obj Label manager to help reassemble
  *                                          DNS packet data.
  */
-netdebugger.DNSRecord.prototype.setLblPointManager = function(obj) {
+ndebug.DNSRecord.prototype.setLblPointManager = function(obj) {
   this.lblPointManager_ = obj;
 };
 
@@ -99,7 +99,7 @@ netdebugger.DNSRecord.prototype.setLblPointManager = function(obj) {
  * Obtain the DNS name of the DNS record.
  * @return {string} DNS name.
  */
-netdebugger.DNSRecord.prototype.getName = function() {
+ndebug.DNSRecord.prototype.getName = function() {
   return this.name_;
 };
 
@@ -108,7 +108,7 @@ netdebugger.DNSRecord.prototype.getName = function() {
  * Obtain the DNS record type number.
  * @return {number} DNS record type number.
  */
-netdebugger.DNSRecord.prototype.getType = function() {
+ndebug.DNSRecord.prototype.getType = function() {
   return this.type_;
 };
 
@@ -117,7 +117,7 @@ netdebugger.DNSRecord.prototype.getType = function() {
  * Obtain a text processed versino of the data section.
  * @return {string} Text representation of the data section of the DNS record.
  */
-netdebugger.DNSRecord.prototype.getDataText = function() {
+ndebug.DNSRecord.prototype.getDataText = function() {
   return this.dataTxt_;
 };
 
@@ -126,7 +126,7 @@ netdebugger.DNSRecord.prototype.getDataText = function() {
  * Return the TTL of the DNS record.
  * @return {number} TTL of DNS record.
  */
-netdebugger.DNSRecord.prototype.getTTL = function() {
+ndebug.DNSRecord.prototype.getTTL = function() {
   return this.ttl_;
 };
 
@@ -135,6 +135,6 @@ netdebugger.DNSRecord.prototype.getTTL = function() {
  * Set a text representation of the DNS packet's data section.
  * @param {string} dataStr Text representation of data section.
  */
-netdebugger.DNSRecord.prototype.setData = function(dataStr) {
+ndebug.DNSRecord.prototype.setData = function(dataStr) {
   this.dataTxt_ = dataStr;
 };

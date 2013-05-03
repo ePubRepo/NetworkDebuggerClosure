@@ -6,15 +6,15 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.test.Util');
+goog.provide('ndebug.test.Util');
 
 goog.require('goog.testing.jsunit');
-goog.require('netdebugger.Util');
+goog.require('ndebug.Util');
 
 goog.setTestOnly('Tests for Util');
 
 
 function testBaseConversion() {
-  assertEquals('10', netdebugger.Util.baseConversion(2, 2));
-  assertEquals('100', netdebugger.Util.baseConversion(4, 2));
+  assertEquals('10', ndebug.Util.baseConversion(2, 2));
+  assertEquals('100', ndebug.Util.baseConversion(4, 2));
 }

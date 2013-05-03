@@ -6,24 +6,24 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.DNSRecordA');
+goog.provide('ndebug.DNSRecordA');
 
-goog.require('netdebugger.DNSRecord');
+goog.require('ndebug.DNSRecord');
 
 /**
  * DNS A-record, storing the name, TTL, IP, etc..
  * @param {string} name Name of the A record.
  * @param {number} ttl Time to live.
- * @extends netdebugger.DNSRecord
+ * @extends ndebug.DNSRecord
  * @constructor
  */
-netdebugger.DNSRecordA = function(name, ttl) {
+ndebug.DNSRecordA = function(name, ttl) {
   this.name_ = name;
-  this.type_ = netdebugger.DNSUtil.RecordNumber.A;
+  this.type_ = ndebug.DNSUtil.RecordNumber.A;
   this.cl_ = 1;
   this.ttl_ = ttl;
 };
-goog.inherits(netdebugger.DNSRecordA, netdebugger.DNSRecord);
+goog.inherits(ndebug.DNSRecordA, ndebug.DNSRecord);
 
 
 /**
@@ -31,14 +31,14 @@ goog.inherits(netdebugger.DNSRecordA, netdebugger.DNSRecord);
  * @type {string}
  * @private
  */
-netdebugger.DNSRecordA.prototype.ip_ = null;
+ndebug.DNSRecordA.prototype.ip_ = null;
 
 
 /**
  * Set the IPv4 address of the record.
  * @param {string} ip IPv4 address.
  */
-netdebugger.DNSRecordA.prototype.setIp = function(ip) {
+ndebug.DNSRecordA.prototype.setIp = function(ip) {
   this.ip_ = ip;
 };
 
@@ -47,6 +47,6 @@ netdebugger.DNSRecordA.prototype.setIp = function(ip) {
  * Return the IPv4 address pointed to by this A record.
  * @return {string} IPv4 address.
  */
-netdebugger.DNSRecordA.prototype.getIp = function() {
+ndebug.DNSRecordA.prototype.getIp = function() {
   return this.ip_;
 };

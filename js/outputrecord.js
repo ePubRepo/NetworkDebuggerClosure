@@ -6,16 +6,16 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.OutputRecord');
+goog.provide('ndebug.OutputRecord');
 
 /**
  * Store a log output from a test along with a timestamp and log level.
  *
- * @param {netdebugger.OutputRecord.DetailLevel} level Level of output record.
+ * @param {ndebug.OutputRecord.DetailLevel} level Level of output record.
  * @param {string} message Message to be recorded.
  * @constructor
  */
-netdebugger.OutputRecord = function(level, message) {
+ndebug.OutputRecord = function(level, message) {
   this.timestamp_ = (new Date()).getTime();
   this.level_ = level;
   this.message_ = message;
@@ -26,7 +26,7 @@ netdebugger.OutputRecord = function(level, message) {
  * Enum for the level of output log information corresponding with a message.
  * @enum {number}
  */
-netdebugger.OutputRecord.DetailLevel = {
+ndebug.OutputRecord.DetailLevel = {
   ERROR: 0,
   WARNING: 1,
   INFO: 2,
@@ -40,15 +40,15 @@ netdebugger.OutputRecord.DetailLevel = {
  * @type {number}
  * @private
  */
-netdebugger.OutputRecord.prototype.timestamp_ = null;
+ndebug.OutputRecord.prototype.timestamp_ = null;
 
 
 /**
  * Detail level of output message.
- * @type {netdebugger.OutputRecord.DetailLevel}
+ * @type {ndebug.OutputRecord.DetailLevel}
  * @private
  */
-netdebugger.OutputRecord.prototype.level_ = null;
+ndebug.OutputRecord.prototype.level_ = null;
 
 
 /**
@@ -56,23 +56,23 @@ netdebugger.OutputRecord.prototype.level_ = null;
  * @type {string}
  * @private
  */
-netdebugger.OutputRecord.prototype.message_ = null;
+ndebug.OutputRecord.prototype.message_ = null;
 
 
 /**
  * Return the timestamp of the record.
  * @return {number} Timestamp of record entry.
  */
-netdebugger.OutputRecord.prototype.getTimestamp = function() {
+ndebug.OutputRecord.prototype.getTimestamp = function() {
   return this.timestamp_;
 };
 
 
 /**
  * Return the log level for this record entry.
- * @return {netdebugger.OutputRecord.DetailLevel} Level of log entry.
+ * @return {ndebug.OutputRecord.DetailLevel} Level of log entry.
  */
-netdebugger.OutputRecord.prototype.getLevel = function() {
+ndebug.OutputRecord.prototype.getLevel = function() {
   return this.level_;
 };
 
@@ -81,6 +81,6 @@ netdebugger.OutputRecord.prototype.getLevel = function() {
  * Return log message.
  * @return {string} Log message.
  */
-netdebugger.OutputRecord.prototype.getMessage = function() {
+ndebug.OutputRecord.prototype.getMessage = function() {
   return this.message_;
 };

@@ -6,10 +6,10 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.ResponseLabelPointerManager');
+goog.provide('ndebug.ResponseLabelPointerManager');
 
-goog.require('netdebugger.DNSPacketDeserializer');
-goog.require('netdebugger.Deserializer');
+goog.require('ndebug.DNSPacketDeserializer');
+goog.require('ndebug.Deserializer');
 
 /**
  * ResponseLabelPointerManager handles DNS's name compression and labeling,
@@ -20,7 +20,7 @@ goog.require('netdebugger.Deserializer');
  * @see  RFC 1035 section 4.1.4.
  * @constructor
  */
-netdebugger.ResponseLabelPointerManager = function(arg) {
+ndebug.ResponseLabelPointerManager = function(arg) {
   if (arg instanceof Uint8Array) {
     this.view_ = arg;
   } else {
@@ -34,7 +34,7 @@ netdebugger.ResponseLabelPointerManager = function(arg) {
  * @type {Uint8Array}
  * @private
  */
-netdebugger.ResponseLabelPointerManager.prototype.view_ = null;
+ndebug.ResponseLabelPointerManager.prototype.view_ = null;
 
 
 /**
@@ -44,14 +44,15 @@ netdebugger.ResponseLabelPointerManager.prototype.view_ = null;
  * @param {number} ref Offset number of byte containing full name.
  * @return {string} Reassembled DNS name.
  */
-netdebugger.ResponseLabelPointerManager.prototype.getNameFromReference =
+ndebug.ResponseLabelPointerManager.prototype.getNameFromReference =
   function(ref) {
   // Array Buffer containing data from the beginning offset to the end
   var subArrayBuffer = this.view_.subarray(ref);
 
   // Reassemble name from reference in DNS packet
-  var subPacketDeserializer = new netdebugger.DNSPacketDeserializer(subArrayBuffer, this);
-  var sectionDeserializer = new netdebugger.Deserializer(subArrayBuffer);
+  var subPacketDeserializer = new ndebug.DNSPacketDeserializer(subArrayBuffer,
+                                                               this);
+  var sectionDeserializer = new ndebug.Deserializer(subArrayBuffer);
   var subName = subPacketDeserializer.parseName(this, sectionDeserializer);
   return subName;
 };

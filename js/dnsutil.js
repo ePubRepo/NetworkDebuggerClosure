@@ -6,19 +6,19 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.DNSUtil');
+goog.provide('ndebug.DNSUtil');
 
 /**
  * Static helper class for DNS information.
  */
-netdebugger.DNSUtil = function() {};
+ndebug.DNSUtil = function() {};
 
 
 /**
  * Enum for DNS record type.
  * @enum {number}
  */
-netdebugger.DNSUtil.RecordNumber = {
+ndebug.DNSUtil.RecordNumber = {
   A: 1,
   AAAA: 28,
   MX: 15,
@@ -31,7 +31,7 @@ netdebugger.DNSUtil.RecordNumber = {
  * Enum for section of the DNS packet (i.e., type of resource record).
  * @enum {string}
  */
-netdebugger.DNSUtil.PacketSection = {
+ndebug.DNSUtil.PacketSection = {
   QUESTION: 'qd',
   ANSWER: 'an',
   AUTHORITY: 'ns',
@@ -41,20 +41,20 @@ netdebugger.DNSUtil.PacketSection = {
 
 /**
  * @param {string} name Name of DNS record type.
- * @return {netdebugger.DNSUtil.RecordNumber} RFC 1035 DNS record number type.
+ * @return {ndebug.DNSUtil.RecordNumber} RFC 1035 DNS record number type.
  */
-netdebugger.DNSUtil.getRecordTypeNumByRecordTypeName = function(name) {
+ndebug.DNSUtil.getRecordTypeNumByRecordTypeName = function(name) {
   switch (name.toUpperCase()) {
     case 'MX':
-      return netdebugger.DNSUtil.RecordNumber.MX;
+      return ndebug.DNSUtil.RecordNumber.MX;
     case 'AAAA':
-      return netdebugger.DNSUtil.RecordNumber.AAAA;
+      return ndebug.DNSUtil.RecordNumber.AAAA;
     case 'CNAME':
-      return netdebugger.DNSUtil.RecordNumber.CNAME;
+      return ndebug.DNSUtil.RecordNumber.CNAME;
     case 'TXT':
-      return netdebugger.DNSUtil.RecordNumber.TXT;
+      return ndebug.DNSUtil.RecordNumber.TXT;
     default:
-      return netdebugger.DNSUtil.RecordNumber.A;
+      return ndebug.DNSUtil.RecordNumber.A;
   }
 };
 
@@ -64,21 +64,21 @@ netdebugger.DNSUtil.getRecordTypeNumByRecordTypeName = function(name) {
  * @param {number} num DNS record type number.
  * @return {string} The DNS record type as a string.
  */
-netdebugger.DNSUtil.getRecordTypeNameByRecordTypeNum = function(num) {
+ndebug.DNSUtil.getRecordTypeNameByRecordTypeNum = function(num) {
   switch (num) {
-    case netdebugger.DNSUtil.RecordNumber.AAAA:
+    case ndebug.DNSUtil.RecordNumber.AAAA:
       return 'AAAA';
 
-    case netdebugger.DNSUtil.RecordNumber.MX:
+    case ndebug.DNSUtil.RecordNumber.MX:
       return 'MX';
 
-    case netdebugger.DNSUtil.RecordNumber.CNAME:
+    case ndebug.DNSUtil.RecordNumber.CNAME:
       return 'CNAME';
 
-    case netdebugger.DNSUtil.RecordNumber.TXT:
+    case ndebug.DNSUtil.RecordNumber.TXT:
       return 'TXT';
       
-    case netdebugger.DNSUtil.RecordNumber.A:
+    case ndebug.DNSUtil.RecordNumber.A:
     default:
       return 'A';
    }

@@ -6,24 +6,24 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.DNSRecordCNAME');
+goog.provide('ndebug.DNSRecordCNAME');
 
-goog.require('netdebugger.DNSRecord');
+goog.require('ndebug.DNSRecord');
 
 /**
  * CNAME DNS record.
  * @param {string} name Name of the CNAME record.
  * @param {number} ttl Time to live of the record.
- * @extends netdebugger.DNSRecord
+ * @extends ndebug.DNSRecord
  * @constructor
  */
-netdebugger.DNSRecordCNAME = function(name, ttl) {
+ndebug.DNSRecordCNAME = function(name, ttl) {
   this.name_ = name;
-  this.type_ = netdebugger.DNSUtil.RecordNumber.CNAME;
+  this.type_ = ndebug.DNSUtil.RecordNumber.CNAME;
   this.cl_ = 1;
   this.ttl_ = ttl;
 };
-goog.inherits(netdebugger.DNSRecordCNAME, netdebugger.DNSRecord);
+goog.inherits(ndebug.DNSRecordCNAME, ndebug.DNSRecord);
 
 
 /**
@@ -31,14 +31,14 @@ goog.inherits(netdebugger.DNSRecordCNAME, netdebugger.DNSRecord);
  * @type {string}
  * @private
  */
-netdebugger.DNSRecordCNAME.prototype.cname_ = null;
+ndebug.DNSRecordCNAME.prototype.cname_ = null;
 
 
 /**
  * Set the cname of the record.
  * @param {string} cname Text value.
  */
-netdebugger.DNSRecordCNAME.prototype.setCname = function(cname) {
+ndebug.DNSRecordCNAME.prototype.setCname = function(cname) {
   this.cname_ = cname;
 };
 
@@ -47,6 +47,6 @@ netdebugger.DNSRecordCNAME.prototype.setCname = function(cname) {
  * Return the cname stored by this record.
  * @return {string} CNAME value.
  */
-netdebugger.DNSRecordCNAME.prototype.getCname = function() {
+ndebug.DNSRecordCNAME.prototype.getCname = function() {
   return this.cname_;
 };

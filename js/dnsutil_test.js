@@ -6,28 +6,28 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger.test.DNSUtil');
+goog.provide('ndebug.test.DNSUtil');
 
 goog.require('goog.testing.jsunit');
-goog.require('netdebugger.DNSUtil');
+goog.require('ndebug.DNSUtil');
 
-goog.setTestOnly('Tests for netdebugger.DNSUtil');
+goog.setTestOnly('Tests for ndebug.DNSUtil');
 
 
 /**
  * Test for getRecordTypeNumByRecordTypeName() method.
  */
 function testGetRecordTypeNumByRecordTypeName() {
-  assertEquals(netdebugger.DNSUtil.RecordNumber.MX,
-      netdebugger.DNSUtil.getRecordTypeNumByRecordTypeName('MX'));
-  assertEquals(netdebugger.DNSUtil.RecordNumber.A,
-      netdebugger.DNSUtil.getRecordTypeNumByRecordTypeName('A'));
-  assertEquals(netdebugger.DNSUtil.RecordNumber.AAAA,
-      netdebugger.DNSUtil.getRecordTypeNumByRecordTypeName('AAAA'));
-  assertEquals(netdebugger.DNSUtil.RecordNumber.CNAME,
-      netdebugger.DNSUtil.getRecordTypeNumByRecordTypeName('CNAME'));
-  assertEquals(netdebugger.DNSUtil.RecordNumber.TXT,
-      netdebugger.DNSUtil.getRecordTypeNumByRecordTypeName('TXT'));
+  assertEquals(ndebug.DNSUtil.RecordNumber.MX,
+      ndebug.DNSUtil.getRecordTypeNumByRecordTypeName('MX'));
+  assertEquals(ndebug.DNSUtil.RecordNumber.A,
+      ndebug.DNSUtil.getRecordTypeNumByRecordTypeName('A'));
+  assertEquals(ndebug.DNSUtil.RecordNumber.AAAA,
+      ndebug.DNSUtil.getRecordTypeNumByRecordTypeName('AAAA'));
+  assertEquals(ndebug.DNSUtil.RecordNumber.CNAME,
+      ndebug.DNSUtil.getRecordTypeNumByRecordTypeName('CNAME'));
+  assertEquals(ndebug.DNSUtil.RecordNumber.TXT,
+      ndebug.DNSUtil.getRecordTypeNumByRecordTypeName('TXT'));
 }
 
 
@@ -36,21 +36,21 @@ function testGetRecordTypeNumByRecordTypeName() {
  */
 function testGetRecordTypeNameByRecordTypeNum() {
   assertEquals('MX',
-      netdebugger.DNSUtil.getRecordTypeNameByRecordTypeNum(
-          netdebugger.DNSUtil.RecordNumber.MX));
+      ndebug.DNSUtil.getRecordTypeNameByRecordTypeNum(
+          ndebug.DNSUtil.RecordNumber.MX));
   assertEquals('A',
-      netdebugger.DNSUtil.getRecordTypeNameByRecordTypeNum(
-          netdebugger.DNSUtil.RecordNumber.A));
+      ndebug.DNSUtil.getRecordTypeNameByRecordTypeNum(
+          ndebug.DNSUtil.RecordNumber.A));
   assertEquals('AAAA',
-      netdebugger.DNSUtil.getRecordTypeNameByRecordTypeNum(
-          netdebugger.DNSUtil.RecordNumber.AAAA));
+      ndebug.DNSUtil.getRecordTypeNameByRecordTypeNum(
+          ndebug.DNSUtil.RecordNumber.AAAA));
   assertEquals('MX',
-      netdebugger.DNSUtil.getRecordTypeNameByRecordTypeNum(
-          netdebugger.DNSUtil.RecordNumber.MX));
+      ndebug.DNSUtil.getRecordTypeNameByRecordTypeNum(
+          ndebug.DNSUtil.RecordNumber.MX));
   assertEquals('TXT',
-      netdebugger.DNSUtil.getRecordTypeNameByRecordTypeNum(
-          netdebugger.DNSUtil.RecordNumber.TXT));
+      ndebug.DNSUtil.getRecordTypeNameByRecordTypeNum(
+          ndebug.DNSUtil.RecordNumber.TXT));
   assertEquals('CNAME',
-      netdebugger.DNSUtil.getRecordTypeNameByRecordTypeNum(
-          netdebugger.DNSUtil.RecordNumber.CNAME));
+      ndebug.DNSUtil.getRecordTypeNameByRecordTypeNum(
+          ndebug.DNSUtil.RecordNumber.CNAME));
 }
