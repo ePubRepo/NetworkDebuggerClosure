@@ -63,8 +63,8 @@ ndebug.DNSPacketSerializer.prototype.serialize = function() {
  * byte.
  *
  * @param {string} dnsName A DNS name such as "mail.google.com".
- * @param {ndebug.Serializer} dnsSerializer Data serializer being used to serialize
- *                                   a DNS packet.
+ * @param {ndebug.Serializer} dnsSerializer Data serializer being used to
+ *                                          serialize a DNS packet.
  * @param {number} opt_ref Packet location of DNS name being referenced.
  *                            See Section 4.1.4 of RFC 1035.
  * @return {ndebug.Serializer} This instance of a Serializer.

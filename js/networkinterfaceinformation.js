@@ -11,8 +11,8 @@ goog.provide('ndebug.NetworkInterfaceInformation');
 /**
  * Capture information about currently running network interfaces.
  * @param {ndebug.OutputRecordManager} outputRecordManager Manage output logs.
- * @param {function(ndebug.OutputRecordManager)} completedCallbackFnc Function to
- *                                          call when NIC information is
+ * @param {function(ndebug.OutputRecordManager)} completedCallbackFnc Function
+ *                                          to call when NIC information is
  *                                          populated.
  * @constructor
  */

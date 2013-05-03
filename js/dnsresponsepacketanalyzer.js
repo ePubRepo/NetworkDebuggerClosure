@@ -121,8 +121,8 @@ ndebug.DNSResponsePacketAnalyzer.prototype.dnsQueryManager_ = null;
 /**
  * Return DNS query manager containing the query and its response.
  *
- * @return {ndebug.DNSQueryManager} DNS query manager containing the query and its
- *                           response.
+ * @return {ndebug.DNSQueryManager} DNS query manager containing the query
+ *                                  and its response.
  */
 ndebug.DNSResponsePacketAnalyzer.prototype.getDnsQueryManager = function() {
   return this.dnsQueryManager_;

@@ -20,10 +20,10 @@ goog.require('ndebug.ResponseLabelPointerManager');
  * @param {string} hostname Hostname to lookup a record for.
  * @param {number} recordTypeNum Type of record to lookup.
  * @param {string} dnsServer Server to query against records.
- * @param {function(ndebug.DNSQueryManager)} finalCallbackFnc Callback function run
- *                                                     when query done.
- * @param {ndebug.OutputRecordManager} outputRecordManager
- *                                                     Manage output logs.
+ * @param {function(ndebug.DNSQueryManager)} finalCallbackFnc Callback function
+ *                                                            run when query
+ *                                                            is done.
+ * @param {ndebug.OutputRecordManager} outputRecordManager Manage output logs.
  * @constructor
  */
 ndebug.DNSQueryManager = function(hostname, recordTypeNum,
@@ -265,7 +265,8 @@ ndebug.DNSQueryManager.prototype.sendRequest = function() {
         'Received no response in ' + udpTimeoutSec +
         ' seconds, closing socket');
     clearTimeout(udpTimeoutFunction);
-    this.queryResultStatus_ = ndebug.DNSQueryManager.QueryResultStatus.FAIL_TIMEOUT;
+    this.queryResultStatus_ =
+      ndebug.DNSQueryManager.QueryResultStatus.FAIL_TIMEOUT;
     cleanUp_.apply(this);
   };
 
@@ -310,11 +311,13 @@ ndebug.DNSQueryManager.prototype.sendRequest = function() {
   */
   function onDataWritten_(writeInfo) {
     if (writeInfo.bytesWritten != this.serializedQueryPacket_.byteLength) {
-       this.outputRecordManager_.pushEntry(ndebug.OutputRecord.DetailLevel.ERROR,
-         'Error writing DNS packet.');
+       this.outputRecordManager_.pushEntry(
+           ndebug.OutputRecord.DetailLevel.ERROR,
+           'Error writing DNS packet.');
        chrome.socket.destroy(this.socketId_);
     } else {
-       this.outputRecordManager_.pushEntry(ndebug.OutputRecord.DetailLevel.DEBUG,
+       this.outputRecordManager_.pushEntry(
+           ndebug.OutputRecord.DetailLevel.DEBUG,
            'Successfully sent ' + writeInfo.bytesWritten +
            ' bytes in a DNS packet');
        readData_.apply(this);
@@ -342,7 +345,8 @@ ndebug.DNSQueryManager.prototype.sendRequest = function() {
 
     var infoLog = 'Preparing to query server ' + this.dnsServer_ + ' ' +
               'for record type ' +
-              ndebug.DNSUtil.getRecordTypeNameByRecordTypeNum(this.recordTypeNum_) +
+              ndebug.DNSUtil.
+                getRecordTypeNameByRecordTypeNum(this.recordTypeNum_) +
               ' with hostname ' + this.hostname_;
     this.outputRecordManager_.pushEntry(ndebug.OutputRecord.DetailLevel.DEBUG,
          infoLog);

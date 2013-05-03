@@ -87,8 +87,8 @@ ndebug.DNSRecord.prototype.dataTxt_ = null;
 
 /**
  * Set the label pointer manager for the DNS packet to which the record belongs.
- * @param {ndebug.ResponseLabelPointerManager} obj Label manager to help reassemble
- *                                          DNS packet data.
+ * @param {ndebug.ResponseLabelPointerManager} obj Label manager to help
+ *                                                 reassemble DNS packet data.
  */
 ndebug.DNSRecord.prototype.setLblPointManager = function(obj) {
   this.lblPointManager_ = obj;

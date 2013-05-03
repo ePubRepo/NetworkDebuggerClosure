@@ -19,10 +19,14 @@ goog.setTestOnly('Tests for ndebug.DNSRecord');
  * Create objects for testing.
  */
 function setUp() {
-  myDnsRecordA = new ndebug.DNSRecord('t.com', ndebug.DNSUtil.RecordNumber.A, 1, 555);
-  myDnsRecordAAAA = new ndebug.DNSRecord('t.com', ndebug.DNSUtil.RecordNumber.AAAA, 1, 550);
-  myDnsRecordCNAME = new ndebug.DNSRecord('t.com', ndebug.DNSUtil.RecordNumber.CNAME, 1, 525);
-  myDnsRecordMX = new ndebug.DNSRecord('t.com', ndebug.DNSUtil.RecordNumber.MX, 1, 500);
+  myDnsRecordA = new ndebug.DNSRecord('t.com',
+      ndebug.DNSUtil.RecordNumber.A, 1, 555);
+  myDnsRecordAAAA = new ndebug.DNSRecord('t.com',
+      ndebug.DNSUtil.RecordNumber.AAAA, 1, 550);
+  myDnsRecordCNAME = new ndebug.DNSRecord('t.com',
+      ndebug.DNSUtil.RecordNumber.CNAME, 1, 525);
+  myDnsRecordMX = new ndebug.DNSRecord('t.com',
+      ndebug.DNSUtil.RecordNumber.MX, 1, 500);
 }
 
 

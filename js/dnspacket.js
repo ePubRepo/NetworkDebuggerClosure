@@ -67,7 +67,7 @@ ndebug.DNSPacket.prototype.getAnswerRecordCount = function() {
 
 /**
  * Add a DNS record to a particular section of this DNS packet.
- * @param {ndebug.DNSUtil.PacketSection} packetSection Section of the DNS record.
+ * @param {ndebug.DNSUtil.PacketSection} packetSection Section of DNS record.
  * @param {ndebug.DNSRecord} dnsRecord DNS record to add to this packet.
  */
 ndebug.DNSPacket.prototype.push = function(packetSection, dnsRecord) {
@@ -78,7 +78,7 @@ ndebug.DNSPacket.prototype.push = function(packetSection, dnsRecord) {
 /**
  * Invoke a callback function and pass each DNSRecord that is part of a
  *   specific DNS packet section.
- * @param {ndebug.DNSUtil.PacketSection} packetSection Section of the DNS record.
+ * @param {ndebug.DNSUtil.PacketSection} packetSection Section of DNS record.
  * @param {function(ndebug.DNSRecord)} callbackFunction Function to pass each
  *                                               DNS record that is part of
  *                                               a section to.

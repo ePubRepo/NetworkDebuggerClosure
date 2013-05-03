@@ -77,7 +77,7 @@ ndebug.DNSUtil.getRecordTypeNameByRecordTypeNum = function(num) {
 
     case ndebug.DNSUtil.RecordNumber.TXT:
       return 'TXT';
-      
+
     case ndebug.DNSUtil.RecordNumber.A:
     default:
       return 'A';

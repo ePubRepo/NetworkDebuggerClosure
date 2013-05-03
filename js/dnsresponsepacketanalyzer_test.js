@@ -35,7 +35,10 @@ function testIsIp4AddressInCidrBlock() {
  * Test the isGoogleIp4Address() method.
  */
 function testIsGoogleIp4Address() {
-  assertTrue(ndebug.DNSResponsePacketAnalyzer.isGoogleIp4Address('74.125.224.110'));
-  assertFalse(ndebug.DNSResponsePacketAnalyzer.isGoogleIp4Address('99.23.29.13'));
-  assertFalse(ndebug.DNSResponsePacketAnalyzer.isGoogleIp4Address('209.230.12.23'));
+  assertTrue(ndebug.DNSResponsePacketAnalyzer.isGoogleIp4Address(
+      '74.125.224.110'));
+  assertFalse(ndebug.DNSResponsePacketAnalyzer.isGoogleIp4Address(
+      '99.23.29.13'));
+  assertFalse(ndebug.DNSResponsePacketAnalyzer.isGoogleIp4Address(
+      '209.230.12.23'));
 }

@@ -6,10 +6,10 @@
  * @author ebeach@google.com (Eric Beach)
  */
 
-goog.provide('netdebugger');
+goog.provide('ndebug');
 
-goog.provide('ndebug.Bootstrap');
 goog.require('ndebug.AppGuiManager');
+goog.provide('ndebug.Bootstrap');
 
 /**
  * Bootstrap the network debugger app.
@@ -40,9 +40,11 @@ ndebug.Bootstrap.prototype.addDomEventListeners = function() {
 
   // add listeners to console control
   document.getElementById('consoleClearBtn')
-      .addEventListener('click', ndebug.AppGuiManager.consoleClearBtnClicked, false);
+      .addEventListener('click',
+                        ndebug.AppGuiManager.consoleClearBtnClicked, false);
   document.getElementById('consoleCopyBtn')
-      .addEventListener('click', ndebug.AppGuiManager.consoleCopyBtnClicked, false);
+      .addEventListener('click',
+                        ndebug.AppGuiManager.consoleCopyBtnClicked, false);
 };
 
 
@@ -74,7 +76,8 @@ function basicDiagnostics() {
 
   for (var i = 0; i < ndebug.Util.hostnamesToTest.length; i++) {
     var outputRecordManager = new ndebug.OutputRecordManager();
-    var gDnsQuery = new ndebug.DNSQueryManager(ndebug.Util.hostnamesToTest[i],
+    var gDnsQuery = new ndebug.DNSQueryManager(
+        ndebug.Util.hostnamesToTest[i],
         ndebug.DNSUtil.RecordNumber.A,
         '8.8.8.8',
         finishedDnsFnc,
@@ -87,7 +90,8 @@ function l3DnsBtnClick() {
    var inputHelper = new ndebug.DNSInputHelper();
    if (inputHelper.isValidHostnameEntered()) {
      var outputRecordManager = new ndebug.OutputRecordManager();
-     var gDnsQuery = new ndebug.DNSQueryManager(inputHelper.getHostnameEntered(),
+     var gDnsQuery = new ndebug.DNSQueryManager(
+         inputHelper.getHostnameEntered(),
          inputHelper.getRecordType(),
          '209.244.0.3',
          finishedDnsFnc,
@@ -101,7 +105,8 @@ function oDnsBtnClick() {
    var inputHelper = new ndebug.DNSInputHelper();
    if (inputHelper.isValidHostnameEntered()) {
      var outputRecordManager = new ndebug.OutputRecordManager();
-     var gDnsQuery = new ndebug.DNSQueryManager(inputHelper.getHostnameEntered(),
+     var gDnsQuery = new ndebug.DNSQueryManager(
+         inputHelper.getHostnameEntered(),
          inputHelper.getRecordType(),
          '208.67.222.222',
          finishedDnsFnc,
@@ -115,7 +120,8 @@ function gDnsBtnClick() {
    var inputHelper = new ndebug.DNSInputHelper();
    if (inputHelper.isValidHostnameEntered()) {
      var outputRecordManager = new ndebug.OutputRecordManager();
-     var gDnsQuery = new ndebug.DNSQueryManager(inputHelper.getHostnameEntered(),
+     var gDnsQuery = new ndebug.DNSQueryManager(
+         inputHelper.getHostnameEntered(),
          inputHelper.getRecordType(),
          '8.8.8.8',
          finishedDnsFnc,
@@ -141,7 +147,8 @@ function customDnsBtnClick() {
     if (inputHelper.isValidHostnameEntered() &&
             inputHelper.isValidCustomResolverIpEntered()) {
       var outputRecordManager = new ndebug.OutputRecordManager();
-      var gDnsQuery = new ndebug.DNSQueryManager(inputHelper.getHostnameEntered(),
+      var gDnsQuery = new ndebug.DNSQueryManager(
+          inputHelper.getHostnameEntered(),
           inputHelper.getRecordType(),
           inputHelper.getCustomResolverIp(),
           finishedDnsFnc,
@@ -173,7 +180,9 @@ function gHttpBtnClick() {
 
 function mHttpBtnClick() {
   var outputRecordManager = new ndebug.OutputRecordManager();
-  var objTelnet = new ndebug.Telnet('mail.google.com', 80, outputRecordManager);
+  var objTelnet = new ndebug.Telnet('mail.google.com',
+                                    80,
+                                    outputRecordManager);
    objTelnet.
       setPlainTextDataToSend('GET / HTTP/1.1\r\nHost: mail.google.com\r\n\r\n');
    objTelnet.setCompletedCallbackFnc(printFinishedTelnetOutput);
@@ -183,7 +192,9 @@ function mHttpBtnClick() {
 
 function dHttpBtnClick() {
   var outputRecordManager = new ndebug.OutputRecordManager();
-  var objTelnet = new ndebug.Telnet('drive.google.com', 80, outputRecordManager);
+  var objTelnet = new ndebug.Telnet('drive.google.com',
+                                    80,
+                                    outputRecordManager);
    objTelnet.
      setPlainTextDataToSend('GET / HTTP/1.1\r\nHost: drive.google.com\r\n\r\n');
    objTelnet.setCompletedCallbackFnc(printFinishedTelnetOutput);

@@ -23,7 +23,10 @@ function setUp() {
   function callback() {}
   myOutputRecordManager = new ndebug.OutputRecordManager();
   myQueryManager1 = new ndebug.DNSQueryManager('google.com',
-      ndebug.DNSUtil.RecordNumber.A, '8.8.8.8', callback, myOutputRecordManager);
+      ndebug.DNSUtil.RecordNumber.A,
+      '8.8.8.8',
+      callback,
+      myOutputRecordManager);
 }
 
 

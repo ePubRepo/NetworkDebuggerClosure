@@ -22,8 +22,9 @@ goog.require('ndebug.Deserializer');
  * Take an ArrayBuffer of binary data from a socket and parse a DNSPacket.
  * @param {Uint8Array|ArrayBuffer} arBuffer Uint8Array of binary data
  *                                          representing a DNS packet.
- * @param {ndebug.ResponseLabelPointerManager} lblPointManager Reassemble compressed
- *                                                      DNS names.
+ * @param {ndebug.ResponseLabelPointerManager} lblPointManager Reassemble
+ *                                                             compressed
+ *                                                             DNS names.
  * @constructor
  */
 ndebug.DNSPacketDeserializer = function(arBuffer, lblPointManager) {
@@ -80,7 +81,9 @@ ndebug.DNSPacketDeserializer.prototype.deserializePacket = function() {
   var packet = new ndebug.DNSPacket(flags);
 
   // Parse the QUESTION section.
-  for (var qI = 0; qI < sectionCount[ndebug.DNSUtil.PacketSection.QUESTION]; ++qI) {
+  for (var qI = 0;
+       qI < sectionCount[ndebug.DNSUtil.PacketSection.QUESTION];
+       ++qI) {
     var dnsRecord = new ndebug.DNSRecord(
       // dns record name
       this.parseName(this.lblPointManager_, this.dataDeserializer_),
@@ -246,9 +249,10 @@ ndebug.DNSPacketDeserializer.prototype.parseDataSection = function(
 /**
  * Parse a DNS name, which will either finish with a NULL byte or a suffix
  * reference (i.e., 0xc0 <ref>).
- * @param {ndebug.ResponseLabelPointerManager} lblPtManager Reassemble compressed
- *                                                   DNS names.
- * @param {ndebug.Deserializer} nameDeserializer Deserializer used to parse name.
+ * @param {ndebug.ResponseLabelPointerManager} lblPtManager Reassemble
+ *                                                          compressed
+ *                                                          DNS names.
+ * @param {ndebug.Deserializer} nameDeserializer Deserializer to parse name.
  * @return {string} Parsed and re-assembled DNS name.
  */
 ndebug.DNSPacketDeserializer.prototype.parseName = function(lblPtManager,
